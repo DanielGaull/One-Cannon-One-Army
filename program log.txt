@@ -1,0 +1,605 @@
+2/17/2017
+*HUGE bug fix w/ cannon
+*Meteors
+*Hammers
+
+2/18/2017
+*Added Health bar color changes
+*Achievement.cs
+*Fixed many bugs with the cannon & player interface
+*Shop sliding when page changes
+*Freeze-Proof Alien
+
+2/19/2017
+*Fixed bug w/ cannon
+
+2/20/2017 - 2/22/2017
+*Zoo, then sick
+*Thought of bone, shuriken, ice shard, & omega rocket (as well as name changes)
+
+2/23/2017
+*Implemented Poison Rocket, Fire Rocket, Frozen Rocket, Plasma Rocket, & Omega Rocket
+*Drew textures for bone, shuriken, & ice shard
+*Projectile Balancing
+*Bug Fixes
+
+2/24/2017
+*Sick
+
+2/25/2017
+*Alien Balancing
+*Plasma-Resistant Aliens
+*Omega Aliens
+*Bug Fixes
+
+2/26/2017
+*MaterialInventory class
+*Material enum
+*CraftingRecipe struct w/ all crafting recipes
+*Images for all materials
+*Fixed projectile image blurriness
+
+2/27/2017-2/28/2017
+*Nothing
+
+3/1/2017
+*Added alien material drops
+*Added material collecting
+*Crafting GameState
+*CraftingInterface class
+
+3/2/2017
+*Added Crafting button funtionality
+*Made materials go to front of drawing
+*Fixed bugs & recipes
+
+3/3/2017-3/4/2017
+*Nothing
+
+3/5/2017
+*Implemented CraftingInterface class
+*Fixed Frozen Blast & Poison Vial images
+*Remade Purasu Banner
+*Replaced projectiles in shop with materials
+*Added actual crafting
+*Finished Purasu intro images
+
+3/6/2017
+*Finished AchievementDisplay class
+*AchievementMenu class
+*Achievements class
+
+3/7/2017-3/9/2017
+*Nothing; computer broken
+
+3/10/2017
+*Added achievement icons
+*Gave special defense aliens normal defense as well
+*Drew Malos Badge sprite
+
+3/11/2017
+*Prepared translating for all languages
+*Implemented CannonSettings into Cannon class
+*Drew textures for each cannon type
+*Fixed minor but w/ user paging
+
+3/12/2017
+*Created icons for cannon upgrades
+*Created CannonUpgradeInterface
+
+3/13/2017
+*Added & implemented CannonUpgradeMenu class
+*Implemented health stat
+*Added upgrade costs
+*Fixed bugs
+
+3/14/2017
+*Added static Notification class
+*Changes to NotificationInstance class
+*Added ShowAch method
+*Added achievement criteria methods
+*Enabled achievement earning
+
+3/15/2017
+*Fixed check positioning with achievement displays
+*Added check funtionality to achievement menu
+*Added 4 crafting achievements
+*Made items fly to username to be collected
+
+3/16/2017
+*Fixed textbox bug
+*Added death values & fields
+
+3/17/2017
+*Added organize button
+*Started OrganizeMenu class
+
+3/18/2017
+*Basketball Tournament
+*OrganizeMenu.Initialize w/ projectiles & materials
+*OrganizeMenu.Draw w/ projectiles & materials
+
+3/19/2017
+*Adding/Removing materials & projectiles to OrganizeMenu when they're added in-game
+*HotbarSlotInteractive class
+*Hotbar organization
+
+3/20/2017 & 3/21/2017
+*Nothing; HW & Bball
+
+3/22/2017
+*Loading current hotbar
+*Added fullscreen functionality (F11 is default)
+
+3/23/2017
+*Nothing
+
+3/24/2017
+*Grid to hotbar menu
+*Planet struct & values
+
+3/25/2017
+*Added background image
+*Fixed bugs
+*Wrote story
+*Added story display (for first story)
+*Finished Mission class
+*Moved buttons when choosing projectile
+
+3/26/2017
+*Finished mission chart (added aliens)
+*Created missions.ocoam
+*Added mission loading
+*Added mission functionality
+*Removed all program references to XP and leveling
+*Resized health bar and top height of player interface
+*Resized cannon
+
+3/27/2017
+*Drew laser cannon sprite
+*Implemented laser cannon (partially)
+
+3/28/2017
+*Allowed missions to be replayed
+*Fixed bug w/ projectile positioning
+*Fixed bug w/ launching explosive projectiles
+*Fixed bug w/ cannon thinking flying projectiles are loaded
+*Implemented mission progress bar
+*Drew another promotional poster
+
+3/29/2017
+*Fixed mission reward messages
+*Drew alien mechanical materials sprite
+*Started MissionPlayable class
+
+3/30/2017
+*Finished MissionPlayable class
+*Implemented MissionPlayable class
+*Cleaned up Game1 class
+*Fixed bug w/ multiple aliens spawning
+*Added location when hovering over missions
+
+3/31/2017
+*Added Cage class
+*Implemented Cage class into game
+*Created file w/ new missions
+*Improved boss battle - Normal Aliens spawn and Malos moves side-to-side
+*Fixed but w/ laser cannon levels
+*Removed text from laser cannon health bar
+*Changed CalculateWorth to include values for different goals
+*Center final battle in mission menu
+
+4/1/2017
+*Nothing; gone all day
+
+4/2/2017
+*Added level info popup to tell user mission goal before mission starts
+*Drew shield icon
+
+4/3/2017
+*Fixed but w/ mission incrementation
+*Started LevelCompletePopup class
+
+4/4/2017-4/6/2017
+*Nothing
+
+4/7/2017
+*Finished LevelCompletePopup
+
+4/8/2017
+*Finished Level Failure Popup
+
+4/9/2017-4/10/2017
+*Nothing
+
+4/11/2017
+*Added Trophy images
+*Added Badge and BadgeDrop
+
+4/12/2017
+*Nothing; track meet
+
+4/13/2017
+*Implemented Trophy
+*Added collection viewing to organize menu
+*Fixed bug w/ MenuButton class
+*Changed Organize buttons to icons
+
+4/14/2017
+*Started adding lives
+*Finished variables
+*Added life displays
+
+4/15/2017
+*Added checking if user needs lives when the program is started
+*Fixed lives display in PlayerInterface
+
+4/16/2017
+*Nothing
+
+4/17/2017
+*Fixed bugs w/ lives
+*Started life purchasing implementation
+
+4/18/2017
+*Nothing
+
+4/19/2017
+*Completed ability to purchase lives
+
+4/20/2017
+*Added lives being taken away when level is quit
+*Fixed "Infinite Accuracy" bug
+*Wrote devlog
+
+4/21/2017
+*Nothing; robotics
+
+4/22/2017
+*Nothing; robotics & bball tournament
+
+4/23/2017
+*Bug fixes w/ level complete popup
+
+4/24/2017-4/27/2017
+*Nothing
+
+4/28/2017
+*Started ShopCannonInterface class
+*Started cannons in shop
+
+4/29/2017 - 5/6/2017
+*Nothing
+
+5/7/2017
+*Implemented cannons into shop
+*Inferno Cannon
+*Frozen Cannon
+*Fixed cannon reloading bug
+*Fixed lives bug when quitting a level
+
+5/8/2017-5/9/2017
+*Nothing
+
+5/10/2017
+*Tested & fixed bugs with new Cannon feature
+*Added version display
+*Added coin display to main menu
+
+5/11/2017-5/13/2017
+*Nothing
+
+5/14/2017
+*Spanish translations
+
+5/15/2017
+*Spanish translations
+*Bug fixes
+
+5/16/2017
+*Nothing
+
+5/17/2017
+*Spanish translations
+*Changed "Master Cannon" to "Elite Cannon" (check translation)
+
+5/18/2017-5/20/2017
+*Nothing
+
+5/21/2017
+*Started Spanish achievement translations
+
+5/22/2017
+*Finished Spanish achievement translations
+*Finished mission goal translations (Spanish)
+*Started mission name translations (Spanish)
+
+5/23/2017
+*Finished Spanish mission name translations
+*Added mission reward translations (Spanish)
+*Added mission reward prefix translations (Spanish)
+
+5/24/2017
+*Added alien reward translations (Spanish)
+*Aded language select menu
+*Started OnLangChanged event handling
+
+5/25/2017-5/26/2017
+*Nothing; graduation & computer not working
+
+5/27/2017
+*Continued work on LangChanged event
+**For some reason, names of items in ShopItemInterface not working (and neither is buy button in ShopCannonInterface)
+
+5/28/2017
+*Added translations
+**Essence of Fire
+**Do not show again.
+**Ctrl+W Popup message
+*Continued to work on LangChanged event
+**Finished event for Shop class
+**Finished event for CraftingMenu class
+**Finished event for AchievementMenu class
+**Finsihed event for CannonUpgradeMenu class
+*Made bg images in buttons regenerate to make them look nicer
+
+5/29/2017
+*Added ControlMenu
+
+5/30/2017
+*Added translations for control names
+*Added language setting when program starts
+*Added settings button, icon, GameState handling, & basic drawing
+
+5/31/2017
+*Started Tutorial class
+*Started LanguageSelectPopup class
+
+6/1/2017
+*Finished TutorialStage class
+
+6/2/2017
+*Nothing
+
+6/3/2017
+*Finished Tutorial class
+*Removed TutorialStage class
+*Began adding tutorial stages
+
+6/4/2017
+*Finished tutorial stages
+*Added saving if tutorial was played through
+*Fixed story showing
+*Changed the intro to fade in and out if intro was already played
+*Fixed MazeSnake screenshots in intro
+
+6/5/2017-6/6/2017
+*Nothing
+
+6/7/2017
+*Finished LangSelectPopup class
+*Implemented LangSelectPopup
+*Added ItemInfoHover class
+*Added hover info popups for materials (organize menu & shop)
+*Added hover info popups for projectiles (organize & crafting menus)
+
+6/8/2017
+*Added hover info popups for cannons (shop)
+*Added RClickDropdown and DropdownItem classes
+*Added selling materials
+*Added Sell Value stat to material info popup
+*Added selling projectiles
+*Added Sell Value stat to projectile info popup
+*Began adding bone, shuriken, and ice shard
+
+6/9/2017
+*Finished implementing bone, shuriken, and ice shard
+*Fixed bug w/ level unlocks popup showing bg when there are no unlocks
+
+6/10/2017
+*Added ninja alien
+*Lots of bug fixes
+*Changed projectiles to not do effect damage on hit
+
+6/11/2017
+*Nothing; deck stain
+
+6/12/2017
+*Many bug fixes
+
+6/13/2017
+*Nothing
+
+6/14/2017
+*Started SettingsMenu class
+**Added changing username
+**Added changing avatar color
+**Added tutorial replaying
+*Small bug fix in textbox
+
+6/15/2017
+*Added avatar drawing to settings menu
+*Added projectile icon changing
+*Added stage to tutorial (use back button to cancel user creation)
+*Fixed bug with menu & langSelectPopup
+*Added updating UserInterfaces if settings are changed
+*Added brightness changing
+*Fixed Bug - added life updating to UserInterfaces
+
+6/16/2017
+*Added showing achievement rewards
+*Fixed weird movement in tutorial (bug)
+*Added preventing aliens w/ shields from carrying mechanical supplies
+*Added mission name & location display in pause menu
+*Fixed bug with pausing
+*Added borders to interfaces
+
+6/17/2017 - 6/18/2017
+*Nothing
+
+6/19/2017
+*Started gifts
+
+6/20/2017
+*Got sound working - implemented intro sound
+*Continued work on gifts
+*Fixed bug
+*Added firing sounds to cannon
+
+6/21/2017
+*Created GiftMenu class
+*Finished GiftInterface and GiftPopup classes
+
+6/22/2017
+*Nothing; Raging Waves
+
+6/23/2017
+*Fixed width issue with Goal Popup
+*Continued working on gifts (mostly GiftPopup and claim methods)
+*Fixed particles
+*Added more sounds (laser, metallic whoosh, click, open doors, close doors, explosion)
+*Added music (still need credits)
+
+6/24/2017-6/25/2017
+*Nothing (grad party & cleanup)
+
+6/26/2017
+*Added gifts to shop
+*Added free gifts every 24 hours (and notification)
+*Fixed bug in shop (cannon interfaces didn't update to lang change)
+*Added fireworks sound to gift popup
+
+6/27/2017
+*Added some more sounds
+*Increased chances of materials in gifts
+
+6/28/2017
+*Did some more work with sound
+*Fixed the first bug of the game (items appearing in bad places)
+
+6/29/2017
+*Bug fixes
+
+6/30/2017
+*Bug fixes
+*Misc. features
+*Added volume settings
+*Added sounds
+*Fixed missing translation bug
+*Added some more translations
+
+7/1/2017
+*Nothing; BBQ
+
+7/2/2017
+*Bug fixes
+*Misc. features
+
+7/3/2017
+*Misc. features
+*Bug fixes
+
+7/4/2017
+*Bug fixes
+*Misc. features
+*Added translations
+
+7/5/2017
+*Nothing
+
+7/6/2017
+*Added mute button to start menu
+*Bug fixes (glitchy cannon included)
+
+7/7/2017
+*Misc. features
+
+7/8/2017
+*Misc. features
+*Bug fixes
+*Added translations
+*Added subtitles
+
+7/9/2017
+*Bug fixes
+*Misc. features
+
+7/10/2017
+*Nothing
+
+7/11/2017
+*Bug fixes
+*Misc. features
+*Rapid Fire Upgrade (finally)
+*Fixed "Rainbow Chaos Alien" bug
+
+7/12/2017
+*Misc. features
+*Credits
+
+7/13/2017
+*Credits
+*Bug fixes
+*Misc. Features
+
+7/14/2017
+*Misc. Features
+*Translations
+
+7/15/2017
+*Misc. Features
+*Bug Fixes
+
+7/16/2017
+*Translations
+*Fixed up gifts a lot (made them fairer)
+*Bug fixes w/ hotbar and draggables
+
+7/17/2017
+*Bug fixes
+*Fixed final bug (selecting cannons not working, as interface checked if cannons were equal, instead of if types were equal)
+*Misc. Features (added blue border to textbox when selected, and changed base color)
+
+7/18/2017
+*Added some sounds
+*Added bone, shuriken, and ice shard avatar icons
+
+7/19/2017
+*Bug fixes
+*Added new controls
+
+7/20/2017
+*Added sounds
+*Added music
+*Added translations
+
+7/21/2017
+*Nothing (camping)
+
+7/22/2017
+*Removed unused paging buttons
+
+7/23/2017
+*Nothing
+
+7/24/2017
+*Translations for tutorial and projectile descriptions
+
+7/25/2017
+*Translations for subtitles (finished all translations)
+*Bug fixes
+
+7/26/2017
+*Checked copyrights
+*On this 26 day of July 2017, One Cannon, One Army finished initial development and began the testing phase.
+
+7/27/2017
+*Bug fixes
+*Added skip button to the tutorial
+
+7/29/2017
+*Fixed spelling error
+*Bug fix w/ drops not drawing correctly
+
+7/30/2017
+*Fixed bug w/ intro replaying
