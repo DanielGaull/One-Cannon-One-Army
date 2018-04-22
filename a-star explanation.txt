@@ -1,9 +1,0 @@
-F = G + H
-
-G - Movement cost from start point to current square
-H - Estimated movement cost to get to end point
-
-Open List - Squares that are being considered for shortest path
-Closed List - Squares that are not needed to be considered again
-
-Pick space with lowest F score.
