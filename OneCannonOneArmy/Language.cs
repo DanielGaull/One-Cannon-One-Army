@@ -336,13 +336,15 @@ namespace OneCannonOneArmy
                 "Un hechizo más poderoso que te cura y\nhiere a tus enemigos" },
 
             { "adds a faint bar for easier aiming", "Añade una barra débil para facilitar el apuntamiento" },
-            { "adds an amount of damage to a projectile", "Añade una cantidad de daño a un proyectil" },
+            { "adds an amount of damage to the projectile", "Añade una cantidad de daño a el proyectil" },
             { "your maximum health", "Tu salud máxima" },
             { "how fast the cannon can move", "La velocidad que el cañón se mueve" },
             { "allows for another projectile to fire immediately if holding down\nthe fire key",
                 "Permite que otro proyectil dispare inmediatamente si\nmantiene pulsada la tecla de disparo" },
             { "the speed at which a new projectile is ready to fire",
                 "La velocidad a la que un nuevo proyectil está listo para\ndisparar" },
+            { "lessens damage of aliens and their projectiles", "Disminuye el daño de los alienígenas y sus proyectiles" },
+            { "increases speed of the projectile", "Aumenta la velocidad del proyectil" },
 
             #endregion
 

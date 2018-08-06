@@ -525,11 +525,13 @@ namespace OneCannonOneArmy
         public static readonly Dictionary<CannonStats, string> StatDescs = new Dictionary<CannonStats, string>()
         {
             { CannonStats.Accuracy, "Adds a faint bar for easier aiming" },
-            { CannonStats.Damage, "Adds an amount of damage to a projectile" },
+            { CannonStats.Damage, "Adds an amount of damage to the projectile" },
             { CannonStats.Health, "Your maximum health" },
             { CannonStats.MoveSpeed, "How fast the cannon can move" },
             { CannonStats.RapidFire, "Allows for another projectile to fire immediately if holding down\nthe fire key" },
             { CannonStats.ReloadSpeed, "The speed at which a new projectile is ready to fire" },
+            { CannonStats.Power, "Increases speed of the projectile" },
+            { CannonStats.Defense, "Lessens damage of aliens and their projectiles" },
         };
 
         #endregion

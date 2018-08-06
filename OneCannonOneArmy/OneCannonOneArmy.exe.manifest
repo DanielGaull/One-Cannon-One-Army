@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29935" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30102" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="772064">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29935" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="772576">
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30102" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QLR0IyHBX/f3+H79SlJf592S5G9HoBMDVYuCSr3Dcy4=</dsig:DigestValue>
+        <dsig:DigestValue>Vf/rQkMnUFmhnV+xoJe/AwFEf5whxmcZ3V7E5xa+SWo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

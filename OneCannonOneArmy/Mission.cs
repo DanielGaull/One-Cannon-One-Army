@@ -1156,7 +1156,8 @@ namespace OneCannonOneArmy
                         alienProjectiles[i].Update(gameTime);
                         if (alienProjectiles[i].Y >= windowHeight - PlayerInterface.BOTTOM_HEIGHT)
                         {
-                            playerInterface.AddHealth(alienProjectiles[i].Damage * -1);
+                            int damage = alienProjectiles[i].Damage;
+                            playerInterface.AddHealth((int)((damage - damage * defensePercentage) * -1));
                             alienProjectiles.RemoveAt(i);
                             Sound.PlaySound(Sounds.PlayerHit);
                         }
