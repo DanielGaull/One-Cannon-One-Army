@@ -642,7 +642,6 @@ namespace OneCannonOneArmy
                 if (!(new UniversalSettings().ViewedFullIntro))
                 {
                     //langSelectPopup.Show();
-                    // () is in event for popup close, so we don't need to call it here
                 }
                 else
                 {

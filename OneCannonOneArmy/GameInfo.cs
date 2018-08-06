@@ -74,7 +74,7 @@ namespace OneCannonOneArmy
         public const int HPOISON_RESIST_ALIEN_HEALTH = 7;
         public const int FREEZE_PROOF_ALIEN_HEALTH = 7;
         public const int CHAOS_ALIEN_HEALTH = 25;
-        public const int BOSS_ALIEN_HEALTH = 100;
+        public const int BOSS_ALIEN_HEALTH = 250;
         public const int PLASMA_RESIST_ALIEN_HEALTH = 6;
         public const int LPLASMA_RESIST_ALIEN_HEALTH = 5;
         public const int HPLASMA_RESIST_ALIEN_HEALTH = 7;
@@ -110,7 +110,7 @@ namespace OneCannonOneArmy
         public const float NORMAL_DEFENSE = 0.45f;
         public const float HEAVY_DEFENSE = 0.75f;
         public const float OMEGA_DEFENSE = 0.5f;
-        public const float BOSS_DEFENSE = 0.85f;
+        public const float BOSS_DEFENSE = 0.9f;
 
         // Projectile damages
         public const int ROCK_DMG = 3;

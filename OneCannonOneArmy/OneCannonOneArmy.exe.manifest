@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30102" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30268" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -80,13 +80,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="772576">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30102" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.30268" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Vf/rQkMnUFmhnV+xoJe/AwFEf5whxmcZ3V7E5xa+SWo=</dsig:DigestValue>
+        <dsig:DigestValue>roTyDJwo6eMryX/FknWwvHK69mi3ZQa1soWd2sD28Z4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -366,7 +366,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>vepXCExeC5uVci/PlVktxNX6zpd39tw8PTJyMjmTPRs=</dsig:DigestValue>
+      <dsig:DigestValue>4sosfyQaI6gtCJM2ib4aBZiNcmoxhMg4W3MNqgVQ8vY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\duoplus software.xnb" size="1440085">
@@ -375,7 +375,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ur2vEs3dXT/CrnIiNb7NyJl3LaGVx6wkfTKbF4ZOYes=</dsig:DigestValue>
+      <dsig:DigestValue>5OnAkQWKs1CxPCYaEMdbOch8ecdszZWYqIs34tNDEaE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\explosion.xnb" size="169845">

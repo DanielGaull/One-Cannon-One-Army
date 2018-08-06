@@ -14,8 +14,6 @@
 *Bug fixes & other small changes
 
 Update To-Do List:
-*Implement new upgrades
-  -Translations
 *Add Quests
 *New screen before level starts
   -Hotbar
@@ -24,5 +22,5 @@ Update To-Do List:
   -Level Objective
   -Chance of Success
   -Confirmation Button
-*Update Intro
-*Increase Malos health & defense
+*Finish Updating Intro w/ Labyrinth Quest images
+*Bug: currently doesn't add crafing interface when new projectile is unlocked
