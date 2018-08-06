@@ -294,7 +294,7 @@ namespace OneCannonOneArmy
                 Utilities.StoneImg = LoadImg("stonematerial");
                 Utilities.MetalImg = LoadImg("metalmaterial");
                 Utilities.IceImg = LoadImg("icematerial");
-                Utilities.PoisonImg = LoadImg("poisonmaterial");
+                Utilities.PoisonImg = LoadImg("plantmatter");
                 Utilities.GunpowderImg = LoadImg("gunpowdermaterial");
                 Utilities.FireImg = LoadImg("firematerial");
                 Utilities.PlasmaImg = LoadImg("plasmamaterial");
@@ -330,6 +330,7 @@ namespace OneCannonOneArmy
                 Utilities.BoneImg = LoadImg("bone");
                 Utilities.ShurikenImg = LoadImg("shuriken");
                 Utilities.IceShardImg = LoadImg("iceshard");
+                Utilities.AbsorbHexImg = LoadImg("absorbhex");
 
                 Utilities.AlienImg = LoadImg("alien");
                 Utilities.AlienEyeImg = LoadImg("alieneyes");
@@ -462,7 +463,7 @@ namespace OneCannonOneArmy
             {
                 { Material.Stone, GameInfo.STONE_COST },
                 { Material.Metal, GameInfo.METAL_COST },
-                { Material.Poison, GameInfo.POISON_COST },
+                { Material.PlantMatter, GameInfo.POISON_COST },
                 { Material.EssenceOfFire, GameInfo.FIRE_COST },
                 { Material.Ice, GameInfo.ICE_COST },
                 { Material.ChaosEnergy, GameInfo.CHAOSENERGY_COST },
@@ -634,7 +635,7 @@ namespace OneCannonOneArmy
                 langSelectPopup.AddLanguageSetHandler(InitLangSet);
                 if (!(new UniversalSettings().ViewedFullIntro))
                 {
-                    langSelectPopup.Show();
+                    //langSelectPopup.Show();
                     // () is in event for popup close, so we don't need to call it here
                 }
                 else

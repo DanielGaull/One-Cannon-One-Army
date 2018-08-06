@@ -784,7 +784,7 @@ namespace OneCannonOneArmy
             PoisonDefense = GameInfo.NORMAL_DEFENSE;
             Defense = GameInfo.NORMAL_DEFENSE;
 
-            AddPotentialDrop(Material.Poison, 25);
+            AddPotentialDrop(Material.PlantMatter, 25);
             AddPotentialDrop(Badge.Yellow, 10);
 
             Type = Aliens.PoisonResistant;
@@ -800,7 +800,7 @@ namespace OneCannonOneArmy
             PoisonDefense = GameInfo.LIGHT_DEFENSE;
             Defense = GameInfo.LIGHT_DEFENSE;
 
-            AddPotentialDrop(Material.Poison, 20);
+            AddPotentialDrop(Material.PlantMatter, 20);
             AddPotentialDrop(Badge.Yellow, 5);
 
             Type = Aliens.LPoisonResistant;
@@ -816,7 +816,7 @@ namespace OneCannonOneArmy
             PoisonDefense = GameInfo.HEAVY_DEFENSE;
             Defense = GameInfo.HEAVY_DEFENSE;
 
-            AddPotentialDrop(Material.Poison, 30);
+            AddPotentialDrop(Material.PlantMatter, 30);
             AddPotentialDrop(Badge.Yellow, 15);
 
             Type = Aliens.HPoisonResistant;
@@ -899,7 +899,7 @@ namespace OneCannonOneArmy
             canBeFrozen = false;
 
             AddPotentialDrop(Material.Plasma, 20);
-            AddPotentialDrop(Material.Poison, 20);
+            AddPotentialDrop(Material.PlantMatter, 20);
             AddPotentialDrop(Material.EssenceOfFire, 20);
             AddPotentialDrop(Material.Ice, 20);
             AddPotentialDrop(Material.ChaosEnergy, 10);

@@ -894,6 +894,8 @@ namespace OneCannonOneArmy
         int cagesDestroyed = 0;
         const int CAGE_SIZE = 50;
 
+        float defensePercentage;
+
         User user;
 
         public float MaxHealth
@@ -974,6 +976,7 @@ namespace OneCannonOneArmy
             cannon.ChangeSettings(user.CannonSettings);
             playerInterface.MaxHealth = user.CannonSettings.MaxHealth;
             playerInterface.Health = playerInterface.MaxHealth;
+            defensePercentage = user.CannonSettings.Defense / 100.0f;
 
             projectiles.Clear();
             foreach (ProjectileType item in user.ProjectileInventory)
@@ -1133,7 +1136,8 @@ namespace OneCannonOneArmy
                         if (aliens[i].Y >= windowHeight - PlayerInterface.BOTTOM_HEIGHT)
                         {
                             Sound.PlaySound(Sounds.PlayerHit);
-                            playerInterface.AddHealth(aliens[i].Worth * -1);
+                            int damage = aliens[i].Worth;
+                            playerInterface.AddHealth((int)(damage - (defensePercentage * damage) * -1));
                             aliens.RemoveAt(i);
                             continue;
                         }

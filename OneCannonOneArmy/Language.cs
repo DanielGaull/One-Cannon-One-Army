@@ -279,8 +279,8 @@ namespace OneCannonOneArmy
             { "almost-useless lump of earth. can craft useful\nthings, though.", "Casi-inútil trozo de tierra. Puede crear cosas\nútiles, aunque" },
             { "slightly less-useless lump of earth. basic\nmaterial; used to craft many powerful projectiles.",
               "Un poco menos inútil terrón de tierra. Material básico;\nutiliza para elaborar numerosos proyectiles de gran alcance." },
-            { "dangerous, green toxin. do not use to make\ngreen eggs and ham!",
-                "Toxina verde y peligrosa. ¡No use para hacer huevos verdes y\njamón!" },
+            { "collected from plants. can be used for\nmaking poison, or healing concoctions",
+              "Recolectadas de las plantas. Puede ser\nutilizado para hacer el veneno, o los\nbrebajes curativos" },
             { "powerful red energy, used for magic.", "Energía rojo de gran alcance, utilizada para magia." },
             { "it can keep drinks cold, help you cool off on a hot\nday, and freeze aliens! that ice... so useful.",
                 "Puede mantener las bebidas frías, ayudarle a refrescarse en un\ndía caluroso y la congelación de los extraterrestres! " +
@@ -332,6 +332,8 @@ namespace OneCannonOneArmy
                 "No sé de dónde vino esto... y no creo que quieras saber..." },
             { "a ninja's chosen weapon.", "El arma escogida de un ninja." },
             { "ouch! an ice cold shard right to the face.", "¡Ay! Un fragmento de hielo en la cara." },
+            { "A more powerful spell that heals you and\nhurts your enemies.",
+                "Un hechizo más poderoso que te cura y\nhiere a tus enemigos" },
 
             { "adds a faint bar for easier aiming", "Añade una barra débil para facilitar el apuntamiento" },
             { "adds an amount of damage to a projectile", "Añade una cantidad de daño a un proyectil" },

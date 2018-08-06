@@ -229,6 +229,7 @@ namespace OneCannonOneArmy
                             p.X = loadedDrawProj.X;
                             p.Y = cannonTubeRect.Y;
                             p.Damage += cannonSettings.Damage;
+                            p.Speed += cannonSettings.Power;
                             if (cannonSettings.EffectAdded != StatusEffect.None)
                             {
                                 p.Effects.Add(cannonSettings.EffectAdded);
@@ -942,9 +943,11 @@ namespace OneCannonOneArmy
         public int RapidFire;
         public StatusEffect EffectAdded;
         public bool Freezes;
+        public int Power;
+        public int Defense;
 
         public CannonSettings(int maxHealth, CannonType cannonType, int damage, int reloadSpeed, int moveSpeed,
-            int accuracy, StatusEffect effectAdded, bool freezes, int rapidFire)
+            int accuracy, StatusEffect effectAdded, bool freezes, int rapidFire, int power, int defense)
         {
             MaxHealth = maxHealth;
             CannonType = cannonType;
@@ -955,6 +958,8 @@ namespace OneCannonOneArmy
             EffectAdded = effectAdded;
             Freezes = freezes;
             RapidFire = rapidFire;
+            Power = power;
+            Defense = defense;
         }
 
         public int GetValueOfStat(CannonStats stat)
@@ -973,6 +978,10 @@ namespace OneCannonOneArmy
                     return ReloadSpeed;
                 case CannonStats.RapidFire:
                     return RapidFire;
+                case CannonStats.Power:
+                    return Power;
+                case CannonStats.Defense:
+                    return Defense;
                 default:
                     return 0;
             }
@@ -1004,6 +1013,12 @@ namespace OneCannonOneArmy
                     break;
                 case CannonStats.RapidFire:
                     RapidFire = value;
+                    break;
+                case CannonStats.Defense:
+                    Defense = value;
+                    break;
+                case CannonStats.Power:
+                    Power = value;
                     break;
             }
         }
@@ -1038,7 +1053,7 @@ namespace OneCannonOneArmy
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Normal,
                     0, GameInfo.STARTING_CANNON_RELOAD_SPD, GameInfo.STARTING_CANNON_SPD, GameInfo.STARTING_CANNON_ACCURACY,
-                    StatusEffect.None, false, 0);
+                    StatusEffect.None, false, 0, 0, 0);
             }
         }
         public static CannonSettings BronzeCannon
@@ -1046,7 +1061,7 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Bronze, 2, GameInfo.STARTING_CANNON_RELOAD_SPD,
-                    GameInfo.STARTING_CANNON_SPD, 5, StatusEffect.None, false, 0);
+                    GameInfo.STARTING_CANNON_SPD, 5, StatusEffect.None, false, 0, 3, 5);
             }
         }
         public static CannonSettings SilverCannon
@@ -1054,7 +1069,7 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Silver, 4, GameInfo.STARTING_CANNON_RELOAD_SPD - 1,
-                    GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.None, false, 0);
+                    GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.None, false, 0, 5, 10);
             }
         }
         public static CannonSettings GoldCannon
@@ -1062,7 +1077,7 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Gold, 6, GameInfo.STARTING_CANNON_RELOAD_SPD - 1,
-                    GameInfo.STARTING_CANNON_SPD + 1, 10, StatusEffect.None, false, 0);
+                    GameInfo.STARTING_CANNON_SPD + 1, 10, StatusEffect.None, false, 0, 8, 15);
             }
         }
         public static CannonSettings EliteCannon
@@ -1070,7 +1085,8 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Elite, 10,
-                    GameInfo.STARTING_CANNON_RELOAD_SPD - 2, GameInfo.STARTING_CANNON_SPD + 2, 15, StatusEffect.None, false, 0);
+                    GameInfo.STARTING_CANNON_RELOAD_SPD - 2, GameInfo.STARTING_CANNON_SPD + 2, 15, StatusEffect.None, false, 0, 
+                    15, 25);
             }
         }
         public static CannonSettings InfernoCannon
@@ -1078,7 +1094,8 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Inferno, 4,
-                    GameInfo.STARTING_CANNON_RELOAD_SPD - 1, GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.Fire, false, 0);
+                    GameInfo.STARTING_CANNON_RELOAD_SPD - 1, GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.Fire, false, 
+                    0, 8, 15);
             }
         }
         public static CannonSettings FrozenCannon
@@ -1086,7 +1103,8 @@ namespace OneCannonOneArmy
             get
             {
                 return new CannonSettings(GameInfo.STARTING_MAX_HEALTH, CannonType.Frozen, 4,
-                    GameInfo.STARTING_CANNON_RELOAD_SPD - 1, GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.None, true, 0);
+                    GameInfo.STARTING_CANNON_RELOAD_SPD - 1, GameInfo.STARTING_CANNON_SPD + 1, 7, StatusEffect.None, true, 0,
+                    8, 15);
             }
         }
 
@@ -1130,5 +1148,7 @@ namespace OneCannonOneArmy
         Accuracy,
         Effect,
         RapidFire,
+        Defense,
+        Power,
     }
 }

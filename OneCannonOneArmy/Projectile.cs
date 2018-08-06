@@ -22,11 +22,12 @@ namespace OneCannonOneArmy
 
         public int Damage;
         public bool Freezes;
+        public int HealingPower;
 
         public int Speed = 5;
         public bool Flying = false;
         public bool Launched = false;
-
+        
         public int X
         {
             get
@@ -673,6 +674,18 @@ namespace OneCannonOneArmy
         }
     }
 
+    public class AbsorbHex : Projectile
+    {
+        public AbsorbHex(int x, int y, int width, int height)
+            : base(Utilities.AbsorbHexImg, x, y, width, height, GameInfo.ABSORBHEX_DMG)
+        {
+            Speed = GameInfo.ICESHARD_SPD;
+            Type = ProjectileType.AbsorbHex;
+            HealingPower = GameInfo.ABSORBHEX_HEAL;
+            SoundWhenFired = Sounds.SpellLaunch;
+        }
+    }
+
     #region Unused
     //public class AlienMinion : Projectile
     //{
@@ -763,11 +776,13 @@ namespace OneCannonOneArmy
         PlasmaRocket,
         OmegaRocket,
         Snowball,
-
-        // 0.6.0
+        // Fifth Group
         Shuriken,
         Bone,
         IceShard,
+
+        // 1.1
+        AbsorbHex,
     }
 
     #endregion

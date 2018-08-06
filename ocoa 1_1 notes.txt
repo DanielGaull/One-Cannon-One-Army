@@ -1,31 +1,18 @@
 1.1 Features
 *Projectiles
 **Absorb Hex
-**Plasma Hex
-**Cursed Rocket
-*Sports Equipment during sporting finals (water bottle - during all; basketball; football; baseball; hockey puck)
-**Crafted using Sports Token(s) (material)
-***Water Bottle uses 1
-***Everything else uses 2
-***Remove from inventory after event is over?
-*Athletic Aliens
-**Shoot sports projectiles
-**Available during sports finals
-**Same alien; different projectile depending on event
-**Worth of 7; replaces aliens with worth of 7
-*French Translations
-*Cannons
-**Jungle Cannon
-***Poisons Projectiles
-***Same stats as Inferno Cannon
-**Cursed Cannon
-***Curses projectiles
-***Same stats as Inferno Cannon
-**Plasma Cannon
-***Adds plamsa to projectiles
-***Same stats as Inferno Cannon
 *New Power stat for cannons
 **Increases projectile speed
 *New Defense upgrade for cannons
 **Works like alien defense, max level is 75
+*Quitting a game won't lose you a life if you played for less than 15 seconds
 *Remember that any new user properties must be initialized
+*New screen that pops up before a level starts - shows hotbar & cannon, shows enemy aliens & level objective, attempts to predict chance of success, and asks for confirmation
+*Changed "Poison" to "Leaves"
+*Quests
+
+Update To-Do List:
+*Add leaves graphic
+*Implement new cannon stats and upgrades
+  -Translations
+*Add Quests

@@ -105,7 +105,7 @@ namespace OneCannonOneArmy
                 {
                     5
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Cannonball);
             }
         }
         public static CraftingRecipe Fireball
@@ -120,7 +120,7 @@ namespace OneCannonOneArmy
                 {
                     5,
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Fireball);
             }
         }
         public static CraftingRecipe Bomb
@@ -137,7 +137,7 @@ namespace OneCannonOneArmy
                     5,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Bomb);
             }
         }
         public static CraftingRecipe Dart
@@ -154,7 +154,7 @@ namespace OneCannonOneArmy
                     2,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Dart);
             }
         }
         public static CraftingRecipe PoisonDart
@@ -165,7 +165,7 @@ namespace OneCannonOneArmy
                 {
                     Material.Stone,
                     Material.Metal,
-                    Material.Poison
+                    Material.PlantMatter
                 };
                 List<int> counts = new List<int>()
                 {
@@ -173,7 +173,7 @@ namespace OneCannonOneArmy
                     2,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.PoisonDart);
             }
         }
         public static CraftingRecipe Laser
@@ -190,7 +190,7 @@ namespace OneCannonOneArmy
                     7,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Laser);
             }
         }
         public static CraftingRecipe Hex
@@ -205,7 +205,7 @@ namespace OneCannonOneArmy
                 {
                     5
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Hex);
             }
         }
         public static CraftingRecipe LightningBolt
@@ -222,7 +222,7 @@ namespace OneCannonOneArmy
                     5,
                     4,
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.LightningBolt);
             }
         }
         public static CraftingRecipe FrozenBlast
@@ -237,7 +237,7 @@ namespace OneCannonOneArmy
                 {
                     6,
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.FrostHex);
             }
         }
         public static CraftingRecipe Meteor
@@ -256,7 +256,7 @@ namespace OneCannonOneArmy
                     1,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Meteor);
             }
         }
         public static CraftingRecipe Hammer
@@ -271,7 +271,7 @@ namespace OneCannonOneArmy
                 {
                     6
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Hammer);
             }
         }
         public static CraftingRecipe Rocket
@@ -288,7 +288,7 @@ namespace OneCannonOneArmy
                     5,
                     2
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Rocket);
             }
         }
         public static CraftingRecipe PoisonRocket
@@ -299,7 +299,7 @@ namespace OneCannonOneArmy
                 {
                     Material.Metal,
                     Material.Gunpowder,
-                    Material.Poison
+                    Material.PlantMatter
                 };
                 List<int> counts = new List<int>()
                 {
@@ -307,7 +307,7 @@ namespace OneCannonOneArmy
                     2,
                     1
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.PoisonRocket);
             }
         }
         public static CraftingRecipe FireRocket
@@ -326,7 +326,7 @@ namespace OneCannonOneArmy
                     2,
                     1
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.FireRocket);
             }
         }
         public static CraftingRecipe FrozenRocket
@@ -345,7 +345,7 @@ namespace OneCannonOneArmy
                     2,
                     1
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.FrozenRocket);
             }
         }
         public static CraftingRecipe PlasmaRocket
@@ -364,7 +364,7 @@ namespace OneCannonOneArmy
                     2,
                     1
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.PlasmaRocket);
             }
         }
         public static CraftingRecipe OmegaRocket
@@ -375,7 +375,7 @@ namespace OneCannonOneArmy
                 {
                     Material.Metal,
                     Material.Gunpowder,
-                    Material.Poison,
+                    Material.PlantMatter,
                     Material.EssenceOfFire,
                     Material.Ice,
                     Material.Plasma
@@ -389,7 +389,7 @@ namespace OneCannonOneArmy
                     1,
                     1
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.OmegaRocket);
             }
         }
         public static CraftingRecipe Snowball
@@ -404,7 +404,7 @@ namespace OneCannonOneArmy
                 {
                     5
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Snowball);
             }
         }
         public static CraftingRecipe Shuriken
@@ -419,7 +419,7 @@ namespace OneCannonOneArmy
                 {
                     4
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Shuriken);
             }
         }
         public static CraftingRecipe Bone
@@ -434,7 +434,7 @@ namespace OneCannonOneArmy
                 {
                     5
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.Bone);
             }
         }
         public static CraftingRecipe IceShard
@@ -449,7 +449,22 @@ namespace OneCannonOneArmy
                 {
                     7,
                 };
-                return new CraftingRecipe(materials, counts, ProjectileType.Rock);
+                return new CraftingRecipe(materials, counts, ProjectileType.IceShard);
+            }
+        }
+        public static CraftingRecipe AbsorbHex
+        {
+            get
+            {
+                List<Material> materials = new List<Material>()
+                {
+                    Material.PlantMatter
+                };
+                List<int> counts = new List<int>()
+                {
+                    3,
+                };
+                return new CraftingRecipe(materials, counts, ProjectileType.AbsorbHex);
             }
         }
 
@@ -497,13 +512,14 @@ namespace OneCannonOneArmy
                     return OmegaRocket;
                 case ProjectileType.Snowball:
                     return Snowball;
-
                 case ProjectileType.Shuriken:
                     return Shuriken;
                 case ProjectileType.Bone:
                     return Bone;
                 case ProjectileType.IceShard:
                     return IceShard;
+                case ProjectileType.AbsorbHex:
+                    return AbsorbHex;
             }
             return new CraftingRecipe(new List<Material>(), new List<int>(), ProjectileType.None);
         }
@@ -1057,7 +1073,7 @@ namespace OneCannonOneArmy
     {
         Stone,
         Metal,
-        Poison,
+        PlantMatter,
         Gunpowder,
         Ice,
         EssenceOfFire,

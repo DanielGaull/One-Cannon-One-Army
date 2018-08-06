@@ -129,6 +129,8 @@ namespace OneCannonOneArmy
         public const int BONE_DMG = 6;
         public const int SHURIKEN_DMG = 5;
         public const int ICESHARD_DMG = 6;
+        public const int ABSORBHEX_DMG = 8;
+        public const int ABSORBHEX_HEAL = 4;
 
         // Explosion constants
         public const float AREA_DMG_MULTIPLIER = 0.25f;
@@ -151,6 +153,7 @@ namespace OneCannonOneArmy
         public const int BONE_SPD = 5;
         public const int SHURIKEN_SPD = 7;
         public const int ICESHARD_SPD = 20;
+        public const int ABSORBHEX_SPD = 3;
 
         // Projectile worths
         public const int ROCK_WORTH = 2;
@@ -248,6 +251,7 @@ namespace OneCannonOneArmy
             { ProjectileType.Bone, 4 },
             { ProjectileType.Shuriken, 6 },
             { ProjectileType.IceShard, 11 },
+            { ProjectileType.AbsorbHex, 10 },
         };
 
         public static readonly List<ProjectileType> ProjectilesAllowed = new List<ProjectileType>()
@@ -274,12 +278,13 @@ namespace OneCannonOneArmy
             ProjectileType.Shuriken,
             ProjectileType.Bone,
             ProjectileType.IceShard,
+            ProjectileType.AbsorbHex,
         };
         public static readonly List<Material> MaterialsAllowed = new List<Material>()
         {
             Material.Stone,
             Material.Metal,
-            Material.Poison,
+            Material.PlantMatter,
             Material.Gunpowder,
             Material.Ice,
             Material.EssenceOfFire,
@@ -316,6 +321,8 @@ namespace OneCannonOneArmy
             { CannonStats.MoveSpeed, 15 },
             { CannonStats.ReloadSpeed, 10 },
             { CannonStats.RapidFire, 1 },
+            { CannonStats.Defense, 75 },
+            { CannonStats.Power, 25 },
         };
 
         #region Story
@@ -464,11 +471,12 @@ namespace OneCannonOneArmy
         {
             { Material.Stone,  "Almost-useless lump of earth. Can craft useful\nthings, though." },
             { Material.Metal,  "Slightly less-useless lump of earth. Basic\nmaterial; used to craft many powerful projectiles." },
-            { Material.Poison, "Dangerous, green toxin. Do NOT use to make\ngreen eggs and ham!" },
+            { Material.PlantMatter, "Collected from plants. Can be used for\nmaking poison, or healing concoctions." },
             { Material.Plasma, "Powerful red energy, used for magic." },
             { Material.Ice, "It can keep drinks cold, help you cool off on a hot\nday, and freeze aliens! That ice... so useful." },
             { Material.Gunpowder, "Explosive powder. When mixed with fire...Look out." },
-            { Material.ChaosEnergy, "Almost uncontainable magical energy. If you can\ncontain it, magic! If you can't... more dangerous\nmagic." },
+            { Material.ChaosEnergy, "Almost uncontainable magical energy. If you can\ncontain it, magic!" +
+                " If you can't... more dangerous\nmagic." },
             { Material.EssenceOfFire, "Magical fiery energy. Great for barbecuing!" },
         };
 
@@ -496,6 +504,7 @@ namespace OneCannonOneArmy
             { ProjectileType.Bone, "Don't know where this came from... and I don't\nthink you want to know..." },
             { ProjectileType.Shuriken, "A ninja's chosen weapon." },
             { ProjectileType.IceShard, "Ouch! An ice cold shard right to the face." },
+            { ProjectileType.AbsorbHex, "A more powerful spell that heals you and\nhurts your enemies." },
         };
 
         public static readonly Dictionary<CannonType, string> CannonDescs = new Dictionary<CannonType, string>()
@@ -981,7 +990,7 @@ namespace OneCannonOneArmy
                     return METAL_COST;
                 case Material.Plasma:
                     return PLASMA_COST;
-                case Material.Poison:
+                case Material.PlantMatter:
                     return POISON_COST;
                 case Material.Stone:
                     return STONE_COST;
@@ -1329,6 +1338,7 @@ namespace OneCannonOneArmy
         public static Texture2D BoneImg;
         public static Texture2D ShurikenImg;
         public static Texture2D IceShardImg;
+        public static Texture2D AbsorbHexImg;
 
         public static Texture2D ExplosionSheet;
         public static Texture2D BatteryImg;
@@ -1457,6 +1467,8 @@ namespace OneCannonOneArmy
                     return ShurikenImg;
                 case ProjectileType.IceShard:
                     return IceShardImg;
+                case ProjectileType.AbsorbHex:
+                    return AbsorbHexImg;
             }
             return null;
         }
@@ -1468,7 +1480,7 @@ namespace OneCannonOneArmy
                     return StoneImg;
                 case Material.Metal:
                     return MetalImg;
-                case Material.Poison:
+                case Material.PlantMatter:
                     return PoisonImg;
                 case Material.Gunpowder:
                     return GunpowderImg;
