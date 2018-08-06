@@ -225,6 +225,10 @@ namespace OneCannonOneArmy
         public const int INIT_MOVE_SPD_COST = 10;
         public const int MOVE_SPD_COST = 10;
         public const int RAPID_FIRE_COST = 1000;
+        public const int INIT_POWER_COST = 20;
+        public const int POWER_COST = 10;
+        public const int INIT_DEFENSE_COST = 5;
+        public const int DEFENSE_COST = 10;
 
         // Player levels and visibility
         public static readonly Dictionary<ProjectileType, int> ProjVisibilityLvls = new Dictionary<ProjectileType, int>()
@@ -631,6 +635,10 @@ namespace OneCannonOneArmy
                     return INIT_MOVE_SPD_COST + (currentValue - STARTING_CANNON_RELOAD_SPD) * MOVE_SPD_COST;
                 case CannonStats.RapidFire:
                     return RAPID_FIRE_COST;
+                case CannonStats.Defense:
+                    return INIT_DEFENSE_COST + currentValue * DEFENSE_COST;
+                case CannonStats.Power:
+                    return INIT_POWER_COST + currentValue * POWER_COST;
                 default:
                     return 0;
             }

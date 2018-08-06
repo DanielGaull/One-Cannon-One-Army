@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29591" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29935" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -80,13 +80,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="772064">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29591" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6792.29935" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aP4+nBbvNsuto4eEiIzohXi8zMGFU6ti1X7GhsttL3w=</dsig:DigestValue>
+        <dsig:DigestValue>QLR0IyHBX/f3+H79SlJf592S5G9HoBMDVYuCSr3Dcy4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -349,6 +349,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>51pT441FMPDBdGstjHlOfpo6dr4tgsJPSXY8jEsALI8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\defenseupgrade.xnb" size="40085">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vvRrQpmZq3WY/M2pA3RfyKTSKeGh9AtQcb0OU0vmIaw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\duoplus software transparent.xnb" size="1440085">
@@ -754,6 +763,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>6KvEksBShsmAAhefq6fB2MMCbIsPlsgOKN6AwPsrt00=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\powerupgrade.xnb" size="40085">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zLAscMPZRMV9fLe8B+LwqboWI9M5hKdswr39Tcy+bUA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\profileicon.xnb" size="262229">

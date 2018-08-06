@@ -10,6 +10,8 @@
 *New screen that pops up before a level starts - shows hotbar & cannon, shows enemy aliens & level objective, attempts to predict chance of success, and asks for confirmation
 *Changed "Poison" to "Plant Matter"
 *Quests
+*Increased Malos' Health and Defense
+*Bug fixes & other small changes
 
 Update To-Do List:
 *Implement new upgrades
@@ -22,3 +24,5 @@ Update To-Do List:
   -Level Objective
   -Chance of Success
   -Confirmation Button
+*Update Intro
+*Increase Malos health & defense

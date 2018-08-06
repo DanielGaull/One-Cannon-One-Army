@@ -502,9 +502,11 @@ namespace OneCannonOneArmy
             {
                 CannonStats.Health,
                 CannonStats.Damage,
+                CannonStats.Defense,
                 CannonStats.Accuracy,
                 CannonStats.ReloadSpeed,
                 CannonStats.MoveSpeed,
+                CannonStats.Power,
                 CannonStats.RapidFire,
             };
                 Texture2D rapidFireIcon = LoadImg("rapidfireicon");
@@ -512,9 +514,11 @@ namespace OneCannonOneArmy
             {
                 LoadImg("life"),
                 LoadImg("damageicon"),
+                LoadImg("defenseupgrade"),
                 LoadImg("accuracyicon"),
                 LoadImg("reloadicon"),
                 LoadImg("speedicon"),
+                LoadImg("powerupgrade"),
                 rapidFireIcon,
             };
 

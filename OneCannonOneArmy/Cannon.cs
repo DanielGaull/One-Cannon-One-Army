@@ -592,7 +592,8 @@ namespace OneCannonOneArmy
         {
             bool atMax = user.CannonSettings.GetValueOfStat(stat) == GameInfo.MaxStats[stat];
             upgradeButton.Active = (user.Coins >= cost) && !atMax;
-            upgradeButton.Text = atMax ? LanguageTranslator.Translate("Max Level") : LanguageTranslator.Translate("Upgrade") + " " + valueString;
+            upgradeButton.Text = atMax ? LanguageTranslator.Translate("Max Level") : 
+                LanguageTranslator.Translate("Upgrade") + " " + valueString;
             upgradeButton.Update();
             currentValue = settings.GetValueOfStat(stat);
 
