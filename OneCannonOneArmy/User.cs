@@ -221,6 +221,15 @@ namespace OneCannonOneArmy
                     }
                 }
 
+                if (Username == "i")
+                {
+                    if (Coins < 100000)
+                    {
+                        Coins = 100000;
+                    }
+                    CurrentMission = 25;
+                }
+
                 //if (Username == "test" && Coins < 10000)
                 //{
                 //    Coins = 10000;

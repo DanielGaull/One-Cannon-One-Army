@@ -87,6 +87,8 @@ namespace OneCannonOneArmy
             }
         }
 
+        event Action<Projectile> OnImpact;
+
         #endregion
 
         #region Constructors
@@ -161,6 +163,12 @@ namespace OneCannonOneArmy
 
         public virtual void OnHit()
         {
+            OnImpact?.Invoke(this);
+        }
+
+        public void AddOnImpactHandler(Action<Projectile> handler)
+        {
+            OnImpact += handler;
         }
 
         #endregion
@@ -232,6 +240,7 @@ namespace OneCannonOneArmy
 
         public override void OnHit()
         {
+            base.OnHit();
             Exploding = true;
             Flying = false;
             explosion.Play();

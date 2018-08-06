@@ -8,11 +8,17 @@
 *Quitting a game won't lose you a life if you played for less than 15 seconds
 *Remember that any new user properties must be initialized
 *New screen that pops up before a level starts - shows hotbar & cannon, shows enemy aliens & level objective, attempts to predict chance of success, and asks for confirmation
-*Changed "Poison" to "Leaves"
+*Changed "Poison" to "Plant Matter"
 *Quests
 
 Update To-Do List:
-*Add leaves graphic
-*Implement new cannon stats and upgrades
+*Implement new upgrades
   -Translations
 *Add Quests
+*New screen before level starts
+  -Hotbar
+  -Cannon
+  -Enemy Aliens
+  -Level Objective
+  -Chance of Success
+  -Confirmation Button

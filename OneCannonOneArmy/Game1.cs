@@ -428,6 +428,7 @@ namespace OneCannonOneArmy
                 Utilities.BoneImg,
                 Utilities.ShurikenImg,
                 Utilities.IceShardImg,
+                Utilities.AbsorbHexImg,
             };
 
                 List<Projectile> shopProjs = new List<Projectile>()
@@ -439,7 +440,7 @@ namespace OneCannonOneArmy
                 new Bomb(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
                 new Fireball(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
                 new LightningBolt(0, 100, (int)(Utilities.LightningWidth * 1.5f),
-                (int)(Utilities.LightningHeight * 1.5f)),
+                    (int)(Utilities.LightningHeight * 1.5f)),
                 new Hex(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
                 new Laser(0, 100, (int)(Utilities.LaserWidth * 1.5f), (int)(Utilities.LaserHeight * 1.5f)),
                 new FrozenBlast(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
@@ -455,6 +456,7 @@ namespace OneCannonOneArmy
                 new Bone(0, 100, (int)(Utilities.LightningWidth * 1.5f), Utilities.NormProjHeight * 2),
                 new Shuriken(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
                 new IceShard(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
+                new AbsorbHex(0, 100, Utilities.NormProjWidth * 2, Utilities.NormProjHeight * 2),
                 //new AlienMinion(0, 100, Utilities.AlienWidth * 2, Utilities.AlienHeight * 2),
             };
 

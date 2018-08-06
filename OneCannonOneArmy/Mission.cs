@@ -1137,7 +1137,7 @@ namespace OneCannonOneArmy
                         {
                             Sound.PlaySound(Sounds.PlayerHit);
                             int damage = aliens[i].Worth;
-                            playerInterface.AddHealth((int)(damage - (defensePercentage * damage) * -1));
+                            playerInterface.AddHealth((int)((damage - (defensePercentage * damage)) * -1));
                             aliens.RemoveAt(i);
                             continue;
                         }
@@ -1332,7 +1332,9 @@ namespace OneCannonOneArmy
         }
         public void AddProjectile(ProjectileType pType)
         {
-            projectiles.Add(GameInfo.CreateProj(pType));
+            Projectile newP = GameInfo.CreateProj(pType);
+            newP.AddOnImpactHandler(ProjectileImpact);
+            projectiles.Add(newP);
         }
         public void RemoveProjectile(ProjectileType pType)
         {
@@ -1398,6 +1400,24 @@ namespace OneCannonOneArmy
         #endregion
 
         #region Private Methods
+
+        private void ProjectileImpact(Projectile p)
+        {
+            int i = projectiles.IndexOf(p);
+            if (p.DestroyOnHit)
+            {
+                projectiles[i].Active = false;
+                projectiles.RemoveAt(i);
+            }
+            if (p.HealingPower > 0 && Health < MaxHealth)
+            {
+                Health += p.HealingPower;
+                if (Health > MaxHealth)
+                {
+                    Health = MaxHealth;
+                }
+            }
+        }
 
         private bool IsMissionCompleted(Mission mission)
         {

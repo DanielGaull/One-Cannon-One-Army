@@ -329,15 +329,7 @@ namespace OneCannonOneArmy
                         Sound.PlaySound(Sounds.AlienHit);
                     }
 
-                    if (playerProjectiles[i].DestroyOnHit)
-                    {
-                        playerProjectiles[i].Active = false;
-                        playerProjectiles.RemoveAt(i);
-                    }
-                    else
-                    {
-                        playerProjectiles[i].OnHit();
-                    }
+                    playerProjectiles[i].OnHit();
 
                     onHit?.Invoke(this);
                 }
@@ -674,7 +666,7 @@ namespace OneCannonOneArmy
 
         #region Constructors
 
-        public ProjectileAlien(Texture2D img, Texture2D eyeImg, int x, int y, int width, int height, int worth, 
+        public ProjectileAlien(Texture2D img, Texture2D eyeImg, int x, int y, int width, int height, int worth,
             int health, Color color, OnItemCollect itemCollected, ProjectileType projectileFired, float secondsRecharge)
             : base(img, eyeImg, x, y, width, height, worth, health, color, itemCollected)
         {
@@ -721,7 +713,7 @@ namespace OneCannonOneArmy
             speed = 0.1f;
             canBeFrozen = false;
             Defense = GameInfo.BOSS_DEFENSE;
-            
+
             sideToSideTimer = new Timer(20.0f, TimerUnits.Seconds);
 
             AddPotentialDrop(Material.ChaosEnergy, 75);

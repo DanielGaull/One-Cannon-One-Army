@@ -705,6 +705,8 @@ namespace OneCannonOneArmy
                     return new Shuriken(0, 100, Utilities.NormProjWidth, Utilities.NormProjHeight);
                 case ProjectileType.IceShard:
                     return new IceShard(0, 100, Utilities.NormProjWidth, Utilities.NormProjHeight);
+                case ProjectileType.AbsorbHex:
+                    return new AbsorbHex(0, 100, Utilities.NormProjWidth, Utilities.NormProjHeight);
                 default:
                     return null;
             }
@@ -1645,6 +1647,8 @@ namespace OneCannonOneArmy
                     return GameInfo.SHURIKEN_DMG;
                 case ProjectileType.IceShard:
                     return GameInfo.ICESHARD_DMG;
+                case ProjectileType.AbsorbHex:
+                    return GameInfo.ABSORBHEX_DMG;
             }
             return -1;
         }
@@ -1690,6 +1694,8 @@ namespace OneCannonOneArmy
                     return GameInfo.SHURIKEN_SPD;
                 case ProjectileType.IceShard:
                     return GameInfo.ICESHARD_SPD;
+                case ProjectileType.AbsorbHex:
+                    return GameInfo.ABSORBHEX_SPD;
             }
             return -1;
         }
@@ -1717,6 +1723,8 @@ namespace OneCannonOneArmy
                     return "Frozen";
                 case ProjectileType.OmegaRocket:
                     return "Poison, Fire, Frozen, Plasma";
+                case ProjectileType.AbsorbHex:
+                    return "Heals " + GameInfo.ABSORBHEX_HEAL + " Health";
             }
             return "None";
         }
