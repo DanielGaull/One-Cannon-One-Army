@@ -278,7 +278,7 @@ namespace OneCannonOneArmy
                 Mission.InitializeMissions();
 
                 GameInfo.Planet = Planet.Earth;
-                GameInfo.Language = (Language)(new UniversalSettings().Language);
+                GameInfo.Language = (Languages)(new UniversalSettings().Language);
 
                 // Create a new SpriteBatch, which can be used to draw textures.
                 spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -545,8 +545,9 @@ namespace OneCannonOneArmy
                     new CreateUser(CreateUser), new System.Action(CreateNewUserClicked), new System.Action(AttemptToOpenMissions),
                     new System.Action(GoToAchievements), new System.Action(Stats), new System.Action(Shop), new System.Action(Settings),
                     new System.Action(OpenOrganize), new System.Action(OpenCrafting), new System.Action(OpenUpgrade), new Action<int>(Play),
-                    new System.Action(BuyLife), new System.Action(OpenLang), new Action<Language>(ChangeLang), new System.Action(OpenControls),
-                    new System.Action(OpenUserSettings), new System.Action(OpenGifts), new System.Action(OpenCredits));
+                    new System.Action(BuyLife), new System.Action(OpenLang), new Action<Languages>(ChangeLang),
+                    new System.Action(OpenControls),new System.Action(OpenUserSettings), new System.Action(OpenGifts), 
+                    new System.Action(OpenCredits));
                 menu.AddOnCraftHandler(OnCraft);
                 menu.AddReplayTutorialHandler(ReplayTutorial);
                 menu.AddSettingsSubmitHandler(UpdateUser);
@@ -750,8 +751,8 @@ namespace OneCannonOneArmy
                             player.Gifts.Add(newGift);
                             player.LastReceivedGift = DateTime.Now;
                             menu.AddGift(newGift);
-                            Notification.Show(string.Format(LanguageTranslator.Translate("You've received a free {0} gift!"),
-                                LanguageTranslator.Translate(newGift.ToString().ToLower())));
+                            Notification.Show(string.Format(Language.Translate("You've received a free {0} gift!"),
+                                Language.Translate(newGift.ToString().ToLower())));
                         }
 
                         VolumeSettings vs = gameState == GameState.UserSettings ? menu.VolumeSettings :
@@ -782,7 +783,7 @@ namespace OneCannonOneArmy
                         uSettings.ShowCtrlWPopup && !ctrlW.Active)
                     {
                         ctrlW.ShowPopup(
-                            LanguageTranslator.Translate("The shortcut Ctrl+W exits the game. " +
+                            Language.Translate("The shortcut Ctrl+W exits the game. " +
                             "Are you sure you want to do this?"),
                             true, WINDOW_WIDTH / 2 - (ctrlW.Width / 2), WINDOW_HEIGHT / 2 - (ctrlW.Height / 2));
                     }
@@ -910,8 +911,8 @@ namespace OneCannonOneArmy
 
                     if (gameState == GameState.Paused)
                     {
-                        spriteBatch.DrawString(mediumFont, LanguageTranslator.Translate(game.Mission.Name),
-                            new Vector2(WINDOW_WIDTH / 2 - mediumFont.MeasureString(LanguageTranslator.Translate(game.Mission.Name)).X / 2,
+                        spriteBatch.DrawString(mediumFont, Language.Translate(game.Mission.Name),
+                            new Vector2(WINDOW_WIDTH / 2 - mediumFont.MeasureString(Language.Translate(game.Mission.Name)).X / 2,
                             Utilities.MENU_Y_OFFSET / 2),
                             Color.Black);
                         string name = "";
@@ -1006,13 +1007,13 @@ namespace OneCannonOneArmy
             if (gameState == GameState.Paused)
             {
                 // The player is trying to leave the game
-                Popup.Show(LanguageTranslator.Translate("Are you sure you want to quit?") + " " +
-                    LanguageTranslator.Translate("You will be charged with one life."),
+                Popup.Show(Language.Translate("Are you sure you want to quit?") + " " +
+                    Language.Translate("You will be charged with one life."),
                     true, new System.Action(() => RemoveLifeAnd(this.Close)), false);
             }
             else
             {
-                Popup.Show(LanguageTranslator.Translate("Are you sure you want to quit?"), true, Close, false);
+                Popup.Show(Language.Translate("Are you sure you want to quit?"), true, Close, false);
             }
         }
         private void MainMenu()
@@ -1020,8 +1021,8 @@ namespace OneCannonOneArmy
             if (gameState == GameState.Paused)
             {
                 // The player is trying to leave the game
-                Popup.Show(LanguageTranslator.Translate("Are you sure you want to quit?") + " " +
-                    LanguageTranslator.Translate("You will be charged with one life."),
+                Popup.Show(Language.Translate("Are you sure you want to quit?") + " " +
+                    Language.Translate("You will be charged with one life."),
                     true, new System.Action(() => RemoveLifeAnd(new System.Action(() => CloseAnimation(GameState.MainMenu)),
                     new System.Action(() => EnableOrDisableCloseButton(true)))),
                     false);
@@ -1133,7 +1134,7 @@ namespace OneCannonOneArmy
             }
             else
             { //
-                Popup.Show(LanguageTranslator.Translate("You cannot play until you have at least one life."), false, false);
+                Popup.Show(Language.Translate("You cannot play until you have at least one life."), false, false);
             }
         }
         private void Play(int id)
@@ -1146,7 +1147,7 @@ namespace OneCannonOneArmy
             }
             else
             {
-                Popup.Show(string.Format(LanguageTranslator.Translate(
+                Popup.Show(string.Format(Language.Translate(
                     "This level requires about {0} damage to beat and you only have about {1} worth of\ndamage in your inventory. "
                     + "Continue?"),
                     req, have),
@@ -1217,7 +1218,7 @@ namespace OneCannonOneArmy
             CloseAnimation(GameState.Credits);
         }
 
-        private void ChangeLang(Language lang)
+        private void ChangeLang(Languages lang)
         {
             UniversalSettings u = new UniversalSettings();
             u.Language = (int)lang;
@@ -1241,7 +1242,7 @@ namespace OneCannonOneArmy
 
         private void BuyLife()
         {
-            Popup.Show(LanguageTranslator.Translate("Buy one life for ") +
+            Popup.Show(Language.Translate("Buy one life for ") +
                 string.Format("{0}c?", (player.TimeOfNextLife - DateTime.Now).Minutes * GameInfo.DEATH_COST_PER_MIN),
                 true, LifeBought, false);
         }
@@ -1263,7 +1264,7 @@ namespace OneCannonOneArmy
             }
             else
             {
-                Popup.Show(LanguageTranslator.Translate("You do not have enough coins."), false, false);
+                Popup.Show(Language.Translate("You do not have enough coins."), false, false);
             }
         }
 
@@ -1332,7 +1333,7 @@ namespace OneCannonOneArmy
 
         private void RewardAch(Achievement ach)
         {
-            Notification.Show(LanguageTranslator.Translate("You've earned the \nachievement \"") + ach.Name + "\"! +" + ach.Coins + "c");
+            Notification.Show(Language.Translate("You've earned the \nachievement \"") + ach.Name + "\"! +" + ach.Coins + "c");
 
             player.Coins += ach.Coins;
             player.CoinsCollected += ach.Coins;
@@ -1959,7 +1960,7 @@ namespace OneCannonOneArmy
             menu.AllowPauseExiting = true;
 
             string msg = "";
-            string defaultMsg = LanguageTranslator.Translate("Excellent job! \nYou've saved") + " " + game.Mission.City + ", " +
+            string defaultMsg = Language.Translate("Excellent job! \nYou've saved") + " " + game.Mission.City + ", " +
                         game.Mission.StateCountry;
             if (success)
             {
@@ -1968,40 +1969,40 @@ namespace OneCannonOneArmy
                     if (game.Mission.Id == 0)
                     {
                         // Tutorial
-                        msg = LanguageTranslator.Translate("You've completed the tutorial!");
+                        msg = Language.Translate("You've completed the tutorial!");
                     }
                     else if (game.Mission.Id == 2)
                     {
-                        msg = defaultMsg + LanguageTranslator.Translate(" ... again!");
+                        msg = defaultMsg + Language.Translate(" ... again!");
                     }
                     else if (game.Mission.Id == 2)
                     {
-                        msg = defaultMsg + LanguageTranslator.Translate(" ... for the third time!");
+                        msg = defaultMsg + Language.Translate(" ... for the third time!");
                     }
                     else if (game.Mission.Id == GameInfo.FINAL_LEVEL)
                     {
                         // Lithios
-                        msg = LanguageTranslator.Translate("You've saved the entire planet!\nThe world is in your debt.");
+                        msg = Language.Translate("You've saved the entire planet!\nThe world is in your debt.");
                     }
                     else if (game.Mission.Id == 21)
                     {
                         // Space
-                        msg = LanguageTranslator.Translate("You've reached the Lambda Romana star system!\nOnward, to Nantak!");
+                        msg = Language.Translate("You've reached the Lambda Romana star system!\nOnward, to Nantak!");
                     }
                     else if (game.Mission.Id == 22)
                     {
                         // Nantak
-                        msg = LanguageTranslator.Translate("One down, two to go.\nOnward, to Carinus!");
+                        msg = Language.Translate("One down, two to go.\nOnward, to Carinus!");
                     }
                     else if (game.Mission.Id == 23)
                     {
                         // Carinus
-                        msg = LanguageTranslator.Translate("Only one laser left.\nTime to go to Mikara.");
+                        msg = Language.Translate("Only one laser left.\nTime to go to Mikara.");
                     }
                     else if (game.Mission.Id == 24)
                     {
                         // Mikara
-                        msg = LanguageTranslator.Translate("Good job destroying those lasers!\nNow it's time to battle Malos himself. " +
+                        msg = Language.Translate("Good job destroying those lasers!\nNow it's time to battle Malos himself. " +
                             "To Lithios!");
                     }
                 }
@@ -2014,7 +2015,7 @@ namespace OneCannonOneArmy
             }
             else
             {
-                msg = LanguageTranslator.Translate("You have died and have been \ncharged with one life.");
+                msg = Language.Translate("You have died and have been \ncharged with one life.");
                 if (player.Lives == GameInfo.MAX_LIVES)
                 {
                     // We need to set the time
@@ -2097,7 +2098,7 @@ namespace OneCannonOneArmy
             }
         }
 
-        private void InitLangSet(Language lang)
+        private void InitLangSet(Languages lang)
         {
             GameInfo.Language = lang;
             UniversalSettings settings = new UniversalSettings();

@@ -660,10 +660,10 @@ namespace OneCannonOneArmy
                 lastXMaterials += materialRects[i].Width + (SPACING * 3);
             }
 
-            craftButton = new MenuButton(Craft, LanguageTranslator.Translate("Craft"), 0, 0, true, font, graphics);
+            craftButton = new MenuButton(Craft, Language.Translate("Craft"), 0, 0, true, font, graphics);
             Reposition();
 
-            youHave = LanguageTranslator.Translate("You Have") + ": 0";
+            youHave = Language.Translate("You Have") + ": 0";
             youHavePos = new Vector2(bgRect.X + (bgRect.Width / 2 - (font.MeasureString(youHave).X / 2)),
                 craftButton.Y - (font.MeasureString(youHave).Y));
         }
@@ -691,7 +691,7 @@ namespace OneCannonOneArmy
                 new CraftingRecipe(materials, materialCounts, Output.Type));
             craftButton.Update();
 
-            youHave = LanguageTranslator.Translate("You Have") + ": " + GameInfo.ProjListToTypes(projectiles).CountOf(Output.Type);
+            youHave = Language.Translate("You Have") + ": " + GameInfo.ProjListToTypes(projectiles).CountOf(Output.Type);
             youHavePos.X = bgRect.X + (bgRect.Width / 2 - (font.MeasureString(youHave).X / 2));
 
             HoveringOnItem = Output.Rectangle.Intersects(new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1));
@@ -721,7 +721,7 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            craftButton.Text = LanguageTranslator.Translate("Craft");
+            craftButton.Text = Language.Translate("Craft");
             Reposition();
         }
 

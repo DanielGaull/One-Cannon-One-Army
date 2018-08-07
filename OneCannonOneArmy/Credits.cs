@@ -84,7 +84,7 @@ namespace OneCannonOneArmy
             int y = (int)scrollValue + Utilities.MENU_Y_OFFSET;
             for (int i = 0; i < GameInfo.Credits.Count; i++)
             {
-                string line = LanguageTranslator.Translate(GameInfo.Credits[i]);
+                string line = Language.Translate(GameInfo.Credits[i]);
                 spriteBatch.DrawString(font, line, new Vector2(windowWidth / 2 - (font.MeasureString(line).X / 2), y), Color.Black);
                 y += (int)font.MeasureString(line).Y * 2;
             }

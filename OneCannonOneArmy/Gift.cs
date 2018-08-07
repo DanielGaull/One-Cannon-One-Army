@@ -258,7 +258,7 @@ namespace OneCannonOneArmy
         {
             // Update displaying time until next free gift
             TimeSpan timeUntil = user.LastReceivedGift.AddHours(GameInfo.HOURS_UNTIL_NEXT_GIFT) - DateTime.Now;
-            nextGiftIn = LanguageTranslator.Translate("Next free gift in") + ": " +
+            nextGiftIn = Language.Translate("Next free gift in") + ": " +
                 string.Format("{0:00}:{1:00}:{2:00}", timeUntil.Hours, timeUntil.Minutes, timeUntil.Seconds);
             nextGiftInPos.X = windowWidth / 2 - font.MeasureString(nextGiftIn).X / 2;
 
@@ -586,7 +586,7 @@ namespace OneCannonOneArmy
             bgImg = DrawHelper.AddBorder(bgImg, 3, Color.Gray, Color.LightGray);
             bgRect = new Rectangle(x, y, width, height);
 
-            openButton = new MenuButton(new System.Action(() => open?.Invoke(Gift)), LanguageTranslator.Translate("Open"), 0, 0, true, font, graphics);
+            openButton = new MenuButton(new System.Action(() => open?.Invoke(Gift)), Language.Translate("Open"), 0, 0, true, font, graphics);
             openButton.X = bgRect.X + bgRect.Width / 2 - openButton.Width / 2;
             openButton.Y = bgRect.Bottom - openButton.Height - SPACING;
 
@@ -595,7 +595,7 @@ namespace OneCannonOneArmy
             giftRect = new Rectangle(bgRect.X + bgRect.Width / 2 - GIFT_SIZE / 2, bgRect.Y + SPACING, GIFT_SIZE, GIFT_SIZE);
             giftColor = OneCannonOneArmy.Gift.GetColor(giftType);
 
-            name = LanguageTranslator.Translate(giftType.ToString()) + " " + LanguageTranslator.Translate("Gift");
+            name = Language.Translate(giftType.ToString()) + " " + Language.Translate("Gift");
             namePos = new Vector2(bgRect.X + bgRect.Width / 2 - font.MeasureString(name).X / 2, giftRect.Y + SPACING);
         }
 
@@ -693,7 +693,7 @@ namespace OneCannonOneArmy
         MouseState mouse;
         MouseState prevMouse;
 
-        string skipTip = LanguageTranslator.Translate("Click to go faster.");
+        string skipTip = Language.Translate("Click to go faster.");
         Vector2 skipTipPos = new Vector2();
 
         #endregion
@@ -731,13 +731,13 @@ namespace OneCannonOneArmy
                 AddParticle();
             }
 
-            claimButton = new MenuButton(new System.Action(() => reward?.Invoke(gift)), LanguageTranslator.Translate("Claim Gift"), 0, 0, true, font,
+            claimButton = new MenuButton(new System.Action(() => reward?.Invoke(gift)), Language.Translate("Claim Gift"), 0, 0, true, font,
                     graphics);
             claimButton.X = bgRect.X + bgRect.Width / 2 - claimButton.Width / 2;
             claimButton.Y = bgRect.Bottom - claimButton.Height - SPACING * 2;
             reward += new RewardGift(w => Active = false);
 
-            itemString = "+" + gift.Contents.Coins.ToString() + " " + LanguageTranslator.Translate("coins");
+            itemString = "+" + gift.Contents.Coins.ToString() + " " + Language.Translate("coins");
             itemStringPos = new Vector2(0, claimButton.Y - SPACING - font.MeasureString(itemString).Y);
             RepostionItemString();
 
@@ -908,7 +908,7 @@ namespace OneCannonOneArmy
                         itemImg = Utilities.GetImgOfMaterial(uniqueGift.Contents.Materials[index]);
                         itemString = string.Format("+{0} {1}",
                             gift.Contents.Materials.CountOf(uniqueGift.Contents.Materials[index]),
-                            LanguageTranslator.Translate(uniqueGift.Contents.Materials[index].ToString().AddSpaces()));
+                            Language.Translate(uniqueGift.Contents.Materials[index].ToString().AddSpaces()));
                     }
                     else if (gift.Contents.Projectiles.Count > 0)
                     {
@@ -927,7 +927,7 @@ namespace OneCannonOneArmy
                         itemImg = Utilities.GetIconOf(uniqueGift.Contents.Projectiles[index]);
                         itemString = string.Format("+{0} {1}", 
                             gift.Contents.Projectiles.CountOf(uniqueGift.Contents.Projectiles[index]),
-                            LanguageTranslator.Translate(uniqueGift.Contents.Projectiles[index].ToString().AddSpaces()));
+                            Language.Translate(uniqueGift.Contents.Projectiles[index].ToString().AddSpaces()));
                     }
                     else
                     {
@@ -944,7 +944,7 @@ namespace OneCannonOneArmy
             itemImg = Utilities.GetImgOfMaterial(uniqueGift.Contents.Materials[index]);
             itemString = string.Format("+{0} {1}",
                 gift.Contents.Materials.CountOf(uniqueGift.Contents.Materials[index]),
-                LanguageTranslator.Translate(uniqueGift.Contents.Materials[index].ToString().AddSpaces()));
+                Language.Translate(uniqueGift.Contents.Materials[index].ToString().AddSpaces()));
         }
         private void InitProjectileSeq()
         {
@@ -953,7 +953,7 @@ namespace OneCannonOneArmy
             itemImg = Utilities.GetIconOf(uniqueGift.Contents.Projectiles[index]);
             itemString = string.Format("+{0} {1}",
                             gift.Contents.Projectiles.CountOf(uniqueGift.Contents.Projectiles[index]),
-                            LanguageTranslator.Translate(uniqueGift.Contents.Projectiles[index].ToString().AddSpaces()));
+                            Language.Translate(uniqueGift.Contents.Projectiles[index].ToString().AddSpaces()));
         }
 
         private void RepostionItemString()

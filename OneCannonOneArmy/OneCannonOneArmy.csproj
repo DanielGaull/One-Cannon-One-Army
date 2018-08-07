@@ -105,6 +105,7 @@
     <Compile Include="OrganizeMenu.cs" />
     <Compile Include="PlayerInterface.cs" />
     <Compile Include="Popup.cs" />
+    <Compile Include="PreLvlPopup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBar.cs" />
     <Compile Include="Projectile.cs" />

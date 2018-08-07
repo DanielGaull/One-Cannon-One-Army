@@ -16,7 +16,7 @@ namespace OneCannonOneArmy
         #region Fields & Properties
 
         Textbox usernameBox;
-        string usernamePre = LanguageTranslator.Translate("Username") + ": ";
+        string usernamePre = Language.Translate("Username") + ": ";
         Vector2 usernamePrePos = new Vector2();
 
         List<Texture2D> projImgs;
@@ -109,13 +109,13 @@ namespace OneCannonOneArmy
             alienEyeRect.X = alienRect.X + (alienRect.Width / 2 - (alienEyeRect.Width / 2));
 
             rSlider = new ValueSlider(0, Utilities.RectImage, windowWidth / 2 - sliderWidth / 2, alienRect.Bottom + SPACING,
-                sliderWidth, sliderHeight, smallFont, LanguageTranslator.Translate("Red"), 255.0f);
+                sliderWidth, sliderHeight, smallFont, Language.Translate("Red"), 255.0f);
             rSlider.AddValueChangedHandler(ColorChanged);
             gSlider = new ValueSlider(0, Utilities.RectImage, rSlider.X, rSlider.Y + rSlider.Height + SPACING,
-                sliderWidth, sliderHeight, smallFont, LanguageTranslator.Translate("Green"), 255.0f);
+                sliderWidth, sliderHeight, smallFont, Language.Translate("Green"), 255.0f);
             gSlider.AddValueChangedHandler(ColorChanged);
             bSlider = new ValueSlider(0, Utilities.RectImage, gSlider.X, gSlider.Y + gSlider.Height + SPACING,
-                sliderWidth, sliderHeight, smallFont, LanguageTranslator.Translate("Blue"), 255.0f);
+                sliderWidth, sliderHeight, smallFont, Language.Translate("Blue"), 255.0f);
             bSlider.AddValueChangedHandler(ColorChanged);
 
             projRect = new Rectangle(windowWidth / 2 - PROJ_SIZE / 2,
@@ -126,14 +126,14 @@ namespace OneCannonOneArmy
             prevProj.Y = projRect.Y + projRect.Height / 2 - prevProj.Height / 2;
             nextProj = new MenuButton(NextProj, projRect.Right + SPACING, prevProj.Y, true, graphics, arrowImg);
 
-            replayTutorial = new MenuButton(ReplayTutorial, LanguageTranslator.Translate("Replay Tutorial"), 0, 0, true, mediumFont, graphics);
+            replayTutorial = new MenuButton(ReplayTutorial, Language.Translate("Replay Tutorial"), 0, 0, true, mediumFont, graphics);
             replayTutorial.X = windowWidth - replayTutorial.Width - SPACING;
             replayTutorial.Y = windowHeight - replayTutorial.Height - SPACING;
 
             submit = new MenuButton(new System.Action(() => submitInfo(usernameBox.Content, rSlider.Value, gSlider.Value, bSlider.Value,
                 projImgs[projIndex].Name, new GraphicsSettings(brightnessSlider.Value / 100.0f), 
                 new VolumeSettings(systemSlider.Value, musicSlider.Value, sfxSlider.Value, muteToggle.Toggled))),
-                LanguageTranslator.Translate("Submit"), 0, 0, true, bigFont, graphics);
+                Language.Translate("Submit"), 0, 0, true, bigFont, graphics);
             submit.X = windowWidth / 2 - submit.Width / 2;
             submit.Y = windowHeight - submit.Height - SPACING;
 
@@ -156,18 +156,18 @@ namespace OneCannonOneArmy
             soundButton.Y = graphicsButton.Y + graphicsButton.Height + BUTTON_SPACING;
 
             brightnessSlider = new ValueSlider(0, Utilities.RectImage, rSlider.X, rSlider.Y,
-                rSlider.Width, rSlider.Height, smallFont, LanguageTranslator.Translate("Brightness"));
+                rSlider.Width, rSlider.Height, smallFont, Language.Translate("Brightness"));
 
             systemSlider = new ValueSlider(0, Utilities.RectImage, rSlider.X, rSlider.Y, rSlider.Width, rSlider.Height,
-                smallFont, LanguageTranslator.Translate("System"));
+                smallFont, Language.Translate("System"));
             musicSlider = new ValueSlider(0, Utilities.RectImage, gSlider.X, gSlider.Y, gSlider.Width, gSlider.Height,
-                smallFont, LanguageTranslator.Translate("Music"));
+                smallFont, Language.Translate("Music"));
             sfxSlider = new ValueSlider(0, Utilities.RectImage, bSlider.X, bSlider.Y, bSlider.Width, bSlider.Height,
-                smallFont, LanguageTranslator.Translate("Sound Effects"));
+                smallFont, Language.Translate("Sound Effects"));
             muteToggle = new ToggleButton(soundImg, crossImg, graphics, sfxSlider.X, sfxSlider.Y + sfxSlider.Height + SPACING * 2,
                 MUTE_TOGGLE_SIZE, MUTE_TOGGLE_SIZE);
 
-            dirXInstallButton = new MenuButton(DirectXInstallClick, LanguageTranslator.Translate("Sound Issues?"), 
+            dirXInstallButton = new MenuButton(DirectXInstallClick, Language.Translate("Sound Issues?"), 
                 muteToggle.X, muteToggle.Y + muteToggle.Height + SPACING, true, bigFont, graphics);
         }
 
@@ -307,22 +307,22 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            rSlider.ValueName = LanguageTranslator.Translate("Red");
-            gSlider.ValueName = LanguageTranslator.Translate("Green");
-            bSlider.ValueName = LanguageTranslator.Translate("Blue");
+            rSlider.ValueName = Language.Translate("Red");
+            gSlider.ValueName = Language.Translate("Green");
+            bSlider.ValueName = Language.Translate("Blue");
 
-            submit.Text = LanguageTranslator.Translate("Submit");
-            replayTutorial.Text = LanguageTranslator.Translate("Replay Tutorial");
+            submit.Text = Language.Translate("Submit");
+            replayTutorial.Text = Language.Translate("Replay Tutorial");
 
-            usernamePre = LanguageTranslator.Translate("Username") + ": ";
+            usernamePre = Language.Translate("Username") + ": ";
             usernamePrePos.X = usernameBox.X - bigFont.MeasureString(usernamePre).X;
 
-            brightnessSlider.ValueName = LanguageTranslator.Translate("Brightness");
+            brightnessSlider.ValueName = Language.Translate("Brightness");
 
-            systemSlider.ValueName = LanguageTranslator.Translate("System");
-            musicSlider.ValueName = LanguageTranslator.Translate("Music");
-            sfxSlider.ValueName = LanguageTranslator.Translate("Sound Effects");
-            dirXInstallButton.Text = LanguageTranslator.Translate("Sound Issues?");
+            systemSlider.ValueName = Language.Translate("System");
+            musicSlider.ValueName = Language.Translate("Music");
+            sfxSlider.ValueName = Language.Translate("Sound Effects");
+            dirXInstallButton.Text = Language.Translate("Sound Issues?");
         }
 
         public List<MenuButton> GetButtons()
@@ -393,7 +393,7 @@ namespace OneCannonOneArmy
 
         private void ReplayTutorial()
         {
-            Popup.Show(LanguageTranslator.Translate(
+            Popup.Show(Language.Translate(
                 "Are you sure? The program will restart and the tutorial and story will be replayed."),
                 true, new System.Action(() => replayTutorialClicked?.Invoke()), false);
         }
@@ -430,7 +430,7 @@ namespace OneCannonOneArmy
 
         private void DirectXInstallClick()
         {
-            Popup.Show(LanguageTranslator.Translate("Many sound issues can be resolved by reinstalling DirectX. Click \"Okay\" to " +
+            Popup.Show(Language.Translate("Many sound issues can be resolved by reinstalling DirectX. Click \"Okay\" to " +
                 "open the install\npage in your browser. Be sure to sure to close all programs and " + 
                 "restart your computer after the\ninstall is complete."), 
                 true, OpenDirectXInstall, false);

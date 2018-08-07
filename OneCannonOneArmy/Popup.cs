@@ -33,8 +33,8 @@ namespace OneCannonOneArmy
         const int SPACING_SMALL = 10;
         const int BACKGROUND_WIDTH = 600;
         const int BACKGROUND_HEIGHT = 250;
-        string BUTTON1 = LanguageTranslator.Translate("Okay");
-        string BUTTON2 = LanguageTranslator.Translate("Cancel");
+        string BUTTON1 = Language.Translate("Okay");
+        string BUTTON2 = Language.Translate("Cancel");
         const byte ALPHA = 100;
 
         System.Action whenCancelButtonClicked;
@@ -139,7 +139,7 @@ namespace OneCannonOneArmy
             whenCancelButtonClicked = new System.Action(HidePopup);
             this.whenOkButtonClicked = whenOkButtonClicked;
 
-            queryCheckbox = new Checkbox(LanguageTranslator.Translate("Do not show again"), font, graphics, checkSprite);
+            queryCheckbox = new Checkbox(Language.Translate("Do not show again"), font, graphics, checkSprite);
 
             this.font = font;
 
@@ -255,14 +255,14 @@ namespace OneCannonOneArmy
 
         public void Update()
         {
-            okButton.Text = LanguageTranslator.Translate("Okay");
+            okButton.Text = Language.Translate("Okay");
             if (hasCancelButton)
             {
-                cancelButton.Text = LanguageTranslator.Translate("Cancel");
+                cancelButton.Text = Language.Translate("Cancel");
             }
             if (active && hasCheckbox)
             {
-                queryCheckbox.Text = LanguageTranslator.Translate("Do not show again.");
+                queryCheckbox.Text = Language.Translate("Do not show again.");
             }
 
             if (active)

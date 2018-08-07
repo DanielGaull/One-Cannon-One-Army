@@ -103,7 +103,7 @@ namespace OneCannonOneArmy
             // Update Location
             if (viewButton != null)
             {
-                viewButton.Text = LanguageTranslator.Translate("View");
+                viewButton.Text = Language.Translate("View");
             }
 
             if (enterDir == EnterDirection.Top && bgRect.Y == windowHeight)

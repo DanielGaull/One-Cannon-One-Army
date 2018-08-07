@@ -24,3 +24,4 @@ Update To-Do List:
   -Confirmation Button
 *Finish Updating Intro w/ Labyrinth Quest images
 *Bug: currently doesn't add crafing interface when new projectile is unlocked
+*Add the "Format to width" method

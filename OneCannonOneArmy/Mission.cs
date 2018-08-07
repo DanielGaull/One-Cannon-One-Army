@@ -765,7 +765,7 @@ namespace OneCannonOneArmy
                     {
                         location = m.City + ", " + m.StateCountry;
                     }
-                    currentName = LanguageTranslator.Translate(m.Name) + "\n" + location;
+                    currentName = Language.Translate(m.Name) + "\n" + location;
                     showCompletePrevMissionsFirst = user.CurrentMission < ids[i];
                     hovering = true;
                 }
@@ -788,7 +788,7 @@ namespace OneCannonOneArmy
                 spriteBatch.DrawString(font, currentName, mousePos, Color.Black);
                 if (showCompletePrevMissionsFirst)
                 {
-                    spriteBatch.DrawString(font, LanguageTranslator.Translate("Complete previous missions first."),
+                    spriteBatch.DrawString(font, Language.Translate("Complete previous missions first."),
                         new Vector2(mousePos.X, mousePos.Y + font.MeasureString(currentName).Y), Color.Red);
                 }
             }

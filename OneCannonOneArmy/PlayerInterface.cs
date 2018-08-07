@@ -312,7 +312,7 @@ namespace OneCannonOneArmy
                 }
                 if (mouseRect.Intersects(rapidFireButton.Button.DrawRectangle))
                 {
-                    toolTip = LanguageTranslator.Translate(MACH_TOOLTIP);
+                    toolTip = Language.Translate(MACH_TOOLTIP);
                     toolTipRect = new Rectangle(mouseRect.X - (int)mediumFont.MeasureString(toolTip).X,
                         mouseRect.Y, (int)mediumFont.MeasureString(toolTip).X + SPACING,
                         (int)mediumFont.MeasureString(toolTip).Y + SPACING);
@@ -321,7 +321,7 @@ namespace OneCannonOneArmy
                 }
                 else if (mouseRect.Intersects(sweeperButton.DrawRectangle))
                 {
-                    toolTip = LanguageTranslator.Translate(SWEEP_TOOLTIP);
+                    toolTip = Language.Translate(SWEEP_TOOLTIP);
                     toolTipRect = new Rectangle(mouseRect.X - (int)mediumFont.MeasureString(toolTip).X,
                         mouseRect.Y, (int)mediumFont.MeasureString(toolTip).X + SPACING,
                         (int)mediumFont.MeasureString(toolTip).Y + SPACING);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OneCannonOneArmy
 {
-    public static class LanguageTranslator
+    public static class Language
     {
         #region Spanish
         static Dictionary<string, string> spanishDict = new Dictionary<string, string>()
@@ -269,6 +269,8 @@ namespace OneCannonOneArmy
             { "hotbar 3", "Tablero 3" },
             { "hotbar 4", "Tablero 4" },
             { "hotbar 5", "Tablero 5" },
+
+            { "hotbar", "Tablero" },
 
             { "toggle rapid fire", "Activar disparar rápido" },
             { "sweep (collect all alien drops)", "Barrido (recoger todas las gotas extraterrestre)" },
@@ -569,13 +571,13 @@ namespace OneCannonOneArmy
         {
             return TranslateInto(text, GameInfo.Language);
         }
-        public static string TranslateInto(string text, Language language)
+        public static string TranslateInto(string text, Languages language)
         {
             switch (language)
             {
-                case Language.English:
+                case Languages.English:
                     return text;
-                case Language.Spanish:
+                case Languages.Spanish:
                     if (spanishDict.ContainsKey(text.ToLower()))
                     {
                         return spanishDict[text.ToLower()];
@@ -622,7 +624,7 @@ namespace OneCannonOneArmy
         }
     }
 
-    public enum Language
+    public enum Languages
     {
         English, // EN(US) - English (US)
         Spanish, // ES(MX) - Español (MX)
@@ -655,17 +657,17 @@ namespace OneCannonOneArmy
         #region Constructors
 
         public LanguageSelectMenu(int windowWidth, int windowHeight, GraphicsDevice graphics, SpriteFont font,
-            Action<Language> changeLang)
+            Action<Languages> changeLang)
         {
             int lastY = Y_OFFSET;
 
-            enButton = new MenuButton(new System.Action(() => changeLang(Language.English)), "English (US)", 0, 0,
+            enButton = new MenuButton(new System.Action(() => changeLang(Languages.English)), "English (US)", 0, 0,
                 true, font, graphics);
             enButton.X = windowWidth / 2 - (enButton.Width / 2);
             enButton.Y = lastY;
             lastY += enButton.Height + SPACING;
 
-            esButton = new MenuButton(new System.Action(() => changeLang(Language.Spanish)), "Español (MX)", 0, 0,
+            esButton = new MenuButton(new System.Action(() => changeLang(Languages.Spanish)), "Español (MX)", 0, 0,
                 true, font, graphics);
             esButton.X = windowWidth / 2 - (esButton.Width / 2);
             esButton.Y = lastY;
@@ -713,9 +715,9 @@ namespace OneCannonOneArmy
 
         public void Update()
         {
-            enButton.Active = GameInfo.Language != Language.English;
+            enButton.Active = GameInfo.Language != Languages.English;
             enButton.Update();
-            esButton.Active = GameInfo.Language != Language.Spanish;
+            esButton.Active = GameInfo.Language != Languages.Spanish;
             esButton.Update();
             //frButton.Update();
             //itButton.Update();

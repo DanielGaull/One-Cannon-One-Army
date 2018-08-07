@@ -617,7 +617,7 @@ namespace OneCannonOneArmy
                 spriteBatch.Draw(selectedImg, selectedRect, Color.White);
             }
             spriteBatch.Draw(borderImg, borderRect, Color.White);
-            spriteBatch.DrawString(smallFont, LanguageTranslator.Translate(Control.ToString().AddSpaces()), controlNamePos, Color.Black);
+            spriteBatch.DrawString(smallFont, Language.Translate(Control.ToString().AddSpaces()), controlNamePos, Color.Black);
             spriteBatch.DrawString(bigFont, Key.ToString(), keyNamePos, Color.Black);
         }
 

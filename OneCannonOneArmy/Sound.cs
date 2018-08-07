@@ -117,7 +117,7 @@ namespace OneCannonOneArmy
                 showingSubtitle = ShowSubtitles;
                 if (showingSubtitle)
                 {
-                    subtitle = LanguageTranslator.Translate(SubtitleForSound(sound));
+                    subtitle = Language.Translate(SubtitleForSound(sound));
                     timer.WaitTime = WAIT_TIME;
                     subtitlePos.X = windowWidth / 2 - font.MeasureString(subtitle).X / 2;
                     subtitlePos.Y = windowHeight - font.MeasureString(subtitle).Y - SPACING * 2;

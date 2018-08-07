@@ -144,15 +144,15 @@ namespace OneCannonOneArmy
             switch (goal)
             {
                 case MissionGoal.KillAll:
-                    return LanguageTranslator.Translate(KILL_ALL_TEXT);
+                    return Language.Translate(KILL_ALL_TEXT);
                 case MissionGoal.DestroyMechanics:
-                    return string.Format(LanguageTranslator.Translate(MECH_TEXT), amount);
+                    return string.Format(Language.Translate(MECH_TEXT), amount);
                 case MissionGoal.SavePeople:
-                    return string.Format(LanguageTranslator.Translate(amount > 1 ? SAVE_TEXT1 : SAVE_TEXT2), amount);
+                    return string.Format(Language.Translate(amount > 1 ? SAVE_TEXT1 : SAVE_TEXT2), amount);
                 case MissionGoal.DestroyLaser:
-                    return LanguageTranslator.Translate(LASER_TEXT);
+                    return Language.Translate(LASER_TEXT);
                 case MissionGoal.KillMalos:
-                    return LanguageTranslator.Translate(BOSS_TEXT);
+                    return Language.Translate(BOSS_TEXT);
                 default:
                     return "";
             }
@@ -552,8 +552,8 @@ namespace OneCannonOneArmy
                     ALIEN_HEIGHT, null);
                     newAlien.ShowHealthbar = false;
                     drawAliens.Add(newAlien);
-                    unlocks.Add(LanguageTranslator.Translate("New Alien") + ": " +
-                        LanguageTranslator.Translate(GameInfo.ToText(aliens[i])));
+                    unlocks.Add(Language.Translate("New Alien") + ": " +
+                        Language.Translate(GameInfo.ToText(aliens[i])));
                     unlockPositions.Add(new Vector2());
                 }
 
@@ -569,8 +569,8 @@ namespace OneCannonOneArmy
                 {
                     projImgs.Add(Utilities.GetIconOf(projs[i]));
                     projRects.Add(new Rectangle(0, 0, ITEM_SIZE, ITEM_SIZE));
-                    unlocks.Add(LanguageTranslator.Translate("New Projectile") + ": " +
-                        LanguageTranslator.Translate(projs[i].ToString().AddSpaces()));
+                    unlocks.Add(Language.Translate("New Projectile") + ": " +
+                        Language.Translate(projs[i].ToString().AddSpaces()));
                     unlockPositions.Add(new Vector2());
                 }
             }
@@ -579,7 +579,7 @@ namespace OneCannonOneArmy
             {
                 otherUnlockImgs.Add(Utilities.AlienShieldImg);
                 otherUnlockRects.Add(new Rectangle(0, 0, ITEM_SIZE, ITEM_SIZE));
-                unlocks.Add(LanguageTranslator.Translate("Alien Shields"));
+                unlocks.Add(Language.Translate("Alien Shields"));
                 unlockPositions.Add(new Vector2());
             }
         }

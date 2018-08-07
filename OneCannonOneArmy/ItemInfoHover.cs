@@ -52,7 +52,7 @@ namespace OneCannonOneArmy
             bgImg = DrawHelper.AddBorder(bgImg, 3, Color.Gray, Color.LightGray);
             bgRect = new Rectangle(0, 0, WIDTH, HEIGHT);
 
-            namePos = new Vector2(bgRect.X + bgRect.Width / 2 - (font.MeasureString(LanguageTranslator.Translate(name)).X / 2),
+            namePos = new Vector2(bgRect.X + bgRect.Width / 2 - (font.MeasureString(Language.Translate(name)).X / 2),
                 bgRect.Y + SPACING);
             descPos = new Vector2(bgRect.X + SPACING, namePos.Y + font.MeasureString(name).Y + SPACING);
 
@@ -98,12 +98,12 @@ namespace OneCannonOneArmy
             if (Active)
             {
                 spriteBatch.Draw(bgImg, bgRect, Color.White);
-                spriteBatch.DrawString(font, LanguageTranslator.Translate(name), namePos, Color.Black);
-                spriteBatch.DrawString(font, LanguageTranslator.Translate(desc), descPos, Color.Black);
+                spriteBatch.DrawString(font, Language.Translate(name), namePos, Color.Black);
+                spriteBatch.DrawString(font, Language.Translate(desc), descPos, Color.Black);
 
                 for (int i = 0; i < stats.Count; i++)
                 {
-                    spriteBatch.DrawString(font, LanguageTranslator.Translate(stats[i].Name) + 
+                    spriteBatch.DrawString(font, Language.Translate(stats[i].Name) + 
                         (stats[i].Name != "" ? ": " : "") + stats[i].Value, statLocs[i], Color.Black);
                 }
             }
@@ -118,7 +118,7 @@ namespace OneCannonOneArmy
             descPos.X = bgRect.X + SPACING;
             descPos.Y = namePos.Y + font.MeasureString(name).Y + SPACING;
 
-            namePos.X = bgRect.X + bgRect.Width / 2 - (font.MeasureString(LanguageTranslator.Translate(name)).X / 2);
+            namePos.X = bgRect.X + bgRect.Width / 2 - (font.MeasureString(Language.Translate(name)).X / 2);
             namePos.Y = bgRect.Y + SPACING;
 
             int x1 = bgRect.X + SPACING;

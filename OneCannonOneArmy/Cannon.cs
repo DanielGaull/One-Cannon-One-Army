@@ -575,9 +575,9 @@ namespace OneCannonOneArmy
             iconRect.Height = iconRect.Width;
             iconRect.X = bgRect.X + (bgRect.Width / 2 - (iconRect.Width / 2));
 
-            this.valueString = LanguageTranslator.Translate(valueString);
+            this.valueString = Language.Translate(valueString);
 
-            upgradeButton = new MenuButton(Upgrade, LanguageTranslator.Translate("Upgrade") + " " + valueString, 0,
+            upgradeButton = new MenuButton(Upgrade, Language.Translate("Upgrade") + " " + valueString, 0,
                 0, true, font, graphics);
             Position();
 
@@ -592,13 +592,13 @@ namespace OneCannonOneArmy
         {
             bool atMax = user.CannonSettings.GetValueOfStat(stat) == GameInfo.MaxStats[stat];
             upgradeButton.Active = (user.Coins >= cost) && !atMax;
-            upgradeButton.Text = atMax ? LanguageTranslator.Translate("Max Level") : 
-                LanguageTranslator.Translate("Upgrade") + " " + valueString;
+            upgradeButton.Text = atMax ? Language.Translate("Max Level") : 
+                Language.Translate("Upgrade") + " " + valueString;
             upgradeButton.Update();
             currentValue = settings.GetValueOfStat(stat);
 
             cost = GameInfo.GetCostOfStat(stat, settings.GetValueOfStat(stat));
-            costString = atMax ? LanguageTranslator.Translate("Max Level") : LanguageTranslator.Translate("Cost") + ": " + cost;
+            costString = atMax ? Language.Translate("Max Level") : Language.Translate("Cost") + ": " + cost;
             costPos.X = bgRect.X + (bgRect.Width / 2 - (font.MeasureString(costString).X / 2));
 
             Rectangle mouseRect = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1);
@@ -630,7 +630,7 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            valueString = LanguageTranslator.Translate(origValueString);
+            valueString = Language.Translate(origValueString);
 
             Position();
         }

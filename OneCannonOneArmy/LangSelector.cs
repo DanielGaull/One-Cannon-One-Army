@@ -37,7 +37,7 @@ namespace OneCannonOneArmy
 
         const int BUTTON_WIDTH = 200;
 
-        event Action<Language> onLangSet;
+        event Action<Languages> onLangSet;
 
         public bool Active = false;
 
@@ -62,10 +62,10 @@ namespace OneCannonOneArmy
             //int x2 = x + BUTTON_WIDTH + SPACING;
             int y = (int)(infoTextPos.Y + font.MeasureString(infoText).Y + SPACING / 2);
 
-            enButton = new MenuButton(new System.Action(() => SetLang(Language.English)), "English (US)", x, y, true, font, graphics);
+            enButton = new MenuButton(new System.Action(() => SetLang(Languages.English)), "English (US)", x, y, true, font, graphics);
             enButton.Width = BUTTON_WIDTH;
             y += enButton.Height + SPACING;
-            esButton = new MenuButton(new System.Action(() => SetLang(Language.Spanish)), "Español (MX)", x, y, true, font, graphics);
+            esButton = new MenuButton(new System.Action(() => SetLang(Languages.Spanish)), "Español (MX)", x, y, true, font, graphics);
             esButton.Width = BUTTON_WIDTH;
 
             y += enButton.Height + SPACING;
@@ -153,7 +153,7 @@ namespace OneCannonOneArmy
             return returnVal;
         }
 
-        public void AddLanguageSetHandler(Action<Language> handler)
+        public void AddLanguageSetHandler(Action<Languages> handler)
         {
             onLangSet += handler;
         }
@@ -162,7 +162,7 @@ namespace OneCannonOneArmy
 
         #region Private Methods
 
-        private void SetLang(Language lang)
+        private void SetLang(Languages lang)
         {
             onLangSet?.Invoke(lang);
             Active = false;

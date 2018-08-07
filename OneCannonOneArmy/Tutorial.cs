@@ -91,7 +91,7 @@ namespace OneCannonOneArmy
             alienTravelingTo = new Vector2(-1, -1);
 
             skip += new System.Action(() => Playing = false);
-            skipTutorialButton = new MenuButton(Skip, LanguageTranslator.Translate("Skip"), 0, 0, true, bigFont, graphics);
+            skipTutorialButton = new MenuButton(Skip, Language.Translate("Skip"), 0, 0, true, bigFont, graphics);
             skipTutorialButton.X = windowWidth / 2 - skipTutorialButton.Width / 2;
             skipTutorialButton.Y = (windowHeight / 2 - alienRect.Height / 2) + alienRect.Height;
 
@@ -231,7 +231,7 @@ namespace OneCannonOneArmy
             AlienGoTo(TutorialStages.AlienPositions[stage]);
             SetAlienMood(TutorialStages.IsAlienHappy[stage]);
 
-            SetInstructions(LanguageTranslator.Translate(TutorialStages.Instructions[stage]), 
+            SetInstructions(Language.Translate(TutorialStages.Instructions[stage]), 
                 TutorialStages.InstructionPositions[stage], ButtonForAction(TutorialStages.ActionsAllowed[stage],
                 TutorialStages.Highlights[stage]));
 
@@ -305,12 +305,12 @@ namespace OneCannonOneArmy
 
             if (buttonToContinue == null)
             {
-                this.instructions = instructions + "\n" + LanguageTranslator.Translate("(Press space to continue)");
+                this.instructions = instructions + "\n" + Language.Translate("(Press space to continue)");
             }
             else
             {
-                this.instructions = instructions + "\n" + string.Format(LanguageTranslator.Translate("(Press {0} to continue)"), 
-                    LanguageTranslator.Translate(buttonToContinue));
+                this.instructions = instructions + "\n" + string.Format(Language.Translate("(Press {0} to continue)"), 
+                    Language.Translate(buttonToContinue));
             }
             instructPos = pos;
             instructRect.X = (int)instructPos.X - SPACING;

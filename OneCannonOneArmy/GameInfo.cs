@@ -15,7 +15,7 @@ namespace OneCannonOneArmy
         #region Properties
 
         public static Version Version = new Version(1, 0, 0);
-        public static Language Language = Language.English;
+        public static Languages Language = Languages.English;
 
         public static Planet Planet = Planet.Earth;
 

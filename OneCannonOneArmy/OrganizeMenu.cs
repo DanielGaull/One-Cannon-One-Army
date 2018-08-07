@@ -314,8 +314,8 @@ namespace OneCannonOneArmy
                                 activeMaterial = materials[i];
                                 dropdown = new RClickDropdown(
                                     new List<string> {
-                                        LanguageTranslator.Translate("Sell") + " (" + GameInfo.SellValueOf(materials[i]).ToString()
-                                            + "c)", LanguageTranslator.Translate("Sell All") + " (" +
+                                        Language.Translate("Sell") + " (" + GameInfo.SellValueOf(materials[i]).ToString()
+                                            + "c)", Language.Translate("Sell All") + " (" +
                                             GameInfo.SellValueOf(materials[i]) * materialCounts[i] + "c)",
                                     },
                                     new List<System.Action> {
@@ -345,8 +345,8 @@ namespace OneCannonOneArmy
                             activeBadge = badges[i];
                             dropdown = new RClickDropdown(
                                 new List<string> {
-                                    LanguageTranslator.Translate("Sell") + " (" + GameInfo.SellValueOf(badges[i]).ToString() + "c)",
-                                    LanguageTranslator.Translate("Sell All") + " (" +
+                                    Language.Translate("Sell") + " (" + GameInfo.SellValueOf(badges[i]).ToString() + "c)",
+                                    Language.Translate("Sell All") + " (" +
                                             GameInfo.SellValueOf(badges[i]) * badgeCounts[i] + "c)",},
                                 new List<System.Action> {
                                     new System.Action(() => bSell(activeBadge)),
@@ -391,8 +391,8 @@ namespace OneCannonOneArmy
                                 activeProj = projectiles[i];
                                 dropdown = new RClickDropdown(
                                     new List<string> {
-                                        LanguageTranslator.Translate("Sell") + " (" + GameInfo.SellValueOf(projectiles[i]).ToString() + "c)",
-                                        LanguageTranslator.Translate("Sell All") + " (" +
+                                        Language.Translate("Sell") + " (" + GameInfo.SellValueOf(projectiles[i]).ToString() + "c)",
+                                        Language.Translate("Sell All") + " (" +
                                             GameInfo.SellValueOf(projectiles[i]) * projCounts[i] + "c)",
                                     },
                                     new List<System.Action> {

@@ -37,15 +37,15 @@ namespace OneCannonOneArmy
         System.Action storyFinish;
         MenuButton skipStoryButton;
 
-        string ALIENS_KILLED_PRE = LanguageTranslator.Translate("Aliens Killed") + ": ";
-        string ALIENS_HIT_PRE = LanguageTranslator.Translate("Aliens Hit") + ": ";
-        string COINS_COLLECTED_PRE = LanguageTranslator.Translate("Coins Collected") + ": ";
-        string PROJ_FIRED_PRE = LanguageTranslator.Translate("Projectiles Fired") + ": ";
-        string ACCURACY_PRE = LanguageTranslator.Translate("Accuracy") + ": ";
-        string COINS_SPENT_PRE = LanguageTranslator.Translate("Coins Spent") + ": ";
-        string PURCHASES_PRE = LanguageTranslator.Translate("Total Purchases") + ": ";
-        string ITEMS_CRAFTED_PRE = LanguageTranslator.Translate("Items Crafted") + ": ";
-        string ITEMS_SOLD_PRE = LanguageTranslator.Translate("Items Sold") + ": ";
+        string ALIENS_KILLED_PRE = Language.Translate("Aliens Killed") + ": ";
+        string ALIENS_HIT_PRE = Language.Translate("Aliens Hit") + ": ";
+        string COINS_COLLECTED_PRE = Language.Translate("Coins Collected") + ": ";
+        string PROJ_FIRED_PRE = Language.Translate("Projectiles Fired") + ": ";
+        string ACCURACY_PRE = Language.Translate("Accuracy") + ": ";
+        string COINS_SPENT_PRE = Language.Translate("Coins Spent") + ": ";
+        string PURCHASES_PRE = Language.Translate("Total Purchases") + ": ";
+        string ITEMS_CRAFTED_PRE = Language.Translate("Items Crafted") + ": ";
+        string ITEMS_SOLD_PRE = Language.Translate("Items Sold") + ": ";
 
         const int BUTTON_SPACING = 20;
         const int SPACING = 10;
@@ -58,7 +58,7 @@ namespace OneCannonOneArmy
         Rectangle alienRect;
         Rectangle alienEyeRect;
         Color avatarColor;
-        string usernamePrefix = LanguageTranslator.Translate("Username") + ": ";
+        string usernamePrefix = Language.Translate("Username") + ": ";
         Vector2 usernamePrePos;
         const int ALIEN_WIDTH = 100;
         const int ALIEN_HEIGHT = 50;
@@ -144,7 +144,7 @@ namespace OneCannonOneArmy
 
         event Action<int> livesChanged;
 
-        event Action<Language> languageChanged;
+        event Action<Languages> languageChanged;
 
         const int USERNAME_WIDTH = 300;
         const int USERNAME_HEIGHT = 50;
@@ -345,7 +345,8 @@ namespace OneCannonOneArmy
             CreateUser createUser, System.Action createNewUser, System.Action play,
             System.Action achievements, System.Action stats, System.Action openShop, System.Action settings, System.Action openOrganize,
             System.Action openCrafting, System.Action openUpgrade, Action<int> selectMission, System.Action buyLife, System.Action openLang,
-            Action<Language> changeLang, System.Action openControls, System.Action openUserSettings, System.Action openGifts, System.Action openCredits)
+            Action<Languages> changeLang, System.Action openControls, System.Action openUserSettings, System.Action openGifts, 
+            System.Action openCredits)
         // Put button click delegates at the bottom
         {
             this.windowWidth = windowWidth;
@@ -381,10 +382,10 @@ namespace OneCannonOneArmy
             shop = new Shop(arrowImg, windowWidth, windowHeight, graphics, items, itemCosts, mediumFont, smallFont, buy,
                 cannons, cannonCosts, buyCannon, selectCannon, giftCosts, buyGift, Utilities.MetalImg, cannonIcon, Utilities.GiftImg);
 
-            startButton = new MenuButton(start, LanguageTranslator.Translate("Start"), 0,
+            startButton = new MenuButton(start, Language.Translate("Start"), 0,
                 logoRect.Y + logoRect.Height + BUTTON_SPACING, true, bigFont, graphics);
 
-            quitButton = new MenuButton(quit, LanguageTranslator.Translate("Quit"), 0,
+            quitButton = new MenuButton(quit, Language.Translate("Quit"), 0,
                 startButton.Y + BUTTON_SPACING + startButton.Height, true, bigFont, graphics);
 
             langButton = new MenuButton(openLang, 0, 0, true, graphics, langImg);
@@ -417,10 +418,10 @@ namespace OneCannonOneArmy
             Sound.ShowSubtitles = new UniversalSettings().Captions;
             captionButton.Toggled = !Sound.ShowSubtitles;
 
-            resumeButton = new MenuButton(resume, LanguageTranslator.Translate("Resume"), 0, startButton.Y, true,
+            resumeButton = new MenuButton(resume, Language.Translate("Resume"), 0, startButton.Y, true,
                 bigFont, graphics);
 
-            mainMenuButton = new MenuButton(mainMenu, LanguageTranslator.Translate("Main Menu"), 0,
+            mainMenuButton = new MenuButton(mainMenu, Language.Translate("Main Menu"), 0,
                 resumeButton.Y + resumeButton.Height + BUTTON_SPACING,
                 true, bigFont, graphics);
 
@@ -435,7 +436,7 @@ namespace OneCannonOneArmy
 
             backButtonClick += goBack;
             backButtonClick += GoBackChecking;
-            backButton = new MenuButton(backButtonClick, LanguageTranslator.Translate("Back"), BUTTON_SPACING, 0, true,
+            backButton = new MenuButton(backButtonClick, Language.Translate("Back"), BUTTON_SPACING, 0, true,
                 bigFont, graphics);
             backButton.Y = windowHeight - (int)(backButton.Height * 2.3f);
 
@@ -465,22 +466,22 @@ namespace OneCannonOneArmy
             nextPageButton.X = windowWidth - nextPageButton.Width - BUTTON_SPACING;
             nextPageButton.Y = windowHeight - nextPageButton.Height - BUTTON_SPACING;
 
-            submitUserButton = new MenuButton(new System.Action(CreateUser), LanguageTranslator.Translate("Create User"), 0,
+            submitUserButton = new MenuButton(new System.Action(CreateUser), Language.Translate("Create User"), 0,
                 backButton.Y, true, bigFont, graphics);
             submitUserButton.X = windowWidth / 2 - (submitUserButton.Width / 2);
 
-            createNewUserButton = new MenuButton(createNewUser, LanguageTranslator.Translate("Create New User"), 0,
+            createNewUserButton = new MenuButton(createNewUser, Language.Translate("Create New User"), 0,
                 submitUserButton.Y, true, bigFont, graphics);
             createNewUserButton.X = windowWidth / 2 - (createNewUserButton.Width / 2);
 
             avatarRSlider = new ValueSlider(0, transImg, 0, alienRect.Bottom + SPACING, SLIDER_WIDTH, SLIDER_HEIGHT, smallFont,
-                LanguageTranslator.Translate("Red"), 255.0f);
+                Language.Translate("Red"), 255.0f);
             avatarRSlider.X = windowWidth / 2 - (avatarRSlider.Width / 2);
             avatarGSlider = new ValueSlider(255, transImg, 0, avatarRSlider.Y + avatarRSlider.Height + BUTTON_SPACING,
-                 SLIDER_WIDTH, SLIDER_HEIGHT, smallFont, LanguageTranslator.Translate("Green"), 255.0f);
+                 SLIDER_WIDTH, SLIDER_HEIGHT, smallFont, Language.Translate("Green"), 255.0f);
             avatarGSlider.X = windowWidth / 2 - (avatarRSlider.Width / 2);
             avatarBSlider = new ValueSlider(0, transImg, 0, avatarGSlider.Y + avatarGSlider.Height + BUTTON_SPACING,
-                 SLIDER_WIDTH, SLIDER_HEIGHT, smallFont, LanguageTranslator.Translate("Blue"), 255.0f);
+                 SLIDER_WIDTH, SLIDER_HEIGHT, smallFont, Language.Translate("Blue"), 255.0f);
             avatarBSlider.X = windowWidth / 2 - (avatarRSlider.Width / 2);
 
             avatarColor = new Color(avatarRSlider.Value, avatarGSlider.Value, avatarBSlider.Value);
@@ -489,31 +490,31 @@ namespace OneCannonOneArmy
             projRect = new Rectangle(windowWidth / 2 - (PROJECTILE_SIZE / 2),
                 avatarBSlider.Y + avatarBSlider.Height + SPACING, PROJECTILE_SIZE, PROJECTILE_SIZE);
 
-            playButton = new MenuButton(play, LanguageTranslator.Translate("Play"), 0, startButton.Y, true, bigFont, graphics);
+            playButton = new MenuButton(play, Language.Translate("Play"), 0, startButton.Y, true, bigFont, graphics);
             //playButton.X = windowWidth / 2 - (playButton.Width / 2);
 
-            achButton = new MenuButton(achievements, LanguageTranslator.Translate("Achievements"), 0, 0, true, bigFont, graphics);
-            statButton = new MenuButton(stats, LanguageTranslator.Translate("Stats"), 0, 0, true, bigFont, graphics);
+            achButton = new MenuButton(achievements, Language.Translate("Achievements"), 0, 0, true, bigFont, graphics);
+            statButton = new MenuButton(stats, Language.Translate("Stats"), 0, 0, true, bigFont, graphics);
 
             //int achStatWidth = achButton.Width + statButton.Width + BUTTON_SPACING;
             //achButton.X = windowWidth / 2 - (achStatWidth / 2);
             //statButton.X = achButton.X + achButton.Width + BUTTON_SPACING;
 
-            shopButton = new MenuButton(openShop, LanguageTranslator.Translate("Shop"), 0, 0, true, bigFont, graphics);
-            craftingButton = new MenuButton(openCrafting, LanguageTranslator.Translate("Crafting"), 0, 0, true, bigFont, graphics);
+            shopButton = new MenuButton(openShop, Language.Translate("Shop"), 0, 0, true, bigFont, graphics);
+            craftingButton = new MenuButton(openCrafting, Language.Translate("Crafting"), 0, 0, true, bigFont, graphics);
 
             //int craftShopWidth = craftingButton.Width + shopButton.Width + BUTTON_SPACING;
             //shopButton.X = windowWidth / 2 - (craftShopWidth / 2);
             //craftingButton.X = shopButton.X + BUTTON_SPACING + shopButton.Width;
 
-            upgradeButton = new MenuButton(openUpgrade, LanguageTranslator.Translate("Upgrade"), 0, 0, true, bigFont, graphics);
-            organizeButton = new MenuButton(openOrganize, LanguageTranslator.Translate("Organize"), 0, 0, true, bigFont, graphics);
+            upgradeButton = new MenuButton(openUpgrade, Language.Translate("Upgrade"), 0, 0, true, bigFont, graphics);
+            organizeButton = new MenuButton(openOrganize, Language.Translate("Organize"), 0, 0, true, bigFont, graphics);
 
             //int upgradeOrganizeWidth = upgradeButton.Width + organizeButton.Width + BUTTON_SPACING;
             //upgradeButton.X = windowWidth / 2 - (upgradeOrganizeWidth / 2);
             //organizeButton.X = upgradeButton.X + upgradeButton.Width + BUTTON_SPACING;
 
-            giftButton = new MenuButton(openGifts, LanguageTranslator.Translate("Gifts"), 0, 0, true, bigFont, graphics);
+            giftButton = new MenuButton(openGifts, Language.Translate("Gifts"), 0, 0, true, bigFont, graphics);
 
             PositionButtons();
 
@@ -535,7 +536,7 @@ namespace OneCannonOneArmy
 
             story = new Story(windowWidth, windowHeight, mediumFont);
             this.storyFinish = storyFinish;
-            skipStoryButton = new MenuButton(storyFinish, LanguageTranslator.Translate("Skip"), 0, 0,
+            skipStoryButton = new MenuButton(storyFinish, Language.Translate("Skip"), 0, 0,
                 true, bigFont, graphics);
             skipStoryButton.X = windowWidth - skipStoryButton.Width - BUTTON_SPACING;
             skipStoryButton.Y = windowHeight - skipStoryButton.Height - BUTTON_SPACING;
@@ -549,7 +550,7 @@ namespace OneCannonOneArmy
 
             credits = new Credits(mediumFont, windowWidth, windowHeight, logoImg, LOGO_WIDTH, LOGO_HEIGHT);
             credits.AddExitCreditsHandler(backButtonClick);
-            creditsButton = new MenuButton(openCredits, LanguageTranslator.Translate("Credits"), 0, 0, true, bigFont, graphics);
+            creditsButton = new MenuButton(openCredits, Language.Translate("Credits"), 0, 0, true, bigFont, graphics);
             creditsButton.X = windowWidth / 2 - creditsButton.Width / 2;
             creditsButton.Y = windowHeight - creditsButton.Height - BUTTON_SPACING;
         }
@@ -761,7 +762,7 @@ namespace OneCannonOneArmy
                             }
                             // We need to tell the user how much time is left
                             // before they receive their next life
-                            nextLifeIn = LanguageTranslator.Translate("Time until next life: ")
+                            nextLifeIn = Language.Translate("Time until next life: ")
                                 + user.TimeOfNextLife.FormatDistanceToNow();
                             nextLifeTimePos.X = windowWidth / 2 - (mediumFont.MeasureString(nextLifeIn).X / 2);
                             buyLifeButton.Active = true;
@@ -1514,7 +1515,7 @@ namespace OneCannonOneArmy
             livesChanged += handler;
         }
 
-        public void LangChanged(Language lang)
+        public void LangChanged(Languages lang)
         {
             languageChanged?.Invoke(lang);
             shop.LangChanged();
@@ -1523,39 +1524,39 @@ namespace OneCannonOneArmy
             upgradeMenu.LangChanged();
             settingsMenu.LangChanged();
 
-            playButton.Text = LanguageTranslator.Translate("Play");
-            quitButton.Text = LanguageTranslator.Translate("Quit");
-            startButton.Text = LanguageTranslator.Translate("Start");
-            achButton.Text = LanguageTranslator.Translate("Achievements");
-            statButton.Text = LanguageTranslator.Translate("Stats");
-            craftingButton.Text = LanguageTranslator.Translate("Crafting");
-            shopButton.Text = LanguageTranslator.Translate("Shop");
-            upgradeButton.Text = LanguageTranslator.Translate("Upgrade");
-            organizeButton.Text = LanguageTranslator.Translate("Organize");
-            backButton.Text = LanguageTranslator.Translate("Back");
-            createNewUserButton.Text = LanguageTranslator.Translate("Create New User");
-            submitUserButton.Text = LanguageTranslator.Translate("Create User");
-            mainMenuButton.Text = LanguageTranslator.Translate("Main Menu");
-            skipStoryButton.Text = LanguageTranslator.Translate("Skip");
-            resumeButton.Text = LanguageTranslator.Translate("Resume");
-            giftButton.Text = LanguageTranslator.Translate("Gifts");
-            creditsButton.Text = LanguageTranslator.Translate("Credits");
+            playButton.Text = Language.Translate("Play");
+            quitButton.Text = Language.Translate("Quit");
+            startButton.Text = Language.Translate("Start");
+            achButton.Text = Language.Translate("Achievements");
+            statButton.Text = Language.Translate("Stats");
+            craftingButton.Text = Language.Translate("Crafting");
+            shopButton.Text = Language.Translate("Shop");
+            upgradeButton.Text = Language.Translate("Upgrade");
+            organizeButton.Text = Language.Translate("Organize");
+            backButton.Text = Language.Translate("Back");
+            createNewUserButton.Text = Language.Translate("Create New User");
+            submitUserButton.Text = Language.Translate("Create User");
+            mainMenuButton.Text = Language.Translate("Main Menu");
+            skipStoryButton.Text = Language.Translate("Skip");
+            resumeButton.Text = Language.Translate("Resume");
+            giftButton.Text = Language.Translate("Gifts");
+            creditsButton.Text = Language.Translate("Credits");
 
-            avatarRSlider.ValueName = LanguageTranslator.Translate("Red");
-            avatarGSlider.ValueName = LanguageTranslator.Translate("Green");
-            avatarBSlider.ValueName = LanguageTranslator.Translate("Blue");
+            avatarRSlider.ValueName = Language.Translate("Red");
+            avatarGSlider.ValueName = Language.Translate("Green");
+            avatarBSlider.ValueName = Language.Translate("Blue");
 
-            usernamePrefix = LanguageTranslator.Translate("Username");
+            usernamePrefix = Language.Translate("Username");
 
-            ALIENS_KILLED_PRE = LanguageTranslator.Translate("Aliens Killed") + ": ";
-            ALIENS_HIT_PRE = LanguageTranslator.Translate("Aliens Hit") + ": ";
-            COINS_COLLECTED_PRE = LanguageTranslator.Translate("Coins Collected") + ": ";
-            PROJ_FIRED_PRE = LanguageTranslator.Translate("Projectiles Fired") + ": ";
-            ACCURACY_PRE = LanguageTranslator.Translate("Accuracy") + ": ";
-            COINS_SPENT_PRE = LanguageTranslator.Translate("Coins Spent") + ": ";
-            PURCHASES_PRE = LanguageTranslator.Translate("Total Purchases") + ": ";
-            ITEMS_CRAFTED_PRE = LanguageTranslator.Translate("Items Crafted") + ": ";
-            ITEMS_SOLD_PRE = LanguageTranslator.Translate("Items Sold") + ": ";
+            ALIENS_KILLED_PRE = Language.Translate("Aliens Killed") + ": ";
+            ALIENS_HIT_PRE = Language.Translate("Aliens Hit") + ": ";
+            COINS_COLLECTED_PRE = Language.Translate("Coins Collected") + ": ";
+            PROJ_FIRED_PRE = Language.Translate("Projectiles Fired") + ": ";
+            ACCURACY_PRE = Language.Translate("Accuracy") + ": ";
+            COINS_SPENT_PRE = Language.Translate("Coins Spent") + ": ";
+            PURCHASES_PRE = Language.Translate("Total Purchases") + ": ";
+            ITEMS_CRAFTED_PRE = Language.Translate("Items Crafted") + ": ";
+            ITEMS_SOLD_PRE = Language.Translate("Items Sold") + ": ";
 
             PositionButtons();
         }
@@ -1672,7 +1673,7 @@ namespace OneCannonOneArmy
 
         private void QueryUserDel(User user)
         {
-            Popup.Show(LanguageTranslator.Translate("Are you sure you want to delete") + " \"" + user.Username + "\"?", true,
+            Popup.Show(Language.Translate("Are you sure you want to delete") + " \"" + user.Username + "\"?", true,
                 new System.Action(() => DeleteUser(user)), false);
         }
 
@@ -1694,13 +1695,13 @@ namespace OneCannonOneArmy
                 if (usernameBox.Content.Trim() == "")
                 {
                     Popup.Show(
-                        LanguageTranslator.Translate("Please enter a username containing at least" +
+                        Language.Translate("Please enter a username containing at least" +
                         " one non-whitespace character."),
                         false, false);
                 }
                 else if (namesEqual)
                 {
-                    Popup.Show(LanguageTranslator.Translate("That user already exists."), false, false);
+                    Popup.Show(Language.Translate("That user already exists."), false, false);
                 }
                 else
                 {

@@ -46,7 +46,7 @@ namespace OneCannonOneArmy
             }
             for (int i = 0; i < story.Count; i++)
             {
-                lines.Add(LanguageTranslator.Translate(story[i]));
+                lines.Add(Language.Translate(story[i]));
                 float x = windowWidth / 2 - (font.MeasureString(lines[i]).X / 2);
                 float y = i * font.MeasureString(lines[i]).Y + windowHeight;
                 locations.Add(new Vector2(x, y));

@@ -152,10 +152,10 @@ namespace OneCannonOneArmy
             intImg = content.Load<Texture2D>(ach.ImageAsset);
             intRect = new Rectangle(bgRect.X + SPACING, bgRect.Y + SPACING, INTERIOR_SIZE, INTERIOR_SIZE);
 
-            name = LanguageTranslator.Translate(ach.Name);
+            name = Language.Translate(ach.Name);
             namePos = new Vector2(intRect.Right + SPACING, intRect.Y);
 
-            desc = LanguageTranslator.Translate(ach.Desc);
+            desc = Language.Translate(ach.Desc);
             descPos = new Vector2(namePos.X, namePos.Y + (bigFont.MeasureString(name).Y));
 
             Color circleColor = Color.White;
@@ -177,7 +177,7 @@ namespace OneCannonOneArmy
             circleImg = DrawHelper.CreateCircle(10, graphics, circleColor);
             circleRect = new Rectangle(intRect.X, intRect.Bottom + (SPACING / 2), SPACING, SPACING);
 
-            rewardText = LanguageTranslator.Translate("Reward") + ": " + ach.Coins + "c";
+            rewardText = Language.Translate("Reward") + ": " + ach.Coins + "c";
             rewardPos = new Vector2(bgRect.Right - smallFont.MeasureString(rewardText).X - SPACING, 
                 bgRect.Bottom - smallFont.MeasureString(rewardText).Y - SPACING);
         }
@@ -215,10 +215,10 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            name = LanguageTranslator.Translate(Achievement.Name);
-            desc = LanguageTranslator.Translate(Achievement.Desc);
+            name = Language.Translate(Achievement.Name);
+            desc = Language.Translate(Achievement.Desc);
 
-            rewardText = LanguageTranslator.Translate("Reward") + ": " + Achievement.Coins + "c";
+            rewardText = Language.Translate("Reward") + ": " + Achievement.Coins + "c";
             rewardPos.X = bgRect.Right - smallFont.MeasureString(rewardText).X;
             rewardPos.Y = bgRect.Bottom - smallFont.MeasureString(rewardText).Y;
         }

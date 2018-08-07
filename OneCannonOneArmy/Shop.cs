@@ -408,9 +408,9 @@ namespace OneCannonOneArmy
             }
             UpdatePagesToInterfaces();
 
-            materialButton.Text = LanguageTranslator.Translate("Materials");
-            cannonButton.Text = LanguageTranslator.Translate("Cannons");
-            giftsButton.Text = LanguageTranslator.Translate("Gifts");
+            materialButton.Text = Language.Translate("Materials");
+            cannonButton.Text = Language.Translate("Cannons");
+            giftsButton.Text = Language.Translate("Gifts");
 
             // Reposition material and cannon buttons
             materialButton.X = cannonButton.X - materialButton.Width - SPACING;
@@ -677,7 +677,7 @@ namespace OneCannonOneArmy
             bgImg = DrawHelper.AddBorder(bgImg, 3, Color.Gray, Color.LightGray);
             bgRect = new Rectangle(x, y, width, height);
 
-            name = LanguageTranslator.Translate(Item.ToString().AddSpaces());
+            name = Language.Translate(Item.ToString().AddSpaces());
             namePos = new Vector2(x + (width / 2 - (font.MeasureString(name).X / 2)), y + SPACING);
 
             itemImg = Utilities.GetImgOfMaterial(Item);
@@ -685,11 +685,11 @@ namespace OneCannonOneArmy
             itemRect.X = x + (width / 2 - (itemRect.Width / 2));
             itemRect.Y = (int)(namePos.Y + SPACING + font.MeasureString("A").Y);
 
-            buyOnceButton = new MenuButton(Buy, LanguageTranslator.Translate("Buy") + " (" + cost.ToString() + "c)", 0,
+            buyOnceButton = new MenuButton(Buy, Language.Translate("Buy") + " (" + cost.ToString() + "c)", 0,
                 0, true, font, graphics);
             buyOnceButton.X = x + (width / 2 - (buyOnceButton.Width / 2));
 
-            buyTenButton = new MenuButton(BuyTen, LanguageTranslator.Translate("Buy") + "10 (" + (cost * 10).ToString() + "c)", 0,
+            buyTenButton = new MenuButton(BuyTen, Language.Translate("Buy") + "10 (" + (cost * 10).ToString() + "c)", 0,
                 bgRect.Bottom - buyOnceButton.Height - EDGE_SPACING, true, font, graphics);
             buyTenButton.X = x + (width / 2 - (buyTenButton.Width / 2));
 
@@ -756,11 +756,11 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            string buyText = LanguageTranslator.Translate("Buy");
+            string buyText = Language.Translate("Buy");
             buyOnceButton.Text = buyText + " (" + Cost.ToString() + "c)";
             buyTenButton.Text = buyText + "10 (" + (Cost * 10).ToString() + "c)";
 
-            name = LanguageTranslator.Translate(Item.ToString().AddSpaces());
+            name = Language.Translate(Item.ToString().AddSpaces());
             namePos = new Vector2(bgRect.X + (bgRect.Width / 2 - (font.MeasureString(name).X / 2)),
                 bgRect.Y + SPACING);
         }
@@ -890,11 +890,11 @@ namespace OneCannonOneArmy
             string buttonText = "";
             if (bought)
             {
-                buttonText = LanguageTranslator.Translate("Select");
+                buttonText = Language.Translate("Select");
             }
             else
             {
-                buttonText = LanguageTranslator.Translate("Buy") + " (" + cost + ")";
+                buttonText = Language.Translate("Buy") + " (" + cost + ")";
             }
             buyOrSelect = new MenuButton(BuyOrSelect, buttonText, 0, 0, true, font, graphics);
             buyOrSelect.X = bgRect.X + (bgRect.Width / 2 - (buyOrSelect.Width / 2));
@@ -915,7 +915,7 @@ namespace OneCannonOneArmy
             cannonBgImg = Utilities.RectImage;
             cannonBgRect = new Rectangle(cannonExtRect.X, cannonExtRect.Y, cannonExtRect.Width, cannonExtRect.Height);
 
-            name = LanguageTranslator.Translate(cannon.CannonType.ToString().AddSpaces());
+            name = Language.Translate(cannon.CannonType.ToString().AddSpaces());
             namePos = new Vector2(bgRect.X + (bgRect.Width / 2 - (font.MeasureString(name).X / 2)),
                 cannonExtRect.Bottom);
         }
@@ -959,11 +959,11 @@ namespace OneCannonOneArmy
             string buttonText = "";
             if (bought)
             {
-                buttonText = LanguageTranslator.Translate("Select");
+                buttonText = Language.Translate("Select");
             }
             else
             {
-                buttonText = LanguageTranslator.Translate("Buy") + " (" + cost + ")";
+                buttonText = Language.Translate("Buy") + " (" + cost + ")";
             }
             buyOrSelect.Text = buttonText;
             buyOrSelect.X = bgRect.X + (bgRect.Width / 2 - (buyOrSelect.Width / 2));
@@ -982,16 +982,16 @@ namespace OneCannonOneArmy
             string buttonText = "";
             if (bought)
             {
-                buttonText = LanguageTranslator.Translate("Select");
+                buttonText = Language.Translate("Select");
             }
             else
             {
-                buttonText = LanguageTranslator.Translate("Buy") + " (" + cost + ")";
+                buttonText = Language.Translate("Buy") + " (" + cost + ")";
             }
             buyOrSelect.Text = buttonText;
             buyOrSelect.X = bgRect.X + (bgRect.Width / 2 - (buyOrSelect.Width / 2));
 
-            name = LanguageTranslator.Translate(Cannon.CannonType.ToString().AddSpaces());
+            name = Language.Translate(Cannon.CannonType.ToString().AddSpaces());
         }
 
         #endregion
@@ -1094,7 +1094,7 @@ namespace OneCannonOneArmy
             bgImg = DrawHelper.AddBorder(bgImg, 3, Color.Gray, Color.LightGray);
             bgRect = new Rectangle(x, y, width, height);
 
-            name = LanguageTranslator.Translate(gift.ToString().AddSpaces()) + " " + LanguageTranslator.Translate("Gift");
+            name = Language.Translate(gift.ToString().AddSpaces()) + " " + Language.Translate("Gift");
             namePos = new Vector2(bgRect.X + bgRect.Width / 2 - font.MeasureString(name).X / 2, bgRect.Y + SPACING);
 
             giftImg = Utilities.GiftImg;
@@ -1103,7 +1103,7 @@ namespace OneCannonOneArmy
             giftColor = Gift.GetColor(gift);
 
             buyButton = new MenuButton(new System.Action(() => buy?.Invoke(this.GiftType, this.cost)),
-                LanguageTranslator.Translate("Buy") + " (" + cost.ToString() + "c)",
+                Language.Translate("Buy") + " (" + cost.ToString() + "c)",
                 0, 0, true, font, graphics);
             buyButton.X = bgRect.X + bgRect.Width / 2 - buyButton.Width / 2;
             buyButton.Y = bgRect.Bottom - buyButton.Height - SPACING;
@@ -1137,10 +1137,10 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            buyButton.Text = LanguageTranslator.Translate("Buy") + " (" + cost.ToString() + "c)";
+            buyButton.Text = Language.Translate("Buy") + " (" + cost.ToString() + "c)";
             buyButton.X = bgRect.X + bgRect.Width / 2 - buyButton.Width / 2;
 
-            name = LanguageTranslator.Translate(GiftType.ToString().AddSpaces()) + " " + LanguageTranslator.Translate("Gift");
+            name = Language.Translate(GiftType.ToString().AddSpaces()) + " " + Language.Translate("Gift");
             namePos.X = bgRect.X + bgRect.Width / 2 - font.MeasureString(name).X / 2;
         }
 
