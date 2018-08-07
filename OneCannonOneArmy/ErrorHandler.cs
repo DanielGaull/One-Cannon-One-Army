@@ -23,8 +23,9 @@ namespace OneCannonOneArmy
 
         private static string ErrorMessage(Exception e)
         {
-            return string.Format("Message: {0}\nData: {1}\nSource: {2}\nTarget Site: {3}\n" + 
-                "Please contact your provider with this information.", e.Message, e.Data, e.Source, e.TargetSite);
+            return string.Format("Message: {0}\nData: {1}\nSource: {2}\nTarget Site: {3}\n\nStack Trace: {4}\n\n" + 
+                "Please contact your provider with this information.", e.Message, e.Data, e.Source, e.TargetSite, 
+                e.StackTrace);
         }
     }
 }

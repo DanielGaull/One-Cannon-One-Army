@@ -58,7 +58,7 @@ namespace OneCannonOneArmy
         UniversalSettings uSettings = new UniversalSettings();
 
         Menu menu;
-
+        PreLvlPopup preLvlPopup = null;
         MissionPlayable game;
 
         SpriteFont bigFont;
@@ -546,7 +546,7 @@ namespace OneCannonOneArmy
                     new System.Action(GoToAchievements), new System.Action(Stats), new System.Action(Shop), new System.Action(Settings),
                     new System.Action(OpenOrganize), new System.Action(OpenCrafting), new System.Action(OpenUpgrade), new Action<int>(Play),
                     new System.Action(BuyLife), new System.Action(OpenLang), new Action<Languages>(ChangeLang),
-                    new System.Action(OpenControls),new System.Action(OpenUserSettings), new System.Action(OpenGifts), 
+                    new System.Action(OpenControls), new System.Action(OpenUserSettings), new System.Action(OpenGifts),
                     new System.Action(OpenCredits));
                 menu.AddOnCraftHandler(OnCraft);
                 menu.AddReplayTutorialHandler(ReplayTutorial);
@@ -769,9 +769,13 @@ namespace OneCannonOneArmy
                         }
                     }
 
-                    if (!Popup.HasActivePopups && !ctrlW.Active)
+                    if (!Popup.HasActivePopups && !ctrlW.Active && preLvlPopup == null)
                     {
                         menu.Update(gameState, gameTime, player, game.Projectiles, false, true);
+                    }
+                    else if (preLvlPopup != null)
+                    {
+                        preLvlPopup.Update();
                     }
 
                     if (gameState == GameState.Playing || gameState == GameState.Paused)
@@ -929,6 +933,8 @@ namespace OneCannonOneArmy
                             Utilities.MENU_Y_OFFSET / 2 + mediumFont.MeasureString("A").Y * 2),
                             Color.Black);
                     }
+
+                    preLvlPopup?.Draw(spriteBatch);
 
                     if (drawDoors)
                     {
@@ -1139,23 +1145,29 @@ namespace OneCannonOneArmy
         }
         private void Play(int id)
         {
-            int req = Mission.DamageForLevel(id); // Required damage
-            int have = CalculateDamageAvailable(player); // ~ Available damage
-            if (have >= req)
-            {
-                ContinueToLevel(id);
-            }
-            else
-            {
-                Popup.Show(string.Format(Language.Translate(
-                    "This level requires about {0} damage to beat and you only have about {1} worth of\ndamage in your inventory. "
-                    + "Continue?"),
-                    req, have),
-                    true, new System.Action(() => ContinueToLevel(id)), false);
-            }
+            preLvlPopup = new PreLvlPopup(smallFont, mediumFont, player.Hotbar, GetHotbarCounts(),
+                WINDOW_WIDTH, WINDOW_HEIGHT, () => ContinueToLevel(id), CancelPlayingLevel, GraphicsDevice, 
+                player.CannonSettings);
+            
+            //int req = Mission.DamageForLevel(id); // Required damage
+            //int have = CalculateDamageAvailable(player); // ~ Available damage
+            //if (have >= req)
+            //{
+            //    ContinueToLevel(id);
+            //}
+            //else
+            //{
+            //    Popup.Show(string.Format(Language.Translate(
+            //        "This level requires about {0} damage to beat and you only have about {1} worth of\ndamage in your inventory. "
+            //        + "Continue?"),
+            //        req, have),
+            //        true, new System.Action(() => ContinueToLevel(id)), false);
+            //}
         }
         private void ContinueToLevel(int id)
         {
+            preLvlPopup = null;
+
             EnableOrDisableCloseButton(false);
 
             CloseAnimation(GameState.Playing);
@@ -1167,6 +1179,10 @@ namespace OneCannonOneArmy
 
             // No exiting the tutorial
             menu.AllowPauseExiting = !(id == 0 && player.CurrentMission == 0);
+        }
+        private void CancelPlayingLevel()
+        {
+            preLvlPopup = null;
         }
         private void GoToAchievements()
         {
@@ -1753,6 +1769,16 @@ namespace OneCannonOneArmy
         #endregion
 
         #region Misc.
+
+        private List<int> GetHotbarCounts()
+        {
+            List<int> counts = new List<int>();
+            for (int i = 0; i < player.Hotbar.Count; i++)
+            {
+                counts.Add(player.Hotbar.CountOf(player.Hotbar[i]));
+            }
+            return counts;
+        }
 
         private void Close()
         {
@@ -2372,13 +2398,17 @@ namespace OneCannonOneArmy
             {
                 buttons.AddRange(langSelectPopup.GetButtons());
             }
-            if (!Popup.HasActivePopups && !langSelectPopup.Active)
+            if (!Popup.HasActivePopups && !langSelectPopup.Active && preLvlPopup == null)
             {
                 buttons.AddRange(menu.GetButtons(gameState));
                 if (gameState == GameState.Playing)
                 {
                     buttons.AddRange(game.GetButtons());
                 }
+            }
+            if (preLvlPopup != null)
+            {
+                buttons.AddRange(preLvlPopup.GetButtons());
             }
             if (ctrlW.Active)
             {

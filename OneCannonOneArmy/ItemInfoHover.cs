@@ -217,6 +217,8 @@ namespace OneCannonOneArmy
                 new NameValue("Reload Speed", cannon.ReloadSpeed.ToString()),
                 new NameValue("Move Speed", cannon.MoveSpeed.ToString()),
                 new NameValue("Accuracy", cannon.Accuracy.ToString()),
+                new NameValue("Power", cannon.Power.ToString()),
+                new NameValue("Defense", cannon.Defense.ToString()),
                 new NameValue("Rapid Fire", cannon.RapidFire > 0 ? "Y" : "N"),
             };
             if (cannon.Freezes)
@@ -286,6 +288,11 @@ namespace OneCannonOneArmy
         {
             Name = name;
             Value = value;
+        }
+
+        public override string ToString()
+        {
+            return Name + ": " + Value;
         }
     }
 }

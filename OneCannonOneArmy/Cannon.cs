@@ -13,8 +13,8 @@ namespace OneCannonOneArmy
     {
         #region Fields & Properties
 
-        Texture2D cannonExtImg;
-        Rectangle cannonExtRect;
+        Texture2D cannonBottomImg;
+        Rectangle cannonBottomRect;
         Texture2D cannonTubeImg;
         Rectangle cannonTubeRect;
 
@@ -22,8 +22,8 @@ namespace OneCannonOneArmy
         Rectangle cannonBgRect;
         Color[] bgPixels = new Color[1];
 
-        const float EXT_TUBE_RATIO_HEIGHT = 0.3f; // Ratio of Ext:Tube = 3:10
-        const float TUBE_EXT_RATIO_WIDTH = 0.33333f; // Tube:Ext = 1:3 (width)
+        const float EXT_TUBE_RATIO_HEIGHT = 0.3f; // Ratio of Bottom:Tube = 3:10
+        const float TUBE_EXT_RATIO_WIDTH = 0.33333f; // Tube:Bottom = 1:3 (width)
 
         KeyboardState keyState;
         KeyboardState prevKeyState;
@@ -73,7 +73,7 @@ namespace OneCannonOneArmy
         {
             this.changeProj = changeProj;
 
-            cannonExtImg = Utilities.NormCannonBottomImg;
+            cannonBottomImg = Utilities.NormCannonBottomImg;
             cannonTubeImg = Utilities.NormCannonTubeImg;
 
             this.windowWidth = windowWidth;
@@ -82,25 +82,25 @@ namespace OneCannonOneArmy
             this.fullWidth = fullWidth;
             this.fullHeight = fullHeight;
 
-            cannonExtRect = new Rectangle(0, 0, fullWidth, (int)(EXT_TUBE_RATIO_HEIGHT * fullHeight));
-            cannonExtRect.X = windowWidth / 2 - (cannonExtRect.Width / 2);
+            cannonBottomRect = new Rectangle(0, 0, fullWidth, (int)(EXT_TUBE_RATIO_HEIGHT * fullHeight));
+            cannonBottomRect.X = windowWidth / 2 - (cannonBottomRect.Width / 2);
             cannonTubeRect = new Rectangle(0, 0, (int)(fullWidth * TUBE_EXT_RATIO_WIDTH),
                 (int)(fullHeight - (EXT_TUBE_RATIO_HEIGHT * fullHeight)));
             cannonTubeRect.Y = windowHeight - fullHeight;
-            cannonTubeRect.X = cannonExtRect.X + (cannonExtRect.Width / 2 - (cannonTubeRect.Width / 2));
-            cannonExtRect.Y = cannonTubeRect.Bottom;
+            cannonTubeRect.X = cannonBottomRect.X + (cannonBottomRect.Width / 2 - (cannonTubeRect.Width / 2));
+            cannonBottomRect.Y = cannonTubeRect.Bottom;
             cannonBgImg = Utilities.RectImage;
-            cannonBgRect = new Rectangle(cannonExtRect.X, cannonExtRect.Y, cannonExtRect.Width, cannonExtRect.Height);
+            cannonBgRect = new Rectangle(cannonBottomRect.X, cannonBottomRect.Y, cannonBottomRect.Width, cannonBottomRect.Height);
 
             slideTimer = new Timer(0, TimerUnits.Milliseconds);
 
             loadedDrawProj = GameInfo.CreateProj(ProjectileType.Rock);
             loadedDrawProj.Type = ProjectileType.None;
             loadedDrawProj.SetPosition(cannonBgRect.X + cannonBgRect.Width / 2,
-                        cannonExtRect.Y + YSPACING);
+                        cannonBottomRect.Y + YSPACING);
 
-            XSPACING = cannonExtRect.Width / 2 - (loadedDrawProj.Width / 2);
-            YSPACING = cannonExtRect.Height / 2;
+            XSPACING = cannonBottomRect.Width / 2 - (loadedDrawProj.Width / 2);
+            YSPACING = cannonBottomRect.Height / 2;
 
             accuracyBeamImg = new Texture2D(graphics, 5, 1);
             Color[] beamData = new Color[5];
@@ -126,7 +126,7 @@ namespace OneCannonOneArmy
             {
                 loadedDrawProj = GameInfo.CreateProj(firstProjectileType);
                 loadedDrawProj.SetPosition(cannonBgRect.X + cannonBgRect.Width / 2,
-                        cannonExtRect.Y + YSPACING);
+                        cannonBottomRect.Y + YSPACING);
                 hasLoadedProjectile = true;
             }
             else
@@ -137,9 +137,9 @@ namespace OneCannonOneArmy
 
         public void Reset()
         {
-            cannonExtRect.X = windowWidth / 2 - (cannonExtRect.Width / 2);
-            cannonTubeRect.X = cannonExtRect.X + (cannonExtRect.Width / 2 - (cannonTubeRect.Width / 2));
-            cannonBgRect.X = cannonExtRect.X;
+            cannonBottomRect.X = windowWidth / 2 - (cannonBottomRect.Width / 2);
+            cannonTubeRect.X = cannonBottomRect.X + (cannonBottomRect.Width / 2 - (cannonTubeRect.Width / 2));
+            cannonBgRect.X = cannonBottomRect.X;
             loadedDrawProj.SetPosition(windowWidth / 2, loadedDrawProj.Y);
             accuracyBeamRect.X = cannonTubeRect.X + (cannonTubeRect.Width / 2 - (accuracyBeamRect.Width / 2));
 
@@ -167,18 +167,18 @@ namespace OneCannonOneArmy
 
             // Check and handle key presses
             if (keyState.IsKeyDown(Controls.MoveLeftKey) && !keyState.IsKeyDown(Controls.MoveRightKey)
-                && !Controls.CtrlPressed(keyState) && cannonExtRect.Left > 0)
+                && !Controls.CtrlPressed(keyState) && cannonBottomRect.Left > 0)
             {
-                cannonExtRect.X -= Speed;
+                cannonBottomRect.X -= Speed;
                 cannonTubeRect.X -= Speed;
                 cannonBgRect.X -= Speed;
                 accuracyBeamRect.X -= Speed;
                 loadedDrawProj.Move(Speed, Direction.Left);
             }
             else if (keyState.IsKeyDown(Controls.MoveRightKey) && !keyState.IsKeyDown(Controls.MoveLeftKey)
-                && !Controls.CtrlPressed(keyState) && cannonExtRect.Right < windowWidth)
+                && !Controls.CtrlPressed(keyState) && cannonBottomRect.Right < windowWidth)
             {
-                cannonExtRect.X += Speed;
+                cannonBottomRect.X += Speed;
                 cannonTubeRect.X += Speed;
                 cannonBgRect.X += Speed;
                 accuracyBeamRect.X += Speed;
@@ -200,7 +200,7 @@ namespace OneCannonOneArmy
                 hasLoadedProjectile = true;
                 loadedDrawProj = GameInfo.CreateProj(primaryProj);
                 loadedDrawProj.SetPosition(cannonBgRect.X + cannonBgRect.Width / 2,
-                        cannonExtRect.Y + YSPACING);
+                        cannonBottomRect.Y + YSPACING);
             }
             if (primaryProj == ProjectileType.None)
             {
@@ -259,7 +259,7 @@ namespace OneCannonOneArmy
                     animatingDown = true;
                     waitSlide = true;
                     loadedDrawProj.SetPosition(cannonBgRect.X + cannonBgRect.Width / 2,
-                        cannonExtRect.Y + YSPACING);
+                        cannonBottomRect.Y + YSPACING);
                 }
             }
             else if ((projectiles.Count <= 0 || primaryProjCount <= 0) && keyState.IsKeyDown(Controls.LaunchKey) && !prevKeyState.IsKeyDown(Controls.LaunchKey))
@@ -339,7 +339,7 @@ namespace OneCannonOneArmy
             }
             if (loadedDrawProj != null)
             {
-                loadedDrawProj.Y = cannonExtRect.Y + YSPACING;
+                loadedDrawProj.Y = cannonBottomRect.Y + YSPACING;
             }
 
             if (animatingDown)
@@ -348,7 +348,7 @@ namespace OneCannonOneArmy
                 cannonTubeRect.X -= ANIMATION_AMOUNT / 2;
                 cannonTubeRect.Height -= ANIMATION_AMOUNT;
                 cannonTubeRect.Y += ANIMATION_AMOUNT;
-                if (cannonTubeRect.Width >= 0.5 * cannonExtRect.Width)
+                if (cannonTubeRect.Width >= 0.5 * cannonBottomRect.Width)
                 {
                     animatingDown = false;
                     animatingUp = true;
@@ -388,7 +388,7 @@ namespace OneCannonOneArmy
                     projectiles[i].Draw(spriteBatch, true);
                 }
             }
-            spriteBatch.Draw(cannonExtImg, cannonExtRect, Color.White);
+            spriteBatch.Draw(cannonBottomImg, cannonBottomRect, Color.White);
             spriteBatch.Draw(cannonTubeImg, cannonTubeRect, Color.White);
         }
 
@@ -407,17 +407,17 @@ namespace OneCannonOneArmy
 
         private void ResetProjectilePos(Projectile firstProjectile)
         {
-            firstProjectile.SetPosition(cannonExtRect.X + XSPACING, cannonExtRect.Y + YSPACING);
+            firstProjectile.SetPosition(cannonBottomRect.X + XSPACING, cannonBottomRect.Y + YSPACING);
         }
 
         private void PrepareSliding(Projectile projectile)
         {
-            projectile.SetPosition(cannonExtRect.X + projectile.Width / 2, cannonExtRect.Y + YSPACING);
+            projectile.SetPosition(cannonBottomRect.X + projectile.Width / 2, cannonBottomRect.Y + YSPACING);
         }
 
         private void SetImgs(CannonType cannonType)
         {
-            cannonExtImg = Utilities.GetBottomOfCannon(cannonType);
+            cannonBottomImg = Utilities.GetBottomOfCannon(cannonType);
             cannonTubeImg = Utilities.GetTubeOfCannon(cannonType);
             //switch (cannonType)
             //{
