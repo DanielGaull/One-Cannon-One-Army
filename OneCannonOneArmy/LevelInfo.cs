@@ -25,12 +25,12 @@ namespace OneCannonOneArmy
 
         Timer timer;
 
-        const string KILL_ALL_TEXT = "Kill all the aliens!";
-        const string MECH_TEXT = "Destroy {0} aliens carrying mechanical supplies!";
-        const string SAVE_TEXT1 = "Break open {0} cages!";
-        const string SAVE_TEXT2 = "Break open {0} cage!";
-        const string LASER_TEXT = "Defeat the aliens, then destroy the laser!";
-        const string BOSS_TEXT = "Kill Malos!";
+        public const string KILL_ALL_TEXT = "Kill all the aliens!";
+        public const string MECH_TEXT = "Destroy {0} aliens carrying mechanical supplies!";
+        public const string SAVE_TEXT1 = "Break open {0} cages!";
+        public const string SAVE_TEXT2 = "Break open {0} cage!";
+        public const string LASER_TEXT = "Defeat the aliens, then destroy the laser!";
+        public const string BOSS_TEXT = "Kill Malos!";
 
         const int SPACING = 10;
         const int SLIDE_SPD = 5;
@@ -135,11 +135,7 @@ namespace OneCannonOneArmy
             onHide += handler;
         }
 
-        #endregion
-
-        #region Private Methods
-
-        private string TextFor(MissionGoal goal, int amount)
+        public static string TextFor(MissionGoal goal, int amount)
         {
             switch (goal)
             {

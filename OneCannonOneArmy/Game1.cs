@@ -1147,7 +1147,7 @@ namespace OneCannonOneArmy
         {
             preLvlPopup = new PreLvlPopup(smallFont, mediumFont, player.Hotbar, GetHotbarCounts(),
                 WINDOW_WIDTH, WINDOW_HEIGHT, () => ContinueToLevel(id), CancelPlayingLevel, GraphicsDevice, 
-                player.CannonSettings);
+                player.CannonSettings, Mission.Missions.Where(x => x.Id == id).FirstOrDefault());
             
             //int req = Mission.DamageForLevel(id); // Required damage
             //int have = CalculateDamageAvailable(player); // ~ Available damage

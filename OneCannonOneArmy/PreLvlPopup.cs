@@ -23,6 +23,7 @@ namespace OneCannonOneArmy
         string hotbarLabel;
         Vector2 hotbarLblLoc;
         HotbarDisplay hotbarDisplay;
+        LevelObjectiveDisplay goalDisplay;
 
         CannonDisplay cannonDisplay;
 
@@ -37,7 +38,7 @@ namespace OneCannonOneArmy
 
         public PreLvlPopup(SpriteFont smallFont, SpriteFont mediumFont, List<ProjectileType> projectileHotbar,
             List<int> hotbarCounts, int windowWidth, int windowHeight, Action proceed, Action cancel, GraphicsDevice graphics, 
-            CannonSettings cannon)
+            CannonSettings cannon, Mission mission)
         {
             this.smallFont = smallFont;
             this.mediumFont = mediumFont;
@@ -52,6 +53,9 @@ namespace OneCannonOneArmy
                 (int)(hotbarLblLoc.Y + mediumFont.MeasureString(hotbarLabel).Y + SPACING / 2));
 
             cannonDisplay = new CannonDisplay(cannon, smallFont, bgRect.Right - SPACING, bgRect.Y + SPACING);
+
+            goalDisplay = new LevelObjectiveDisplay(mediumFont, bgRect.X + bgRect.Width / 2 - LevelObjectiveDisplay.SIZE / 2, 
+                cannonDisplay.Bottom, mission);
 
             proceedButton = new MenuButton(proceed, Language.Translate("Proceed"), 0, 0, true, mediumFont, graphics);
             cancelButton = new MenuButton(cancel, Language.Translate("Cancel"), 0, 0, true, mediumFont, graphics);
@@ -76,6 +80,7 @@ namespace OneCannonOneArmy
             spriteBatch.DrawString(mediumFont, hotbarLabel, hotbarLblLoc, Color.White);
             hotbarDisplay.Draw(spriteBatch);
             cannonDisplay.Draw(spriteBatch);
+            goalDisplay.Draw(spriteBatch);
 
             proceedButton.Draw(spriteBatch);
             cancelButton.Draw(spriteBatch);
@@ -189,6 +194,14 @@ namespace OneCannonOneArmy
         const int SPACING = 3;
         const int BIG_SPACING = 10;
 
+        public int Bottom
+        {
+            get
+            {
+                return cannonBottomRect.Bottom;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -264,5 +277,43 @@ namespace OneCannonOneArmy
         }
 
         #endregion
+    }
+
+    public class LevelObjectiveDisplay
+    {
+        Texture2D goalImg;
+        Rectangle goalRect;
+        string subtitle;
+        Vector2 subtitleLoc;
+        SpriteFont font;
+        public const int SIZE = 60;
+        const int SPACING = 10;
+
+        public LevelObjectiveDisplay(SpriteFont font, int x, int y, Mission mission)
+        {
+            this.font = font;
+
+            goalImg = Utilities.GetImgOfGoal(mission.Goal);
+            goalRect = new Rectangle(x, y, SIZE, SIZE);
+
+            int amount = 0;
+            switch (mission.Goal)
+            {
+                case MissionGoal.DestroyMechanics:
+                    amount = mission.MechAliens;
+                    break;
+                case MissionGoal.SavePeople:
+                    amount = mission.Cages;
+                    break;
+            }
+            subtitle = LevelGoalPopup.TextFor(mission.Goal, amount);
+            subtitleLoc = new Vector2(x + SIZE / 2 - font.MeasureString(subtitle).X / 2, goalRect.Bottom + SPACING);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(goalImg, goalRect, Color.White);
+            spriteBatch.DrawString(font, subtitle, subtitleLoc, Color.White);
+        }
     }
 }

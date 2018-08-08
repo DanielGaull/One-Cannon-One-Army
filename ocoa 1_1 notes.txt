@@ -17,11 +17,9 @@
 Update To-Do List:
 *Add Quests
 *New screen before level starts
-  -Cannon
   -Enemy Aliens
-  -Level Objective
+  -Level Objective (use Utilities.GetImgOfGoal method)
   -Chance of Success
-  -Give Buttons for the mouse pointer
 *Finish Updating Intro w/ Labyrinth Quest images
 *Bug: currently doesn't add crafing interface when new projectile is unlocked
 *Add the "Format to width" method
