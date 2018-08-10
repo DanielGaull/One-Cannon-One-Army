@@ -1709,7 +1709,7 @@ namespace OneCannonOneArmy
             }
             return -1;
         }
-        public static string EffectsOf(ProjectileType proj)
+        public static string TextEffectsOf(ProjectileType proj)
         {
             switch (proj)
             {
@@ -1737,6 +1737,43 @@ namespace OneCannonOneArmy
                     return "Heals " + GameInfo.ABSORBHEX_HEAL + " Health";
             }
             return "None";
+        }
+        public static List<StatusEffect> DamagingEffectsOf(ProjectileType proj)
+        {
+            List<StatusEffect> effects = new List<StatusEffect>();
+            switch (proj)
+            {
+                case ProjectileType.PoisonDart:
+                case ProjectileType.PoisonRocket:
+                    effects.Add(StatusEffect.Poison);
+                    break;
+                case ProjectileType.Hex:
+                    effects.Add(StatusEffect.Curse);
+                    break;
+                case ProjectileType.Laser:
+                case ProjectileType.PlasmaRocket:
+                    effects.Add(StatusEffect.Plasma);
+                    break;
+                case ProjectileType.LightningBolt:
+                case ProjectileType.Meteor:
+                case ProjectileType.Fireball:
+                case ProjectileType.FireRocket:
+                    effects.Add(StatusEffect.Fire);
+                    break;
+                //case ProjectileType.Snowball:
+                //case ProjectileType.FrostHex:
+                //case ProjectileType.FrozenRocket:
+                //case ProjectileType.IceShard:
+                //    return "Frozen";
+                case ProjectileType.OmegaRocket:
+                    effects.Add(StatusEffect.Poison);
+                    effects.Add(StatusEffect.Fire);
+                    effects.Add(StatusEffect.Plasma);
+                    break;
+                //case ProjectileType.AbsorbHex:
+                //    return "Heals " + GameInfo.ABSORBHEX_HEAL + " Health";
+            }
+            return effects;
         }
         public static int WorthOf(ProjectileType proj)
         {

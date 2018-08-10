@@ -179,7 +179,7 @@ namespace OneCannonOneArmy
             stats.Add(new NameValue("Speed", Utilities.SpeedOf(proj).ToString()));
             stats.Add(new NameValue("Sell Value", GameInfo.SellValueOf(proj).ToString() + "c"));
             stats.Add(new NameValue("", "")); // Ensures that Effects stat is on a new line
-            stats.Add(new NameValue("Effects", Utilities.EffectsOf(proj)));
+            stats.Add(new NameValue("Effects", Utilities.TextEffectsOf(proj)));
             for (int i = 0; i < stats.Count; i++)
             {
                 statLocs.Add(new Vector2());
@@ -195,7 +195,7 @@ namespace OneCannonOneArmy
             stats.Add(new NameValue("Speed", Utilities.SpeedOf(proj).ToString()));
             stats.Add(new NameValue("Sell Value", GameInfo.SellValueOf(proj).ToString() + "c"));
             stats.Add(new NameValue("", ""));
-            stats.Add(new NameValue("Effects", Utilities.EffectsOf(proj)));
+            stats.Add(new NameValue("Effects", Utilities.TextEffectsOf(proj)));
 
             name = proj.ToString().AddSpaces();
             desc = Utilities.GetDescOf(proj);

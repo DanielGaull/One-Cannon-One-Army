@@ -228,13 +228,46 @@ namespace OneCannonOneArmy
             return returnVal;
         }
 
-        public static int DamageForLevel(int level)
+        public static int DamageForLevel(Mission mission)
         {
             int damage = 0;
-            List<Mission> missions = LoadMissions();
-            for (int i = 0; i < missions[level].AlienList.Count; i++)
+            switch (mission.Goal)
             {
-                damage += (int)GameInfo.HealthOf(missions[level].AlienList[i]);
+                case MissionGoal.DestroyLaser:
+                    // Simply add up damage from the aliens plus the laser
+                    for (int i = 0; i < mission.AlienList.Count; i++)
+                    {
+                        damage += (int)GameInfo.HealthOf(mission.AlienList[i]);
+                    }
+                    return damage + AlienLaserCannon.INIT_HEALTH;
+                case MissionGoal.SavePeople:
+                    // Start with the damage of the cages
+                    damage += (int)(mission.Cages * Cage.INIT_HEALTH);
+                    // Add the health of 2 random aliens per cage
+                    for (int i = 0; i < mission.Cages * 2; i++)
+                    {
+                        damage += (int)GameInfo.HealthOf(mission.AlienList.Random());
+                    }
+                    return damage;
+                case MissionGoal.KillAll:
+                    // Damage is simply health of all the aliens added up
+                    for (int i = 0; i < mission.AlienList.Count; i++)
+                    {
+                        damage += (int)GameInfo.HealthOf(mission.AlienList[i]);
+                    }
+                    return damage;
+                case MissionGoal.DestroyMechanics:
+                    // Mech Alien spawned every 3 aliens
+                    // Simply add health of 3 random aliens, mutliplied by number of mech aliens
+                    for (int i = 0; i < mission.MechAliens * 3; i++)
+                    {
+                        damage += (int)GameInfo.HealthOf(mission.AlienList.Random());
+                    }
+                    return damage;
+                case MissionGoal.KillMalos:
+                    // Add about 10 normal aliens, plus health of Malos
+                    return (int)GameInfo.HealthOf(new AlienType(Aliens.Boss, false)) +
+                        ((int)GameInfo.HealthOf(new AlienType(Aliens.Normal, false)) * 10);
             }
             return damage;
         }

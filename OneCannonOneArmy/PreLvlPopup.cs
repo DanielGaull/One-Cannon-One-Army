@@ -32,13 +32,16 @@ namespace OneCannonOneArmy
         MenuButton proceedButton;
         MenuButton cancelButton;
 
+        string chanceOfSuccess;
+        Vector2 chanceLoc;
+
         #endregion
 
         #region Constructors
 
         public PreLvlPopup(SpriteFont smallFont, SpriteFont mediumFont, List<ProjectileType> projectileHotbar,
             List<int> hotbarCounts, int windowWidth, int windowHeight, Action proceed, Action cancel, GraphicsDevice graphics, 
-            CannonSettings cannon, Mission mission)
+            CannonSettings cannon, Mission mission, User user)
         {
             this.smallFont = smallFont;
             this.mediumFont = mediumFont;
@@ -62,6 +65,11 @@ namespace OneCannonOneArmy
             proceedButton.X = bgRect.X + (bgRect.Width / 2 - proceedButton.Width);
             cancelButton.X = bgRect.X + (bgRect.Width / 2 + SPACING);
             proceedButton.Y = cancelButton.Y = bgRect.Bottom - SPACING - proceedButton.Height;
+
+            chanceOfSuccess = Language.Translate("Estimated Chance of Success") + ": " + 
+                ChanceOfSuccess(user, mission).ToString() + "%";
+            chanceLoc = new Vector2(bgRect.X + bgRect.Width / 2 - mediumFont.MeasureString(chanceOfSuccess).X / 2, 
+                goalDisplay.Bottom + SPACING);
         }
 
         #endregion
@@ -81,6 +89,7 @@ namespace OneCannonOneArmy
             hotbarDisplay.Draw(spriteBatch);
             cannonDisplay.Draw(spriteBatch);
             goalDisplay.Draw(spriteBatch);
+            spriteBatch.DrawString(mediumFont, chanceOfSuccess, chanceLoc, Color.White);
 
             proceedButton.Draw(spriteBatch);
             cancelButton.Draw(spriteBatch);
@@ -93,6 +102,35 @@ namespace OneCannonOneArmy
                 proceedButton,
                 cancelButton
             };
+        }
+
+        #endregion
+
+        #region Private Methods
+        
+        private int CalculateDamageAvailable(User user)
+        {
+            int damage = 0;
+            for (int i = 0; i < user.Hotbar.Count; i++)
+            {
+                damage += Utilities.DamageOf(user.Hotbar[i]) * user.ProjectileInventory.CountOf(user.Hotbar[i]);
+                // Add the status effect damage * 2
+                if (Utilities.DamagingEffectsOf(user.Hotbar[i]).Count > 0)
+                {
+                    damage += StatusEffect.TotalDamage(Utilities.DamagingEffectsOf(user.Hotbar[i])) * 2;
+                }
+            }
+            return damage;
+        }
+
+        private float ChanceOfSuccess(User user, Mission mission)
+        {
+            // Simple equation, multiply total damage by accuracy, then divide by required damage and clamp
+            float chance = (CalculateDamageAvailable(user) * (user.Accuracy / 100.0f)) / Mission.DamageForLevel(mission);
+            chance *= 100.0f;
+            // Clamp the value to be between 0 and 100, then reduce it to 2 decimal digits
+            chance = (float)Math.Round(MathHelper.Clamp(chance, 0, 100), 2);
+            return chance;
         }
 
         #endregion
@@ -288,6 +326,13 @@ namespace OneCannonOneArmy
         SpriteFont font;
         public const int SIZE = 60;
         const int SPACING = 10;
+        public int Bottom
+        {
+            get
+            {
+                return (int)(subtitleLoc.Y + font.MeasureString(subtitle).Y);
+            }
+        }
 
         public LevelObjectiveDisplay(SpriteFont font, int x, int y, Mission mission)
         {

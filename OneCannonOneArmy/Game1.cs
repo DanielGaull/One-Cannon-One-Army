@@ -1147,7 +1147,7 @@ namespace OneCannonOneArmy
         {
             preLvlPopup = new PreLvlPopup(smallFont, mediumFont, player.Hotbar, GetHotbarCounts(),
                 WINDOW_WIDTH, WINDOW_HEIGHT, () => ContinueToLevel(id), CancelPlayingLevel, GraphicsDevice, 
-                player.CannonSettings, Mission.Missions.Where(x => x.Id == id).FirstOrDefault());
+                player.CannonSettings, Mission.Missions.Where(x => x.Id == id).FirstOrDefault(), player);
             
             //int req = Mission.DamageForLevel(id); // Required damage
             //int have = CalculateDamageAvailable(player); // ~ Available damage
@@ -1785,16 +1785,6 @@ namespace OneCannonOneArmy
             Sound.StopAllMusic();
             Sound.StopAllSounds();
             Exit();
-        }
-
-        private int CalculateDamageAvailable(User user)
-        {
-            int damage = 0;
-            for (int i = 0; i < user.ProjectileInventory.Count; i++)
-            {
-                damage += Utilities.DamageOf(user.ProjectileInventory[i]);
-            }
-            return damage;
         }
 
         private Texture2D LoadImg(string asset)

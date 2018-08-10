@@ -78,5 +78,15 @@ namespace OneCannonOneArmy
         {
             return Name;
         }
+
+        public static int TotalDamage(List<StatusEffect> effects)
+        {
+            int damage = 0;
+            for (int i = 0; i < effects.Count; i++)
+            {
+                damage += effects[i].Damage;
+            }
+            return damage;
+        }
     }
 }
