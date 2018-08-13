@@ -1775,7 +1775,7 @@ namespace OneCannonOneArmy
             List<int> counts = new List<int>();
             for (int i = 0; i < player.Hotbar.Count; i++)
             {
-                counts.Add(player.Hotbar.CountOf(player.Hotbar[i]));
+                counts.Add(player.ProjectileInventory.CountOf(player.Hotbar[i]));
             }
             return counts;
         }
