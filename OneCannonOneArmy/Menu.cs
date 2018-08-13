@@ -1435,6 +1435,18 @@ namespace OneCannonOneArmy
         public void WhenMissionCompleted(int id)
         {
             missionMenu.MissionComplete(id);
+            if (GameInfo.ProjVisibilityLvls.ContainsValue(id))
+            {
+                for (int i = 0; i < GameInfo.ProjVisibilityLvls.Count; i++)
+                {
+                    if (GameInfo.ProjVisibilityLvls.ElementAt(i).Value == id)
+                    {
+                        // One of the new projectiles
+                        ProjectileType proj = GameInfo.ProjVisibilityLvls.ElementAt(i).Key;
+                        craftingMenu.AddItem(CraftingRecipe.GetRecipeForProj(proj), GameInfo.CreateProj(proj));
+                    }
+                }
+            }
         }
 
         public void AddOnCraftHandler(OnCraft handler)
