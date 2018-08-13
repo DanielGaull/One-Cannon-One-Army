@@ -42,8 +42,9 @@ namespace OneCannonOneArmy
         SpriteFont font;
 
         MouseState mouse;
-        bool sliding = false;
-
+        bool slidingThis;
+        static bool slidingAny;
+        
         public int X
         {
             get
@@ -136,17 +137,24 @@ namespace OneCannonOneArmy
         {
             // Check for a click and update Value accordingly
             mouse = Mouse.GetState();
-
-            // If true, the mouse is currently clicked over the slider rectangle
-            sliding = (bgRect.Intersects(new Rectangle(mouse.X, mouse.Y, 1, 1)) || 
-                SliderRectangle.Intersects(new Rectangle(mouse.X, mouse.Y, 1, 1))) 
-                && mouse.LeftButton == ButtonState.Pressed;
-
-            if (sliding)
+            Rectangle mouseRect = new Rectangle(mouse.X, mouse.Y, 1, 1);
+            
+            if (slidingThis)
             {
                 // We have to let the user drag the slider
                 SliderRectangle.X = mouse.X - (SliderRectangle.Width / 2);
                 valueChanged?.Invoke();
+                if (mouse.LeftButton != ButtonState.Pressed)
+                {
+                    slidingThis = false;
+                    slidingAny = false;
+                }
+            }
+            if (!slidingThis && !slidingAny && mouseRect.Intersects(SliderRectangle) 
+                && mouse.LeftButton == ButtonState.Pressed)
+            {
+                slidingAny = true;
+                slidingThis = true;
             }
 
             // We must clamp the sliderRect position

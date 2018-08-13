@@ -27,7 +27,6 @@ Update To-Do List:
   -You may need to follow these steps to recreate instead: signin, signout, open dif, user, open organize hotbar
 *Buy 50 option in shop
 *Craft 10 and craft 50 in crafting interface
-*Bug: multiple empty pages of gifts (after buying a bunch of purple gifts
 *Make sliders continue sliding as long as mouse is down
   -Use a static "slidingAny" variable to check for this though
 *Translations:
