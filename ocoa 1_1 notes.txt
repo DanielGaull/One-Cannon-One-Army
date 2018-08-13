@@ -16,9 +16,6 @@
 
 Update To-Do List:
 *Add Quests
-*New screen before level starts
-  -Enemy Aliens
-  -Hotbar projectile counts only show x1 for all projectiles
 *Finish Updating Intro w/ Labyrinth Quest images
 *Bug: currently doesn't add crafing interface when new projectile is unlocked
 *Add the "Format to width" method
@@ -28,6 +25,9 @@ Update To-Do List:
 *Redo Plant Matter texture
 *Bug: Sign-in, open organize hotbar menu. Sign-out. Open different user, open organize hotbar menu
   -You may need to follow these steps to recreate instead: signin, signout, open dif, user, open organize hotbar
+*Buy 50 option in shop
+*Craft 10 and craft 50 in crafting interface
+*Bug: multiple empty pages of gifts (after buying a bunch of purple gifts
 *Translations:
   -"Proceed"
   -"Cancel"?

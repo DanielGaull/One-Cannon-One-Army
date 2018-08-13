@@ -121,8 +121,8 @@ namespace OneCannonOneArmy
                     }
                     else
                     {
-                        // Malos is already spawned, so we keep spawning normal aliens to keep the player occupied
-                        alienAdded?.Invoke(new AlienType(Aliens.Normal, false), false);
+                        // Malos is already spawned, so we keep spawning other aliens to keep the player occupied
+                        alienAdded?.Invoke(AlienList.Random(), false);
                     }
                     break;
             }
@@ -265,9 +265,13 @@ namespace OneCannonOneArmy
                     }
                     return damage;
                 case MissionGoal.KillMalos:
-                    // Add about 10 normal aliens, plus health of Malos
-                    return (int)GameInfo.HealthOf(new AlienType(Aliens.Boss, false)) +
-                        ((int)GameInfo.HealthOf(new AlienType(Aliens.Normal, false)) * 10);
+                    // Add about 25 random aliens, plus health of Malos
+                    damage = (int)GameInfo.HealthOf(new AlienType(Aliens.Boss, false));
+                    for (int i = 0; i < 25; i++)
+                    {
+                        damage += (int)GameInfo.HealthOf(mission.AlienList.Random());
+                    }
+                    break;
             }
             return damage;
         }
@@ -446,13 +450,18 @@ namespace OneCannonOneArmy
                     .Concat(Enumerable.Repeat(new AlienType(Aliens.Omega, false), 5))
                     .ToList(),
                     "Attack on Mikara", "Mikara", "", Planet.Mikara, 0, 0, MissionGoal.DestroyLaser),
-                new Mission(25, new List<AlienType>(), "Attack on Lithios", "Lithios", "",
+                new Mission(25, Enumerable.Repeat(new AlienType(Aliens.Normal, false), 10)
+                    .Concat(Enumerable.Repeat(new AlienType(Aliens.Omega, false), 1))
+                    .Concat(Enumerable.Repeat(new AlienType(Aliens.Normal, true), 1))
+                    .ToList(),
+                    "Attack on Lithios", "Lithios", "",
                     Planet.Lithios, 0, 0, MissionGoal.KillMalos),
 
                 #endregion
             };
 
-            FileStream stream = File.Open(FILE_PATH, FileMode.OpenOrCreate);
+            FileStream stream = File.Open(@"C:\Users\danie\AppData\Roaming\Duoplus Software\One Cannon One Army\missions.ocoam", 
+                FileMode.OpenOrCreate);
             xmlS.Serialize(stream, missions);
             stream.Close();
         }

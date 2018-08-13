@@ -1050,7 +1050,11 @@ namespace OneCannonOneArmy
             float shield = Alien.INIT_SHIELD_HEALTH;
             float def = a.Defense;
             health += health * def;
-            return health + shield;
+            if (alien.HasShield)
+            {
+                health += shield;
+            }
+            return health;
         }
 
         #endregion
