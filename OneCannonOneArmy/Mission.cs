@@ -896,6 +896,10 @@ namespace OneCannonOneArmy
             }
         }
 
+        TimeSpan levelTime = new TimeSpan();
+        public bool RemoveLifeOnQuit { get; private set; }
+        const int TIME_BEFORE_LIFE_REMOVED = 10;
+
         List<Projectile> projectiles = new List<Projectile>();
         Cannon cannon;
         const int CANNON_WIDTH = 60;
@@ -1044,6 +1048,12 @@ namespace OneCannonOneArmy
                 }
             }
             user.SetHotbar(hotbar);
+
+            levelTime += gameTime.ElapsedGameTime;
+            if (!RemoveLifeOnQuit && levelTime.TotalSeconds > TIME_BEFORE_LIFE_REMOVED)
+            {
+                RemoveLifeOnQuit = true;
+            }
 
             if (!restrictActions)
             {
@@ -1329,6 +1339,9 @@ namespace OneCannonOneArmy
                     projectiles.RemoveAt(i);
                 }
             }
+
+            RemoveLifeOnQuit = false;
+            levelTime = new TimeSpan();
 
             int amount = 0;
             if (Mission.Goal == MissionGoal.DestroyMechanics)

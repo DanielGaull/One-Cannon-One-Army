@@ -2,19 +2,17 @@
 *Projectiles
 **Absorb Hex
 *New Power stat for cannons
-**Increases projectile speed
+**Increases projectile speed, max is 25
 *New Defense upgrade for cannons
 **Works like alien defense, max level is 75
-*Quitting a game won't lose you a life if you played for less than 10 seconds
-*Remember that any new user properties must be initialized
-*New screen that pops up before a level starts - shows hotbar & cannon, shows enemy aliens & level objective, attempts to predict chance of success, and asks for confirmation
+*New screen that pops up before a level starts - shows hotbar & cannon, level objective, attempts to predict chance of success, and asks for confirmation
 *Changed "Poison" to "Plant Matter"
-*Quests
 *Increased Malos' Health and Defense
-*Improved loot from gifts
+*Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *Bug fixes & other small changes
 
 Update To-Do List:
+*Remember that any new user properties must be initialized
 *Add Quests
 *Finish Updating Intro w/ Labyrinth Quest images
 *Bug: currently doesn't add crafing interface when new projectile is unlocked
@@ -32,3 +30,4 @@ Update To-Do List:
   -"Proceed"
   -"Cancel"?
   -"Estimated chance of success"
+  -"You will not use a life as you have played for less than 10 seconds."

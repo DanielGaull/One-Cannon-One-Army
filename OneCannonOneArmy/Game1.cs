@@ -1013,9 +1013,7 @@ namespace OneCannonOneArmy
             if (gameState == GameState.Paused)
             {
                 // The player is trying to leave the game
-                Popup.Show(Language.Translate("Are you sure you want to quit?") + " " +
-                    Language.Translate("You will be charged with one life."),
-                    true, new System.Action(() => RemoveLifeAnd(this.Close)), false);
+                Popup.Show(GetTextForQuitLevel(), true, new System.Action(() => RemoveLifeAnd(this.Close)), false);
             }
             else
             {
@@ -1027,8 +1025,7 @@ namespace OneCannonOneArmy
             if (gameState == GameState.Paused)
             {
                 // The player is trying to leave the game
-                Popup.Show(Language.Translate("Are you sure you want to quit?") + " " +
-                    Language.Translate("You will be charged with one life."),
+                Popup.Show(GetTextForQuitLevel(),
                     true, new System.Action(() => RemoveLifeAnd(new System.Action(() => CloseAnimation(GameState.MainMenu)),
                     new System.Action(() => EnableOrDisableCloseButton(true)))),
                     false);
@@ -1037,6 +1034,19 @@ namespace OneCannonOneArmy
             {
                 CloseAnimation(GameState.MainMenu);
             }
+        }
+        private string GetTextForQuitLevel()
+        {
+            string message = Language.Translate("Are you sure you want to quit?");
+            if (game.RemoveLifeOnQuit)
+            {
+                message += " " + Language.Translate("You will be charged with one life.");
+            }
+            else
+            {
+                message += " " + Language.Translate("You will not use a life as you have played for less than 10 seconds.");
+            }   
+            return message;
         }
         private void Resume()
         {
@@ -1813,7 +1823,7 @@ namespace OneCannonOneArmy
 
         private void RemoveLifeAnd(params System.Action[] actions)
         {
-            if (player != null)
+            if (player != null && game.RemoveLifeOnQuit)
             {
                 player.AddLives(-1);
                 player.TimeOfNextLife = DateTime.Now.AddMinutes(GameInfo.MINUTES_UNTIL_NEXT_LIFE);
