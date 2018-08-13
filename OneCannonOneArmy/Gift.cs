@@ -433,14 +433,11 @@ namespace OneCannonOneArmy
                     if (pages[i].Count < ITEMS_PER_ROW * ROWS)
                     {
                         pages[i].Add(interfaceToAdd);
-                        break;
-                    }
-                    else
-                    {
-                        pages.Add(new List<GiftInterface>());
-                        continue;
+                        return;
                     }
                 }
+                // If we made it this far, then we need a new page
+                pages.Add(new List<GiftInterface>() { interfaceToAdd });
             }
             else // pages.Count <= 0
             {

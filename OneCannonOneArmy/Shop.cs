@@ -15,8 +15,8 @@ namespace OneCannonOneArmy
     {
         #region Fields
 
-        List<ShopItemInterface> interfaces = new List<ShopItemInterface>();
-        List<List<ShopItemInterface>> pages = new List<List<ShopItemInterface>>();
+        List<ShopMaterialInterface> materialInterfaces = new List<ShopMaterialInterface>();
+        List<List<ShopMaterialInterface>> materialPages = new List<List<ShopMaterialInterface>>();
         int page;
 
         List<ShopCannonInterface> cannonInterfaces = new List<ShopCannonInterface>();
@@ -86,7 +86,7 @@ namespace OneCannonOneArmy
 
             for (int i = 0; i < items.Count; i++)
             {
-                interfaces.Add(new ShopItemInterface(Buy, 0, 0, SHOPINT_WIDTH, SHOPINT_HEIGHT, mediumFont,
+                materialInterfaces.Add(new ShopMaterialInterface(Buy, 0, 0, SHOPINT_WIDTH, SHOPINT_HEIGHT, mediumFont,
                     costs[items[i]], graphics, items[i], windowWidth));
             }
             UpdatePagesToInterfaces();
@@ -151,9 +151,9 @@ namespace OneCannonOneArmy
             // If onlyBuyStone == null, don't update anything
             if (onlyBuyStone == true)
             {
-                ShopItemInterface s = interfaces.Find(x => x.Item == Material.Stone);
+                ShopMaterialInterface s = materialInterfaces.Find(x => x.Item == Material.Stone);
                 s.Update(user, true);
-                List<ShopItemInterface> woutStone = interfaces.Except(new List<ShopItemInterface> { s }).ToList();
+                List<ShopMaterialInterface> woutStone = materialInterfaces.Except(new List<ShopMaterialInterface> { s }).ToList();
                 for (int i = 0; i < woutStone.Count; i++)
                 {
                     woutStone[i].DisableAllButtons();
@@ -177,18 +177,18 @@ namespace OneCannonOneArmy
                             page = transitionPage;
                         }
 
-                        if (page <= pages.Count - 1)
+                        if (page <= materialPages.Count - 1)
                         {
                             if (slidingOver)
                             {
                                 int offset = 0;
                                 if (slideSpd < 0)
                                 {
-                                    offset = (interfaces[0].Width + SPACING) * 5 + X_OFFSET;
+                                    offset = (materialInterfaces[0].Width + SPACING) * 5 + X_OFFSET;
                                 }
                                 else
                                 {
-                                    offset = ((interfaces[0].Width + SPACING) * 5 + X_OFFSET) * -1;
+                                    offset = ((materialInterfaces[0].Width + SPACING) * 5 + X_OFFSET) * -1;
                                 }
                                 UpdateMaterialPositions(transitionPage, user, offset, true);
                             }
@@ -197,11 +197,11 @@ namespace OneCannonOneArmy
                         }
 
                         bool mActive = false;
-                        for (int i = 0; i < pages[page].Count; i++)
+                        for (int i = 0; i < materialPages[page].Count; i++)
                         {
-                            if (pages[page][i].HoveringOnItem)
+                            if (materialPages[page][i].HoveringOnItem)
                             {
-                                mInfoHover.ResetMaterial(pages[page][i].Item);
+                                mInfoHover.ResetMaterial(materialPages[page][i].Item);
                                 mActive = true;
                                 mInfoHover.Update();
                                 break;
@@ -209,11 +209,11 @@ namespace OneCannonOneArmy
                         }
                         mInfoHover.Active = mActive;
 
-                        for (int i = 0; i <= pages.Count - 1; i++)
+                        for (int i = 0; i <= materialPages.Count - 1; i++)
                         {
-                            if (pages[i].Count <= 0)
+                            if (materialPages[i].Count <= 0)
                             {
-                                pages.RemoveAt(i);
+                                materialPages.RemoveAt(i);
                             }
                         }
 
@@ -309,16 +309,16 @@ namespace OneCannonOneArmy
             {
                 case ShopState.Materials:
                     #region Materials
-                    for (int i = 0; i <= pages[page].Count - 1; i++)
+                    for (int i = 0; i <= materialPages[page].Count - 1; i++)
                     {
-                        pages[page][i].Draw(spriteBatch);
+                        materialPages[page][i].Draw(spriteBatch);
                     }
 
                     if (slidingOver)
                     {
-                        for (int i = 0; i <= pages[transitionPage].Count - 1; i++)
+                        for (int i = 0; i <= materialPages[transitionPage].Count - 1; i++)
                         {
-                            pages[transitionPage][i].Draw(spriteBatch);
+                            materialPages[transitionPage][i].Draw(spriteBatch);
                         }
                     }
 
@@ -370,7 +370,7 @@ namespace OneCannonOneArmy
                 case ShopState.Materials:
                     returnVal.Add(nextButton);
                     returnVal.Add(prevButton);
-                    foreach (ShopItemInterface si in pages[page])
+                    foreach (ShopMaterialInterface si in materialPages[page])
                     {
                         returnVal.AddRange(si.GetButtons());
                     }
@@ -394,9 +394,9 @@ namespace OneCannonOneArmy
 
         public void LangChanged()
         {
-            for (int i = 0; i < interfaces.Count; i++)
+            for (int i = 0; i < materialInterfaces.Count; i++)
             {
-                interfaces[i].LangChanged();
+                materialInterfaces[i].LangChanged();
             }
             for (int i = 0; i < cannonInterfaces.Count; i++)
             {
@@ -449,40 +449,37 @@ namespace OneCannonOneArmy
             slideSpd = SLIDE_SPEED;
         }
 
-        private void AddItem(ShopItemInterface interfaceToAdd)
+        private void AddItem(ShopMaterialInterface interfaceToAdd)
         {
             // This gets the currently used page and adds to it. 
             // Unfortunately, we need to add extra code to check if the latest page is full.
-            if (pages.Count > 0)
+            if (materialPages.Count > 0)
             {
-                for (int i = 0; i < pages.Count; i++)
+                for (int i = 0; i < materialPages.Count; i++)
                 {
-                    if (pages[i].Count < ITEMS_PER_ROW * ROWS)
+                    if (materialPages[i].Count < ITEMS_PER_ROW * ROWS)
                     {
-                        pages[i].Add(interfaceToAdd);
-                        break;
-                    }
-                    else
-                    {
-                        pages.Add(new List<ShopItemInterface>());
-                        continue;
+                        materialPages[i].Add(interfaceToAdd);
+                        return;
                     }
                 }
+                // If we made it this far, then we need a new page
+                materialPages.Add(new List<ShopMaterialInterface>() { interfaceToAdd });
             }
             else // pages.Count <= 0
             {
-                pages.Add(new List<ShopItemInterface>());
-                pages[0].Add(interfaceToAdd);
+                materialPages.Add(new List<ShopMaterialInterface>());
+                materialPages[0].Add(interfaceToAdd);
             }
         }
 
         private void UpdatePagesToInterfaces()
         {
-            pages.Clear();
+            materialPages.Clear();
 
-            for (int i = 0; i < interfaces.Count; i++)
+            for (int i = 0; i < materialInterfaces.Count; i++)
             {
-                AddItem(interfaces[i].Clone());
+                AddItem(materialInterfaces[i].Clone());
             }
         }
 
@@ -492,7 +489,7 @@ namespace OneCannonOneArmy
             int lastX = X_OFFSET;
             int lastY = Y_OFFSET;
             int interfacesInCurrentRow = 0;
-            foreach (ShopItemInterface si in pages[page])
+            foreach (ShopMaterialInterface si in materialPages[page])
             {
                 si.X = lastX + slideOffset + xOffset;
                 lastX += si.Width + SPACING;
@@ -583,7 +580,7 @@ namespace OneCannonOneArmy
         #endregion
     }
 
-    public class ShopItemInterface
+    public class ShopMaterialInterface
     {
         #region Fields & Properties
 
@@ -663,7 +660,7 @@ namespace OneCannonOneArmy
 
         #region Constructors
 
-        public ShopItemInterface(BuyItem buy, int x, int y, int width, int height, SpriteFont font, int cost,
+        public ShopMaterialInterface(BuyItem buy, int x, int y, int width, int height, SpriteFont font, int cost,
             GraphicsDevice graphics, Material item, int windowWidth)
         {
             this.font = font;
@@ -733,9 +730,9 @@ namespace OneCannonOneArmy
             }
         }
 
-        public ShopItemInterface Clone()
+        public ShopMaterialInterface Clone()
         {
-            return (ShopItemInterface)MemberwiseClone();
+            return (ShopMaterialInterface)MemberwiseClone();
         }
 
         public List<MenuButton> GetButtons()

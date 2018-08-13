@@ -1040,14 +1040,11 @@ namespace OneCannonOneArmy
                     if (pages[i].Count < ITEMS_PER_PAGE)
                     {
                         pages[i].Add(interfaceToAdd);
-                        break;
-                    }
-                    else
-                    {
-                        pages.Add(new List<CraftingInterface>());
-                        continue;
+                        return;
                     }
                 }
+                // If we made it this far, then we need a new page
+                pages.Add(new List<CraftingInterface>() { interfaceToAdd });
             }
             else // pages.Count <= 0
             {

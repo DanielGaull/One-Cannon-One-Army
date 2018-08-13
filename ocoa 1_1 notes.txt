@@ -11,12 +11,14 @@
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
 *Bug fixes & other small changes
+  -Bug 18001: Crafting Interface isn't added for new projectiles
+  -Bug 18002: Mission completion text for level 3 isn't displayed properly
+  -Bug 18003: Empty pages added to the gift menu
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Add Quests
 *Finish Updating Intro w/ Labyrinth Quest images
-*Bug: currently doesn't add crafing interface when new projectile is unlocked
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
 *Make gifts give items in groups
