@@ -201,6 +201,12 @@ namespace OneCannonOneArmy
             badgeCountPositions.Clear();
             grid.Clear();
 
+            // Set the hotbar contents to the user's hotbar
+            for (int i = 0; i < hotbar.Count; i++)
+            {
+                hotbarSlots[i].Content = hotbar[i];
+            }
+
             // First initialize the material inventory values
             for (int i = 0; i < materials.Items.Count; i++)
             {
