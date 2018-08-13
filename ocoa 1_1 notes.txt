@@ -19,6 +19,15 @@
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Add Quests
+  -Quest Interface
+    > Contains a button that shows a quest popup when clicked
+    > Button image
+  -Quest Popup
+    > Shows quest text
+    > Progress Bar with Progress
+    > Shows reward coins
+  -Give player reward when they complete a quest
+  -Keep track of stats for quests
 *Finish Updating Intro w/ Labyrinth Quest images
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login

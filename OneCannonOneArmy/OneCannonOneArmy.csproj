@@ -110,6 +110,7 @@
     <Compile Include="ProgressBar.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quest.cs" />
     <Compile Include="StudioIntro.cs" />
     <Compile Include="SettingsMenu.cs" />
     <Compile Include="Shop.cs" />

@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6799.25089" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6799.33235" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="780768">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6799.25089" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="781280">
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6799.33235" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>oDyGkuCHD1U5oQQmbcRxVj3w5advwpVPQzVwqHm+pPk=</dsig:DigestValue>
+        <dsig:DigestValue>W7Lv+ShI5OX0NjTZ6jsofyP6BhR677e75Hp9LraFW1k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -756,13 +756,13 @@
       <dsig:DigestValue>Vl6n7r830W/o1i1B7l93xfsYGvO9s1OcisBQ4BRE3ts=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\plantmatter.xnb" size="14485">
+  <file name="Content\plantmatter.xnb" size="40085">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6KvEksBShsmAAhefq6fB2MMCbIsPlsgOKN6AwPsrt00=</dsig:DigestValue>
+      <dsig:DigestValue>uG4U+4Z3Zo5N6NLFr+6EM3UCBCJUT9XmKchcrTgs1Cs=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\powerupgrade.xnb" size="40085">
