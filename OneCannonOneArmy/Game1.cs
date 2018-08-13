@@ -2001,7 +2001,7 @@ namespace OneCannonOneArmy
                     {
                         msg = defaultMsg + Language.Translate(" ... again!");
                     }
-                    else if (game.Mission.Id == 2)
+                    else if (game.Mission.Id == 3)
                     {
                         msg = defaultMsg + Language.Translate(" ... for the third time!");
                     }

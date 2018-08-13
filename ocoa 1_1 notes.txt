@@ -9,6 +9,7 @@
 *Changed "Poison" to "Plant Matter"
 *Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
+*You will no longer use a life if you play a level for less than 10 seconds
 *Bug fixes & other small changes
 
 Update To-Do List:
@@ -17,7 +18,6 @@ Update To-Do List:
 *Finish Updating Intro w/ Labyrinth Quest images
 *Bug: currently doesn't add crafing interface when new projectile is unlocked
 *Add the "Format to width" method
-*Don't take away a life if a level was played for less than 10 seconds
 *Allow user to click anywhere on their profile box (except the trash can) to login
 *Make gifts give items in groups
 *Redo Plant Matter texture
