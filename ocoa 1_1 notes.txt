@@ -14,6 +14,7 @@
   -Bug 18001: Crafting Interface isn't added for new projectiles
   -Bug 18002: Mission completion text for level 3 isn't displayed properly
   -Bug 18003: Empty pages added to the gift menu
+  -Bug 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
@@ -22,11 +23,6 @@ Update To-Do List:
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
 *Make gifts give items in groups
-*Redo Plant Matter texture
-*Bug: Sign-in, open organize hotbar menu. Sign-out. Open different user, open organize hotbar menu
-  -You may need to follow these steps to recreate instead: signin, signout, open dif, user, open organize hotbar
-  -It appears that hotbar slots need to be cleared? Or that the old draggables that are in a slot aren't clearing?
-  -Bug 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
 *Buy 50 option in shop
 *Craft 10 and craft 50 in crafting interface
 *Make sliders continue sliding as long as mouse is down
