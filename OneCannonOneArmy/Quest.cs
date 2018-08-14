@@ -89,7 +89,7 @@ namespace OneCannonOneArmy
                     numGoal = Utilities.Rand.Next(ALIENKILL_MIN / GOAL_NUM_FACTOR,
                         ALIENKILL_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * ALIENKILL_COINS);
-                    int aliens = Enum.GetValues(typeof(Aliens)).Cast<Aliens>().Count();
+                    int aliens = Enum.GetValues(typeof(BasicAlienTypes)).Cast<BasicAlienTypes>().Count();
                     typeId = Utilities.Rand.Next(0, aliens);
                     break;
                 case QuestGoalType.ObtainCoins:
@@ -116,14 +116,14 @@ namespace OneCannonOneArmy
                     return Language.Translate("Buy") + " " + GoalNumber + " " + 
                         Language.Translate(((Material)TypeId).ToString()) + ".";
                 case QuestGoalType.CraftProjectiles:
-                    return Language.Translate("Craft") + " " + GoalNumber + 
+                    return Language.Translate("Craft") + " " + GoalNumber + " " +
                         Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
                 case QuestGoalType.FireProjectiles:
-                    return Language.Translate("Fire") + " " + GoalNumber +
+                    return Language.Translate("Fire") + " " + GoalNumber + " " +
                         Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
                 case QuestGoalType.KillAliens:
                     return Language.Translate("Kill") + " " + GoalNumber + " " +
-                        Language.Translate(((Aliens)TypeId).ToString().AddSpaces()) + " " + Language.Translate("Aliens") + ".";
+                        Language.Translate(((BasicAlienTypes)TypeId).ToString().AddSpaces()) + " " + Language.Translate("Aliens") + ".";
                 case QuestGoalType.ObtainCoins:
                     return Language.Translate("Collect") + " " + GoalNumber + " " + Language.Translate("coins") + ".";
                 case QuestGoalType.SpendCoins:

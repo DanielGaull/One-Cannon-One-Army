@@ -940,6 +940,19 @@ namespace OneCannonOneArmy
         Omega,
         Ninja,
     }
+    public enum BasicAlienTypes
+    {
+        Normal,
+        Defense,
+        FireDefense,
+        Chaos,
+        Boss,
+        PoisonResistant,
+        FreezeProof,
+        PlasmaResistant,
+        Omega,
+        Ninja,
+    }
 
     public struct AlienType
     {

@@ -1262,6 +1262,11 @@ namespace OneCannonOneArmy
                 game.ChangeCannonSettings(player.CannonSettings);
                 player.Coins -= cost;
                 player.CoinsSpent += cost;
+                player.Purchases++;
+                if (player.CurrentQuest.GoalType == QuestGoalType.SpendCoins)
+                {
+                    IncreaseQuestProgress(cost);
+                }
                 Sound.PlaySound(Sounds.Upgrade);
             }
         }
@@ -1282,6 +1287,12 @@ namespace OneCannonOneArmy
             if (player.Coins >= cost)
             {
                 player.Coins -= cost;
+                player.CoinsSpent += cost;
+                player.Purchases++;
+                if (player.CurrentQuest.GoalType == QuestGoalType.SpendCoins)
+                {
+                    IncreaseQuestProgress(cost);
+                }
                 player.AddLives(1);
                 Sound.PlaySound(Sounds.LifeEarned);
                 game.ChangeLives(player.Lives);
@@ -1364,6 +1375,10 @@ namespace OneCannonOneArmy
             player.Coins += ach.Coins;
             player.CoinsCollected += ach.Coins;
             player.AchievementsCompleted.Add(ach);
+            if (player.CurrentQuest.GoalType == QuestGoalType.ObtainCoins)
+            {
+                IncreaseQuestProgress(ach.Coins);
+            }
         }
 
         private bool FirstAlienKillEarned()
@@ -1839,6 +1854,10 @@ namespace OneCannonOneArmy
             GiftContents contents = gift.Contents;
             player.Coins += contents.Coins;
             player.CoinsCollected += contents.Coins;
+            if (player.CurrentQuest.GoalType == QuestGoalType.ObtainCoins)
+            {
+                IncreaseQuestProgress(contents.Coins);
+            }
 
             player.ProjectileInventory.AddRange(contents.Projectiles);
             for (int i = 0; i < contents.Projectiles.Count; i++)
@@ -1863,7 +1882,7 @@ namespace OneCannonOneArmy
             }
         }
 
-        private void MalosDefeated()
+        private void WhenMalosDefeated()
         {
             EnableOrDisableCloseButton(true);
             menu.ResetStory(1);
@@ -1931,12 +1950,41 @@ namespace OneCannonOneArmy
                 player.AliensHit++;
             }
         }
+        private void OnAlienDeath(Alien alien)
+        {
+            if (player != null)
+            {
+                if (player.CurrentQuest.GoalType == QuestGoalType.KillAliens && 
+                    player.CurrentQuest.TypeId == (int)alien.Type.GetBasicType())
+                {
+                    IncreaseQuestProgress(1);
+                }
+            }
+        }
+
+        private void IncreaseQuestProgress(int progress)
+        {
+            player.QuestProgress += progress;
+            if (player.QuestProgress >= player.CurrentQuest.GoalNumber)
+            {
+                Notification.Show("You have completed your quest! (" + player.CurrentQuest.ToString() + ")");
+                player.Coins += player.CurrentQuest.RewardCoins;
+                player.CoinsCollected += player.CurrentQuest.RewardCoins;
+                player.QuestProgress = 0;
+                player.CurrentQuest = Quest.Random();
+            }
+        }
 
         private void OnProjFire(ProjectileType type)
         {
             if (player != null)
             {
                 player.ProjectilesFired++;
+                if (player.CurrentQuest.GoalType == QuestGoalType.FireProjectiles &&
+                    player.CurrentQuest.TypeId == (int)type)
+                {
+                    IncreaseQuestProgress(1);
+                }
             }
         }
 
@@ -2064,7 +2112,7 @@ namespace OneCannonOneArmy
             }
             else
             {
-                MalosDefeated();
+                WhenMalosDefeated();
             }
         }
 
@@ -2187,12 +2235,21 @@ namespace OneCannonOneArmy
         {
             player.Coins -= cost;
             player.CoinsSpent += cost;
-            player.MaterialInventory.AddItem(item, 1);
             player.Purchases++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.SpendCoins)
+            {
+                IncreaseQuestProgress(cost);
+            }
+            player.MaterialInventory.AddItem(item, 1);
             menu.AddMaterial(item);
             if (tutorial.Playing && actionAllowed.Action == TutorialTask.BuyMaterial)
             {
                 tutorial.ActionCompleted(menu);
+            }
+            if (player.CurrentQuest.GoalType == QuestGoalType.BuyMaterials &&
+                    player.CurrentQuest.TypeId == (int)item)
+            {
+                IncreaseQuestProgress(1);
             }
         }
         private void MaterialSell(Material item)
@@ -2200,6 +2257,10 @@ namespace OneCannonOneArmy
             int value = GameInfo.SellValueOf(item);
             player.Coins += value;
             player.ItemsSold++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.ObtainCoins)
+            {
+                IncreaseQuestProgress(value);
+            }
 
             if (Sound.IsPlaying(Sounds.CaChing))
             {
@@ -2214,6 +2275,10 @@ namespace OneCannonOneArmy
             int value = GameInfo.SellValueOf(proj);
             player.Coins += value;
             player.ItemsSold++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.ObtainCoins)
+            {
+                IncreaseQuestProgress(value);
+            }
 
             if (Sound.IsPlaying(Sounds.CaChing))
             {
@@ -2230,6 +2295,10 @@ namespace OneCannonOneArmy
             int value = GameInfo.SellValueOf(badge);
             player.Coins += value;
             player.ItemsSold++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.ObtainCoins)
+            {
+                IncreaseQuestProgress(value);
+            }
 
             if (Sound.IsPlaying(Sounds.CaChing))
             {
@@ -2267,6 +2336,11 @@ namespace OneCannonOneArmy
             Sound.PlaySound(Sounds.Craft);
             game.AddProjectile(output.Type);
             player.ProjectileInventory.Add(output.Type);
+            if (player.CurrentQuest.GoalType == QuestGoalType.CraftProjectiles &&
+                    player.CurrentQuest.TypeId == (int)output.Type)
+            {
+                IncreaseQuestProgress(1);
+            }
             //List<ProjectileType> currentHotbar = player.Hotbar;
             //if (!currentHotbar.Contains(output.Type))
             //{
@@ -2300,6 +2374,10 @@ namespace OneCannonOneArmy
             player.Coins -= cost;
             player.CoinsSpent += cost;
             player.Purchases++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.SpendCoins)
+            {
+                IncreaseQuestProgress(cost);
+            }
             player.Cannons.Add(cannon);
             Sound.PlaySound(Sounds.CaChing);
         }
@@ -2315,6 +2393,10 @@ namespace OneCannonOneArmy
             player.Coins -= cost;
             player.CoinsSpent += cost;
             player.Purchases++;
+            if (player.CurrentQuest.GoalType == QuestGoalType.SpendCoins)
+            {
+                IncreaseQuestProgress(cost);
+            }
             player.Gifts.Add(gift);
             menu.AddGift(gift);
             Sound.PlaySound(Sounds.CaChing);

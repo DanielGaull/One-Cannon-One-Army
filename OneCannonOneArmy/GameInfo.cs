@@ -1304,6 +1304,42 @@ namespace OneCannonOneArmy
             return string.Format("{0:00}:{1:00}", distance.Minutes, distance.Seconds);
         }
 
+        public static BasicAlienTypes GetBasicType(this Aliens type)
+        {
+            switch (type)
+            {
+                case Aliens.Normal:
+                    return BasicAlienTypes.Normal;
+                case Aliens.LDefense:
+                case Aliens.Defense:
+                case Aliens.HDefense:
+                    return BasicAlienTypes.Defense;
+                case Aliens.LFireDefense:
+                case Aliens.FireDefense:
+                case Aliens.HFireDefense:
+                    return BasicAlienTypes.FireDefense;
+                case Aliens.LPoisonResistant:
+                case Aliens.PoisonResistant:
+                case Aliens.HPoisonResistant:
+                    return BasicAlienTypes.PoisonResistant;
+                case Aliens.LPlasmaResistant:
+                case Aliens.PlasmaResistant:
+                case Aliens.HPlasmaResistant:
+                    return BasicAlienTypes.PlasmaResistant;
+                case Aliens.FreezeProof:
+                    return BasicAlienTypes.FreezeProof;
+                case Aliens.Ninja:
+                    return BasicAlienTypes.Ninja;
+                case Aliens.Boss:
+                    return BasicAlienTypes.Boss;
+                case Aliens.Chaos:
+                    return BasicAlienTypes.Chaos;
+                case Aliens.Omega:
+                    return BasicAlienTypes.Omega;
+            }
+            return BasicAlienTypes.Normal;
+        }
+
         public static bool ContainsType(this List<CannonSettings> list, CannonType type)
         {
             for (int i = 0; i < list.Count; i++)

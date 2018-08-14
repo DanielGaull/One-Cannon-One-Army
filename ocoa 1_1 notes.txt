@@ -19,9 +19,10 @@
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Add Quests
-  -Give player reward when they complete a quest
-  -Keep track of stats for quests
-  -Give player a new quest once they complete their previous quest
+  -Update stats for quests
+  -Make sure quests are obtainable
+    > For proj-fire and proj-craft quests, make it be projectiles the player has in their inventory AND that they have unlocked
+    > For aliens, make it aliens that are unlocked, and don't specify "L Defense Aliens", just do all Defense Aliens
 *Finish Updating Intro w/ Labyrinth Quest images
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
@@ -39,3 +40,4 @@ Update To-Do List:
   -"Beat", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
   -"Reward"
   -"Aliens"
+  -"You have completed your quest!"

@@ -935,6 +935,7 @@ namespace OneCannonOneArmy
         event OnAlienHit onAlienHit;
         event Action<Material> onMaterialCollect;
         event Action<Badge> onBadgeCollect;
+        event OnAlienHit onAlienDeath;
 
         List<Cage> cages = new List<Cage>();
         int cagesDestroyed = 0;
@@ -1450,6 +1451,10 @@ namespace OneCannonOneArmy
         {
             cannon.AddProjRemovedHandler(handler);
         }
+        public void AddOnAlienDeathHandler(OnAlienHit handler)
+        {
+            onAlienDeath += handler;
+        }
 
         #endregion
 
@@ -1534,6 +1539,7 @@ namespace OneCannonOneArmy
             {
                 Mission.Count++;
             }
+            onAlienDeath?.Invoke(alien);
         }
 
         private void ItemCollected(Item item)
