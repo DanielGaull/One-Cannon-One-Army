@@ -26,6 +26,8 @@ Update To-Do List:
     > Progress Bar with Progress
     > Shows reward coins
     > Close Button
+  -Get button hovering w/ mouse cursor working when the quest popup is showing
+  -Don't update buttons when quest popup showing
   -Give player reward when they complete a quest
   -Keep track of stats for quests
 *Finish Updating Intro w/ Labyrinth Quest images
@@ -44,3 +46,4 @@ Update To-Do List:
   -"Quests"
   -"Beat", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
   -"Reward"
+  -"Aliens"

@@ -122,8 +122,8 @@ namespace OneCannonOneArmy
                     return Language.Translate("Fire") + " " + GoalNumber +
                         Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
                 case QuestGoalType.KillAliens:
-                    return Language.Translate("Kill") + " " + GoalNumber +
-                        Language.Translate(((Aliens)TypeId).ToString().AddSpaces()) + ".";
+                    return Language.Translate("Kill") + " " + GoalNumber + " " +
+                        Language.Translate(((Aliens)TypeId).ToString().AddSpaces()) + " " + Language.Translate("Aliens") + ".";
                 case QuestGoalType.ObtainCoins:
                     return Language.Translate("Collect") + " " + GoalNumber + " " + Language.Translate("coins") + ".";
                 case QuestGoalType.SpendCoins:
@@ -241,7 +241,7 @@ namespace OneCannonOneArmy
 
         FillBar progressBar;
         const int PROGRESSBAR_WIDTH = 300;
-        const int PROGRESSBAR_HEIGHT = 10;
+        const int PROGRESSBAR_HEIGHT = 25;
 
         Texture2D bgImg;
         Rectangle bgRect;
@@ -273,11 +273,12 @@ namespace OneCannonOneArmy
         public QuestPopup(GraphicsDevice graphics, SpriteFont font, int windowWidth, int windowHeight, 
             User user, Texture2D checkImg, Texture2D coinIcon)
         {
-            
             this.font = font;
 
             bgImg = DrawHelper.AddBorder(new Texture2D(graphics, WIDTH, HEIGHT), BORDER_SIZE, Color.Gray, Color.LightGray);
             bgRect = new Rectangle(windowWidth / 2 - WIDTH / 2, windowHeight / 2 - HEIGHT / 2, WIDTH, HEIGHT);
+
+            questTextLoc.Y = bgRect.Y + BORDER_SIZE + SPACING * 2;
 
             progressBar = new FillBar(0, bgRect.X + bgRect.Width / 2 - PROGRESSBAR_WIDTH / 2,
                 (int)(questTextLoc.Y + font.MeasureString(questText).Y + BIG_SPACING), PROGRESSBAR_WIDTH, PROGRESSBAR_HEIGHT,
@@ -297,7 +298,7 @@ namespace OneCannonOneArmy
 
             closeButton = new MenuButton(Hide, Language.Translate("Close"), 0, 0, true, font, graphics);
             closeButton.X = bgRect.X + bgRect.Width / 2 - closeButton.Width / 2;
-            closeButton.Y = bgRect.Y - closeButton.Height - BORDER_SIZE - SPACING;
+            closeButton.Y = bgRect.Bottom - closeButton.Height - BORDER_SIZE - SPACING;
 
             if (user != null)
             {
@@ -362,6 +363,7 @@ namespace OneCannonOneArmy
                 progressBar.Y + progressBar.Height + BIG_SPACING, COIN_SIZE, COIN_SIZE);
             rewardLoc = new Vector2(coinRect.Right, coinRect.Y);
 
+            progressBar.MaxValue = user.CurrentQuest.GoalNumber;
             progressBar.Value = user.QuestProgress;
 
             questText = quest.ToString();

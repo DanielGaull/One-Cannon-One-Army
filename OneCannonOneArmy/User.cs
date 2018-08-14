@@ -113,6 +113,10 @@ namespace OneCannonOneArmy
             AvatarB = avatarColor.B;
             ProjectileAsset = projImg.Name;
             Id = GetNextId();
+            
+            QuestProgress = 0;
+            CurrentQuest = Quest.Random();
+            TimeOfNextQuest = DateTime.Now.AddHours(HOURS_UNTIL_NEW_QUEST);
 
             Hotbar.AddRange(Enumerable.Repeat(ProjectileType.None, 5));
 
