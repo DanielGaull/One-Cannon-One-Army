@@ -347,7 +347,7 @@ namespace OneCannonOneArmy
             CreateUser createUser, System.Action createNewUser, System.Action play,
             System.Action achievements, System.Action stats, System.Action openShop, System.Action settings, System.Action openOrganize,
             System.Action openCrafting, System.Action openUpgrade, Action<int> selectMission, System.Action buyLife, System.Action openLang,
-            Action<Languages> changeLang, System.Action openControls, System.Action openUserSettings, System.Action openGifts, 
+            Action<Languages> changeLang, System.Action openControls, System.Action openUserSettings, System.Action openGifts,
             System.Action openCredits)
         // Put button click delegates at the bottom
         {
@@ -496,7 +496,7 @@ namespace OneCannonOneArmy
                 mediumFont, user, windowWidth, windowHeight, checkImg, coinIcon);
             questInterface.X = windowWidth / 2 - questInterface.Width / 2;
 
-            playButton = new MenuButton(play, Language.Translate("Play"), 0, questInterface.Y+questInterface.Height + BUTTON_SPACING,
+            playButton = new MenuButton(play, Language.Translate("Play"), 0, questInterface.Y + questInterface.Height + BUTTON_SPACING,
                 true, bigFont, graphics);
             //playButton.X = windowWidth / 2 - (playButton.Width / 2);
 
@@ -566,7 +566,7 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(GameState state, GameTime gameTime, User user, List<Projectile> projectiles, bool? onlyBuyStone, 
+        public void Update(GameState state, GameTime gameTime, User user, List<Projectile> projectiles, bool? onlyBuyStone,
             bool playMusic)
         {
             #region Universal Updating
@@ -742,48 +742,51 @@ namespace OneCannonOneArmy
                     quitButton.Active = true;
 
                     questInterface.Update(user);
-                    playButton.Update();
-                    achButton.Update();
-                    shopButton.Update();
-                    statButton.Update();
-                    craftingButton.Update();
-                    upgradeButton.Update();
-                    organizeButton.Update();
-                    settingsButton.Update();
-                    giftButton.Update();
-
-                    backButton.Update();
-
-                    quitButton.Y = craftingButton.Y + BUTTON_SPACING + craftingButton.Height;
-                    quitButton.Update();
-
-                    if (user != null)
+                    if (!questInterface.ShowingPopup)
                     {
-                        if (user.Lives < GameInfo.MAX_LIVES)
+                        playButton.Update();
+                        achButton.Update();
+                        shopButton.Update();
+                        statButton.Update();
+                        craftingButton.Update();
+                        upgradeButton.Update();
+                        organizeButton.Update();
+                        settingsButton.Update();
+                        giftButton.Update();
+
+                        backButton.Update();
+
+                        quitButton.Y = craftingButton.Y + BUTTON_SPACING + craftingButton.Height;
+                        quitButton.Update();
+
+                        if (user != null)
                         {
-                            // First check if the user is eligible for another life
-                            if (DateTime.Now - user.TimeOfNextLife >= TimeSpan.Zero)
+                            if (user.Lives < GameInfo.MAX_LIVES)
                             {
-                                user.AddLives(1);
-                                user.TimeOfNextLife = DateTime.Now.AddMinutes(GameInfo.MINUTES_UNTIL_NEXT_LIFE);
-                                livesChanged?.Invoke(user.Lives);
+                                // First check if the user is eligible for another life
+                                if (DateTime.Now - user.TimeOfNextLife >= TimeSpan.Zero)
+                                {
+                                    user.AddLives(1);
+                                    user.TimeOfNextLife = DateTime.Now.AddMinutes(GameInfo.MINUTES_UNTIL_NEXT_LIFE);
+                                    livesChanged?.Invoke(user.Lives);
+                                }
+                                // We need to tell the user how much time is left
+                                // before they receive their next life
+                                nextLifeIn = Language.Translate("Time until next life: ")
+                                    + user.TimeOfNextLife.FormatDistanceToNow();
+                                nextLifeTimePos.X = windowWidth / 2 - (mediumFont.MeasureString(nextLifeIn).X / 2);
+                                buyLifeButton.Active = true;
                             }
-                            // We need to tell the user how much time is left
-                            // before they receive their next life
-                            nextLifeIn = Language.Translate("Time until next life: ")
-                                + user.TimeOfNextLife.FormatDistanceToNow();
-                            nextLifeTimePos.X = windowWidth / 2 - (mediumFont.MeasureString(nextLifeIn).X / 2);
-                            buyLifeButton.Active = true;
+                            else
+                            {
+                                buyLifeButton.Active = false;
+                            }
                         }
-                        else
-                        {
-                            buyLifeButton.Active = false;
-                        }
-                    }
 
-                    if (buyLifeButton.Active)
-                    {
-                        buyLifeButton.Update();
+                        if (buyLifeButton.Active)
+                        {
+                            buyLifeButton.Update();
+                        }
                     }
 
                     break;
@@ -1328,18 +1331,22 @@ namespace OneCannonOneArmy
                     break;
 
                 case GameState.MainMenu:
-                    returnVal.Add(playButton);
-                    returnVal.Add(achButton);
-                    returnVal.Add(shopButton);
-                    returnVal.Add(statButton);
-                    returnVal.Add(settingsButton);
-                    returnVal.Add(backButton);
-                    returnVal.Add(quitButton);
-                    returnVal.Add(craftingButton);
-                    returnVal.Add(upgradeButton);
-                    returnVal.Add(organizeButton);
-                    returnVal.Add(buyLifeButton);
-                    returnVal.Add(giftButton);
+                    if (!questInterface.ShowingPopup)
+                    {
+                        returnVal.Add(playButton);
+                        returnVal.Add(achButton);
+                        returnVal.Add(shopButton);
+                        returnVal.Add(statButton);
+                        returnVal.Add(settingsButton);
+                        returnVal.Add(backButton);
+                        returnVal.Add(quitButton);
+                        returnVal.Add(craftingButton);
+                        returnVal.Add(upgradeButton);
+                        returnVal.Add(organizeButton);
+                        returnVal.Add(buyLifeButton);
+                        returnVal.Add(giftButton);
+                    }
+                    returnVal.AddRange(questInterface.GetButtons());
                     break;
 
                 case GameState.Achievements:
@@ -1401,7 +1408,7 @@ namespace OneCannonOneArmy
                     returnVal.AddRange(giftMenu.GetButtons());
                     break;
 
-                 // case GameState.Credits: is above w/ Stats GameState
+                    // case GameState.Credits: is above w/ Stats GameState
             }
 
             return returnVal;
@@ -1728,7 +1735,7 @@ namespace OneCannonOneArmy
                 else
                 {
                     User newU = createUser(usernameBox.Content, avatarColor, projImgs[projId]);
-                    userInterfaces.Add(new UserInterface(newU, alienImg, alienEyeImg, graphics, usernameClicked, 
+                    userInterfaces.Add(new UserInterface(newU, alienImg, alienEyeImg, graphics, usernameClicked,
                         delClicked, bigFont, trashImg, 0, 0, USERINTERFACE_WIDTH, USERINTERFACE_HEIGHT, content, lifeImg));
                     UpdateUserPagesToInterfaces();
                 }

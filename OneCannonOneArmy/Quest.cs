@@ -183,6 +183,13 @@ namespace OneCannonOneArmy
                 return questButton.Height;
             }
         }
+        public bool ShowingPopup
+        {
+            get
+            {
+                return popup.Showing;
+            }
+        }
         public QuestInterface(GraphicsDevice graphics, Texture2D questImg, int x, int y, SpriteFont font, User user, 
             int windowWidth, int windowHeight, Texture2D checkImg, Texture2D coinImg)
         {
@@ -219,9 +226,24 @@ namespace OneCannonOneArmy
                 popup.Draw(spriteBatch);
             }
         }
+
         public void OnLangChange()
         {
             labelText = Language.Translate("Quests");
+            popup.LangChanged();
+        }
+        public List<MenuButton> GetButtons()
+        {
+            List<MenuButton> returnVal = new List<MenuButton>();
+            if (!popup.Showing)
+            {
+                returnVal.Add(questButton);
+            }
+            else
+            {
+                returnVal.AddRange(popup.GetButtons());
+            }
+            return returnVal;
         }
 
         private void OnClick()
@@ -337,6 +359,10 @@ namespace OneCannonOneArmy
             coinRect = new Rectangle((int)(bgRect.X + bgRect.Width / 2 - (font.MeasureString(rewardString).X + COIN_SIZE) / 2),
                 progressBar.Y + progressBar.Height + BIG_SPACING, COIN_SIZE, COIN_SIZE);
             rewardLoc = new Vector2(coinRect.Right, coinRect.Y);
+        }
+        public List<MenuButton> GetButtons()
+        {
+            return new List<MenuButton>() { closeButton };
         }
 
         public void Show(User user)

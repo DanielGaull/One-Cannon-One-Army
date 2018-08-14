@@ -61,7 +61,7 @@ namespace OneCannonOneArmy
         public List<Badge> Collection = new List<Badge>();
 
         static string FILE_PATH = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), 
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             @"Duoplus Software\One Cannon One Army", "users.ocoausers");
 
         public List<ProjectileType> Hotbar = new List<ProjectileType>(GameInfo.HOTBAR_SLOTS);
@@ -95,9 +95,7 @@ namespace OneCannonOneArmy
         public List<GiftType> Gifts = new List<GiftType>();
 
         public Quest CurrentQuest;
-        public DateTime TimeOfNextQuest;
         public int QuestProgress;
-        const int HOURS_UNTIL_NEW_QUEST = 24;
 
         public Version LastPlayedVersion;
 
@@ -113,10 +111,9 @@ namespace OneCannonOneArmy
             AvatarB = avatarColor.B;
             ProjectileAsset = projImg.Name;
             Id = GetNextId();
-            
+
             QuestProgress = 0;
             CurrentQuest = Quest.Random();
-            TimeOfNextQuest = DateTime.Now.AddHours(HOURS_UNTIL_NEW_QUEST);
 
             Hotbar.AddRange(Enumerable.Repeat(ProjectileType.None, 5));
 
@@ -323,11 +320,10 @@ namespace OneCannonOneArmy
         {
             for (int i = 0; i < users.Count; i++)
             {
-                if (users[i].TimeOfNextQuest == null)
+                if (users[i].LastPlayedVersion < new Version(1, 1))
                 {
                     users[i].QuestProgress = 0;
                     users[i].CurrentQuest = Quest.Random();
-                    users[i].TimeOfNextQuest = DateTime.Now.AddHours(HOURS_UNTIL_NEW_QUEST);
                 }
             }
             return users;
