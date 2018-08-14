@@ -37,6 +37,8 @@ namespace OneCannonOneArmy
         System.Action storyFinish;
         MenuButton skipStoryButton;
 
+        QuestInterface questInterface;
+
         string ALIENS_KILLED_PRE = Language.Translate("Aliens Killed") + ": ";
         string ALIENS_HIT_PRE = Language.Translate("Aliens Hit") + ": ";
         string COINS_COLLECTED_PRE = Language.Translate("Coins Collected") + ": ";
@@ -339,7 +341,7 @@ namespace OneCannonOneArmy
             Texture2D controlImg, Texture2D settingsImg, Action<Material> mSell, Action<ProjectileType> pSell,
             Action<Badge> bSell, Texture2D graphicsImg, Texture2D profileImg, Texture2D soundImg,
             Dictionary<GiftType, int> giftCosts, Action<GiftType, int> buyGift, Texture2D crossImg,
-            Texture2D ccImg, Texture2D cannonIcon,
+            Texture2D ccImg, Texture2D cannonIcon, Texture2D scrollIcon, Texture2D coinIcon,
 
             System.Action start, System.Action quit, System.Action resume, System.Action mainMenu, System.Action goBack,
             CreateUser createUser, System.Action createNewUser, System.Action play,
@@ -490,7 +492,12 @@ namespace OneCannonOneArmy
             projRect = new Rectangle(windowWidth / 2 - (PROJECTILE_SIZE / 2),
                 avatarBSlider.Y + avatarBSlider.Height + SPACING, PROJECTILE_SIZE, PROJECTILE_SIZE);
 
-            playButton = new MenuButton(play, Language.Translate("Play"), 0, startButton.Y, true, bigFont, graphics);
+            questInterface = new QuestInterface(graphics, scrollIcon, 0, logoRect.Bottom + BUTTON_SPACING,
+                mediumFont, user, windowWidth, windowHeight, checkImg, coinIcon);
+            questInterface.X = windowWidth / 2 - questInterface.Width / 2;
+
+            playButton = new MenuButton(play, Language.Translate("Play"), 0, questInterface.Y+questInterface.Height + BUTTON_SPACING,
+                true, bigFont, graphics);
             //playButton.X = windowWidth / 2 - (playButton.Width / 2);
 
             achButton = new MenuButton(achievements, Language.Translate("Achievements"), 0, 0, true, bigFont, graphics);
@@ -734,6 +741,7 @@ namespace OneCannonOneArmy
 
                     quitButton.Active = true;
 
+                    questInterface.Update(user);
                     playButton.Update();
                     achButton.Update();
                     shopButton.Update();
@@ -1051,6 +1059,8 @@ namespace OneCannonOneArmy
                             spriteBatch.DrawString(mediumFont, nextLifeIn, nextLifeTimePos, Color.Black);
                         }
                     }
+
+                    questInterface.Draw(spriteBatch);
 
                     break;
 
@@ -1836,7 +1846,7 @@ namespace OneCannonOneArmy
 
             //giftButton.X = windowWidth / 2 - giftButton.Width / 2;
 
-            achButton.Y = startButton.Y + startButton.Height + BUTTON_SPACING;
+            achButton.Y = playButton.Y + playButton.Height + BUTTON_SPACING;
             shopButton.Y = giftButton.Y = achButton.Y + achButton.Height + BUTTON_SPACING;
             organizeButton.Y = statButton.Y = shopButton.Y + shopButton.Height + BUTTON_SPACING;
             upgradeButton.Y = craftingButton.Y = statButton.Y + statButton.Height + BUTTON_SPACING;

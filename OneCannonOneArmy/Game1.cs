@@ -539,7 +539,7 @@ namespace OneCannonOneArmy
                     LoadImg("gear"), new Action<Material>(MaterialSell), new Action<ProjectileType>(ProjSell),
                     new Action<Badge>(BadgeSell), LoadImg("graphicsicon"), LoadImg("profileicon"),
                     LoadImg("soundicon"), giftCosts, this.BuyGift,
-                    crossImg, LoadImg("subtitleicon"), LoadImg("cannonicon"),
+                    crossImg, LoadImg("subtitleicon"), LoadImg("cannonicon"), LoadImg("scroll"), LoadImg("coinicon"),
 
                     new System.Action(Start), new System.Action(Quit), new System.Action(Resume), new System.Action(MainMenu), new System.Action(GoBack),
                     new CreateUser(CreateUser), new System.Action(CreateNewUserClicked), new System.Action(AttemptToOpenMissions),

@@ -23,9 +23,9 @@ Update To-Do List:
     > Contains a button that shows a quest popup when clicked
     > Button image
   -Quest Popup
-    > Shows quest text
     > Progress Bar with Progress
     > Shows reward coins
+    > Close Button
   -Give player reward when they complete a quest
   -Keep track of stats for quests
 *Finish Updating Intro w/ Labyrinth Quest images
@@ -43,3 +43,4 @@ Update To-Do List:
   -"You will not use a life as you have played for less than 10 seconds."
   -"Quests"
   -"Beat", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
+  -"Reward"
