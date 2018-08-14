@@ -94,6 +94,13 @@ namespace OneCannonOneArmy
 
         public List<GiftType> Gifts = new List<GiftType>();
 
+        public Quest CurrentQuest;
+        public DateTime TimeOfNextQuest;
+        public int QuestProgress;
+        const int HOURS_UNTIL_NEW_QUEST = 24;
+
+        public Version LastPlayedVersion;
+
         #endregion
 
         #region Constructors
@@ -230,18 +237,7 @@ namespace OneCannonOneArmy
                     CurrentMission = 25;
                 }
 
-                //if (Username == "test" && Coins < 10000)
-                //{
-                //    Coins = 10000;
-                //}
-                //if (Username == "test" && CurrentMission < 25)
-                //{
-                //    CurrentMission = 25;
-                //}
-                //if (Username == "test" && ProjectileInventory.Count < 200)
-                //{
-                //    ProjectileInventory.AddRange(Enumerable.Repeat(ProjectileType.OmegaRocket, 200));
-                //}
+                LastPlayedVersion = GameInfo.Version;
 
                 // This puts the last played-as user at the top of the list, so it's easier to access them next time
                 users.Insert(0, this);
@@ -301,7 +297,7 @@ namespace OneCannonOneArmy
                 if (File.Exists(FILE_PATH))
                 {
                     fileStream = new FileStream(FILE_PATH, FileMode.Open, FileAccess.Read);
-                    users = (List<User>)binaryFormatter.Deserialize(fileStream);
+                    users = InitializeStatsForNewVersions((List<User>)binaryFormatter.Deserialize(fileStream));
                 }
             }
             finally
@@ -312,6 +308,24 @@ namespace OneCannonOneArmy
                 }
             }
 
+            return users;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private static List<User> InitializeStatsForNewVersions(List<User> users)
+        {
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].TimeOfNextQuest == null)
+                {
+                    users[i].QuestProgress = 0;
+                    users[i].CurrentQuest = Quest.Random();
+                    users[i].TimeOfNextQuest = DateTime.Now.AddHours(HOURS_UNTIL_NEW_QUEST);
+                }
+            }
             return users;
         }
 

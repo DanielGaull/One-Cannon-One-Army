@@ -15,12 +15,94 @@ namespace OneCannonOneArmy
         public int TypeId;
         public int GoalNumber;
         public int RewardCoins;
+        #region Range Constants
+        const int LEVELCOMPLETE_MIN = 3;
+        const int LEVELCOMPLETE_MAX = 7;
+        const int ALIENKILL_MIN = 10;
+        const int ALIENKILL_MAX = 20;
+        const int PROJFIRE_MIN = 25;
+        const int PROJFIRE_MAX = 100;
+        const int PROJCRAFT_MIN = 25;
+        const int PROJCRAFT_MAX = 50;
+        const int COINSPEND_MIN = 1000;
+        const int COINSPEND_MAX = 10000;
+        const int COINGET_MIN = 1000;
+        const int COINGET_MAX = 5000;
+        const int BUYMATERIAL_MIN = 50;
+        const int BUYMATERIAL_MAX = 100;
+        // This value is used as a factor for some of the number values
+        // For example, we want material buy goals to be divisible by 5
+        const int GOAL_NUM_FACTOR = 5;
+        #endregion
+        #region Reward Constants
+        const float LEVELCOMPLETE_COINS = 50;
+        const float ALIENKILL_COINS = 10;
+        const float PROJFIRE_COINS = 2;
+        const float PROJCRAFT_COINS = 3;
+        const float MATERIALBUY_COINS = 3;
+        const float COINGET_COINS = 0.2f;
+        const float COINSPEND_COINS = 0.1f;
+        #endregion
         public Quest(QuestGoalType goal, int typeId, int goalNum, int rewardCoins)
         {
             GoalType = goal;
             TypeId = typeId;
             GoalNumber = goalNum;
             RewardCoins = rewardCoins;
+        }
+
+        public static Quest Random()
+        {
+            QuestGoalType goalType = Enum.GetValues(typeof(QuestGoalType)).Cast<QuestGoalType>().ToList().Random();
+            int numGoal = 0;
+            int coinReward = 0;
+            int typeId = 0;
+            switch (goalType)
+            {
+                case QuestGoalType.BeatLevels:
+                    numGoal = Utilities.Rand.Next(LEVELCOMPLETE_MIN, LEVELCOMPLETE_MAX + 1);
+                    coinReward = (int)(numGoal * LEVELCOMPLETE_COINS);
+                    break;
+                case QuestGoalType.BuyMaterials:
+                    numGoal = Utilities.Rand.Next(BUYMATERIAL_MIN / GOAL_NUM_FACTOR, 
+                        BUYMATERIAL_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * MATERIALBUY_COINS);
+                    int materials = Enum.GetValues(typeof(Material)).Cast<Material>().Count();
+                    typeId = Utilities.Rand.Next(0, materials);
+                    break;
+                case QuestGoalType.CraftProjectiles:
+                    numGoal = Utilities.Rand.Next(PROJCRAFT_MIN / GOAL_NUM_FACTOR,
+                        PROJCRAFT_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * PROJCRAFT_COINS);
+                    int projectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().Count();
+                    typeId = Utilities.Rand.Next(0, projectiles);
+                    break;
+                case QuestGoalType.FireProjectiles:
+                    numGoal = Utilities.Rand.Next(PROJFIRE_MIN / GOAL_NUM_FACTOR,
+                        PROJFIRE_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * PROJFIRE_COINS);
+                    projectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().Count();
+                    typeId = Utilities.Rand.Next(0, projectiles);
+                    break;
+                case QuestGoalType.KillAliens:
+                    numGoal = Utilities.Rand.Next(ALIENKILL_MIN / GOAL_NUM_FACTOR,
+                        ALIENKILL_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * ALIENKILL_COINS);
+                    int aliens = Enum.GetValues(typeof(Aliens)).Cast<Aliens>().Count();
+                    typeId = Utilities.Rand.Next(0, aliens);
+                    break;
+                case QuestGoalType.ObtainCoins:
+                    numGoal = Utilities.Rand.Next(COINGET_MIN / GOAL_NUM_FACTOR,
+                        COINGET_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * COINGET_COINS);
+                    break;
+                case QuestGoalType.SpendCoins:
+                    numGoal = Utilities.Rand.Next(COINSPEND_MIN / GOAL_NUM_FACTOR,
+                        COINSPEND_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
+                    coinReward = (int)(numGoal * COINSPEND_COINS);
+                    break;
+            }
+            return new Quest(goalType, typeId, numGoal, coinReward);
         }
 
         public override string ToString()
@@ -115,7 +197,7 @@ namespace OneCannonOneArmy
         #region Constructors
 
         public QuestPopup(GraphicsDevice graphics, SpriteFont font, Quest quest, int windowWidth, int windowHeight, 
-            ContentManager content)
+            ContentManager content, User user)
         {
             this.quest = quest;
 
