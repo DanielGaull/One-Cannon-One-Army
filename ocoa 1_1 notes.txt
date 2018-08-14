@@ -41,3 +41,5 @@ Update To-Do List:
   -"Cancel"?
   -"Estimated chance of success"
   -"You will not use a life as you have played for less than 10 seconds."
+  -"Quests"
+  -"Beat", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
