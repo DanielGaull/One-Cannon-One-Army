@@ -6,6 +6,7 @@
 *New Defense upgrade for cannons
 **Works like alien defense, max level is 75
 *New screen that pops up before a level starts - shows hotbar & cannon, level objective, attempts to predict chance of success, and asks for confirmation
+*Gifts now give items in groups, instead of one of each item
 *Changed "Poison" to "Plant Matter"
 *Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
@@ -35,11 +36,9 @@ Update To-Do List:
   -Test quests
   -Remove the "Completed" feature, as player gets a new quest as soon as they completed a previous one
   -Currently allows for Projectiles.None to be in quests
-*Utilities.WorthOf() for the Absorb Hex, which is currently not implemented (needed for the Absorb Hex to be in gifts)
 *Finish Updating Intro w/ Labyrinth Quest images
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
-*Make gifts give items in groups
 *Buy 50 option in shop
 *Craft 10 and craft 50 in crafting interface
 *Crash (Bug 18005):
