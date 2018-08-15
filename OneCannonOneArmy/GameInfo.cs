@@ -156,28 +156,29 @@ namespace OneCannonOneArmy
         public const int ABSORBHEX_SPD = 3;
 
         // Projectile worths
-        public const int ROCK_WORTH = 2;
-        public const int CANNONBALL_WORTH = 3;
-        public const int DART_WORTH = 6;
-        public const int POISONDART_WORTH = 11;
+        public const int ROCK_WORTH = 1;
+        public const int CANNONBALL_WORTH = 2;
+        public const int DART_WORTH = 4;
+        public const int POISONDART_WORTH = 7;
         public const int BOMB_WORTH = 7;
         public const int FIREBALL_WORTH = 8;
-        public const int LIGHTNING_WORTH = 16;
-        public const int CHAOS_WORTH = 14;
-        public const int LASER_WORTH = 35;
+        public const int LIGHTNING_WORTH = 14;
+        public const int CHAOS_WORTH = 12;
+        public const int LASER_WORTH = 20;
         public const int FROZENBLAST_WORTH = 7;
         public const int METEOR_WORTH = 15;
         public const int HAMMER_WORTH = 4;
-        public const int SNOWBALL_WORTH = 6;
+        public const int SNOWBALL_WORTH = 5;
         public const int ROCKET_WORTH = 10;
         public const int POISON_ROCKET_WORTH = 14;
         public const int FIRE_ROCKET_WORTH = 18;
         public const int FROZEN_ROCKET_WORTH = 14;
-        public const int PLASMA_ROCKET_WORTH = 30;
-        public const int OMEGA_ROCKET_WORTH = 40;
-        public const int BONE_WORTH = 5;
-        public const int SHURIKEN_WORTH = 8;
-        public const int ICESHARD_WORTH = 8;
+        public const int PLASMA_ROCKET_WORTH = 25;
+        public const int OMEGA_ROCKET_WORTH = 30;
+        public const int BONE_WORTH = 4;
+        public const int SHURIKEN_WORTH = 6;
+        public const int ICESHARD_WORTH = 6;
+        public const int ABSORBHEX_WORTH = 8;
 
         // Projectile costs (depricated)
         //public const int ROCK_COST = 2;
@@ -1871,6 +1872,8 @@ namespace OneCannonOneArmy
                     return GameInfo.SHURIKEN_WORTH;
                 case ProjectileType.IceShard:
                     return GameInfo.ICESHARD_WORTH;
+                case ProjectileType.AbsorbHex:
+                    return GameInfo.ABSORBHEX_WORTH;
             }
             return -1;
         }

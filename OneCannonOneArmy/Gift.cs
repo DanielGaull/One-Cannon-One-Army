@@ -82,7 +82,8 @@ namespace OneCannonOneArmy
 
         public static int CoinsForType(GiftType type)
         {
-            return Utilities.Rand.Next(GameInfo.COIN_GIFT_MULTIPLIER_MIN * ((int)type + 1), GameInfo.COIN_GIFT_MULTIPLIER_MAX * ((int)type + 1));
+            return Utilities.Rand.Next(GameInfo.COIN_GIFT_MULTIPLIER_MIN * ((int)type + 1), 
+                GameInfo.COIN_GIFT_MULTIPLIER_MAX * ((int)type + 1));
         }
         public static List<ProjectileType> ProjectilesForType(GiftType type)
         {
@@ -93,28 +94,39 @@ namespace OneCannonOneArmy
             List<ProjectileType> projectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().ToList();
             projectiles.Shuffle();
 
-            int initPercentChance = InitPercentChanceFor(type);
-
-            for (int i = 0; i < projectiles.Count && returnVal.Count < (int)type + 15; i++)
+            int groups = ProjGroupsFor(type);
+            int valuePerGroup = GiftWorthFor(type) / groups;
+            for (int i = 0; i < groups && i < projectiles.Count; i++)
             {
-                int worth = Utilities.WorthOf(projectiles[i]);
-                if (worth > 0) // Prevent unimplemented projectiles from being added (or ProjectileType.None)
+                int projWorth = Utilities.WorthOf(projectiles[i]);
+                if (projWorth * 2 < valuePerGroup && projWorth > 0)
                 {
-                    int percentChance = initPercentChance - worth * 2;
-                    while (percentChance >= 100)
-                    {
-                        returnVal.Add(projectiles[i]);
-                        percentChance -= Utilities.Rand.Next(10, 15);
-                    }
-                    if (Utilities.Rand.Next(100) + 1 <= percentChance && 
-                        percentChance < 100)
-                    {
-                        returnVal.Add(projectiles[i]);
-                    }
+                    int projs = valuePerGroup / projWorth;
+                    returnVal.AddRange(Enumerable.Repeat(projectiles[i], projs));
                 }
             }
 
             return returnVal;
+
+            // Old code for gifts (pre-1.1)
+            //for (int i = 0; i < projectiles.Count && returnVal.Count < (int)type + 15; i++)
+            //{
+            //    int worth = Utilities.WorthOf(projectiles[i]);
+            //    if (worth > 0) // Prevent unimplemented projectiles from being added (or ProjectileType.None)
+            //    {
+            //        int percentChance = initPercentChance - worth * 2;
+            //        while (percentChance >= 100)
+            //        {
+            //            returnVal.Add(projectiles[i]);
+            //            percentChance -= Utilities.Rand.Next(10, 15);
+            //        }
+            //        if (Utilities.Rand.Next(100) + 1 <= percentChance && 
+            //            percentChance < 100)
+            //        {
+            //            returnVal.Add(projectiles[i]);
+            //        }
+            //    }
+            //}
         }
         public static List<Material> MaterialsForType(GiftType type)
         {
@@ -125,25 +137,38 @@ namespace OneCannonOneArmy
             List<Material> materials = Enum.GetValues(typeof(Material)).Cast<Material>().ToList();
             materials.Shuffle();
 
-            int initPercentChance = InitPercentChanceFor(type);
-
-            for (int i = 0; i < materials.Count && returnVal.Count < (int)type + 15; i++)
+            int groups = MaterialGroupsFor(type);
+            int valuePerGroup = GiftWorthFor(type) / groups;
+            for (int i = 0; i < groups && i < materials.Count; i++)
             {
-                int worth = GameInfo.CostOf(materials[i]);
-                int percentChance = initPercentChance - worth * 2;
-                while (percentChance >= 100)
+                int materialWorth = GameInfo.CostOf(materials[i]);
+                if (materialWorth * 2 < valuePerGroup)
                 {
-                    returnVal.Add(materials[i]);
-                    percentChance -= Utilities.Rand.Next(10, 15);
-                }
-                if (Utilities.Rand.Next(100) + 1 <= percentChance &&
-                    percentChance < 100)
-                {
-                    returnVal.Add(materials[i]);
+                    int counts = valuePerGroup / materialWorth;
+                    returnVal.AddRange(Enumerable.Repeat(materials[i], counts));
                 }
             }
 
             return returnVal;
+
+            // Old gift code (from pre-1.1)
+            //int giftWorth = GiftWorthFor(type);
+
+            //for (int i = 0; i < materials.Count && returnVal.Count < (int)type + 15; i++)
+            //{
+            //    int worth = GameInfo.CostOf(materials[i]);
+            //    int percentChance = giftWorth - worth;
+            //    while (percentChance >= 100)
+            //    {
+            //        returnVal.Add(materials[i]);
+            //        percentChance -= Utilities.Rand.Next(10, 15);
+            //    }
+            //    if (Utilities.Rand.Next(100) + 1 <= percentChance &&
+            //        percentChance < 100)
+            //    {
+            //        returnVal.Add(materials[i]);
+            //    }
+            //}
         }
 
         public static int MaxCoinsForType(GiftType type)
@@ -151,9 +176,17 @@ namespace OneCannonOneArmy
             return GameInfo.COIN_GIFT_MULTIPLIER_MAX * ((int)type + 1);
         }
 
-        private static int InitPercentChanceFor(GiftType type)
+        private static int GiftWorthFor(GiftType type)
         {
-            return (int)Math.Pow((int)type, 2) + 25;
+            return (int)Math.Pow((int)type, 3) + 25;
+        }
+        private static int MaterialGroupsFor(GiftType type)
+        {
+            return (int)type + 1;
+        }
+        private static int ProjGroupsFor(GiftType type)
+        {
+            return (int)Math.Ceiling(((int)type + 1) / 2.0f);
         }
     }
 

@@ -10,7 +10,20 @@
 *Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
-*Bug fixes & other small changes
+*Decreased worth of certain projectiles (applies to gifts)
+  -Rock
+  -Cannonball
+  -Dart
+  -Poison Dart
+  -Lightning Bolt
+  -Hex
+  -Laser
+  -Plasma Rocket
+  -Omega Rocket
+  -Bone
+  -Shuriken
+  -Ice Shard
+*Bug fixes
   -Bug 18001: Crafting Interface isn't added for new projectiles
   -Bug 18002: Mission completion text for level 3 isn't displayed properly
   -Bug 18003: Empty pages added to the gift menu
@@ -18,17 +31,27 @@
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
-*Add Quests
+*Quests
   -Test quests
   -Remove the "Completed" feature, as player gets a new quest as soon as they completed a previous one
+  -Currently allows for Projectiles.None to be in quests
+*Utilities.WorthOf() for the Absorb Hex, which is currently not implemented (needed for the Absorb Hex to be in gifts)
 *Finish Updating Intro w/ Labyrinth Quest images
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
 *Make gifts give items in groups
 *Buy 50 option in shop
 *Craft 10 and craft 50 in crafting interface
-*Make sliders continue sliding as long as mouse is down
-  -Use a static "slidingAny" variable to check for this though
+*Crash (Bug 18005):
+  -Opened existing user, went back, created new user, set the projectile icon to lightning bolt, set color to R:0 G:0 B:175, with username "i"
+  -Followed the previous steps without the error - some other thing that was unable to recreate?
+  -Index Out of Range Exception
+  -Only happens with first creation of the user in a session
+*Bug 18006:
+  -"Muted" feature resets every couple of times the program is run
+*Bug 18007:
+  -Open gifts page, open all gifts on the last page. Throws an exception, when it should flip you to the previous page
+  -MIGHT happen with users as well
 *Translations:
   -"Proceed"
   -"Cancel"?
