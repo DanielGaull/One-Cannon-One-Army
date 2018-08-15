@@ -33,9 +33,38 @@ namespace OneCannonOneArmy
 
         Color drawColor = Color.DarkGray;
         SpriteFont font;
+        public SpriteFont Font
+        {
+            get
+            {
+                return font;
+            }
+        }
 
         string text;
         Vector2 textPos;
+        public int TextX
+        {
+            get
+            {
+                return (int)textPos.X;
+            }
+            set
+            {
+                textPos.X = value;
+            }
+        }
+        public int TextY
+        {
+            get
+            {
+                return (int)textPos.Y;
+            }
+            set
+            {
+                textPos.Y = value;
+            }
+        }
 
         System.Action onButtonClick;
         Action<MenuButton> clickWThis;
@@ -355,8 +384,7 @@ namespace OneCannonOneArmy
             switch (ButtonType)
             {
                 case ButtonType.Text:
-                    spriteBatch.DrawString(font, text, new Vector2(DrawRectangle.X + TEXT_SPACING_WIDTH, 
-                        DrawRectangle.Y + TEXT_SPACING_HEIGHT), contentColor);
+                    spriteBatch.DrawString(font, text, textPos, contentColor);
                     break;
                 case ButtonType.Image:
                     buttonRectangle.X = DrawRectangle.X + TEXT_SPACING_WIDTH;
@@ -385,8 +413,7 @@ namespace OneCannonOneArmy
             switch (ButtonType)
             {
                 case ButtonType.Text:
-                    spriteBatch.DrawString(font, text, new Vector2(DrawRectangle.X + TEXT_SPACING_WIDTH,
-                        DrawRectangle.Y + TEXT_SPACING_HEIGHT), color);
+                    spriteBatch.DrawString(font, text, textPos, color);
                     break;
                 case ButtonType.Image:
                     buttonRectangle.X = DrawRectangle.X + TEXT_SPACING_WIDTH;

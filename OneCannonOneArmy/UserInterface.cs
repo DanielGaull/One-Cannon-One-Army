@@ -62,8 +62,8 @@ namespace OneCannonOneArmy
                 alienRect.X = bgRect.X + SPACING;
                 alienEyeRect.X = alienRect.X + (alienRect.Width / 2 - (alienEyeRect.Width / 2));
                 delButton.X = bgRect.Right - delButton.Width - SPACING;
-                nameButton.X = bgRect.Right - delButton.Width - nameButton.Width - SPACING;
                 projRect.X = alienRect.Right - PROJECTILE_SIZE;
+                PositionUsernameButton();
                 PositionLives();
             }
         }
@@ -79,8 +79,8 @@ namespace OneCannonOneArmy
                 alienRect.Y = bgRect.Y + (bgRect.Height / 2 - (ALIEN_HEIGHT / 2));
                 alienEyeRect.Y = alienRect.Y + (EYE_SPACING * 4);
                 delButton.Y = bgRect.Y + (bgRect.Height / 2 - (delButton.Height / 2));
-                nameButton.Y = bgRect.Y + (bgRect.Height / 2 - (nameButton.Height / 2));
                 projRect.Y = alienRect.Bottom - PROJECTILE_SIZE / 2;
+                PositionUsernameButton();
                 PositionLives();
             }
         }
@@ -145,8 +145,7 @@ namespace OneCannonOneArmy
 
             nameButton = new MenuButton(OnUsernameClick, user.Username, 0, 
                 0, false, font, null);
-            nameButton.X = bgRect.Right - delButton.Width - nameButton.Width - SPACING;
-            nameButton.Y = bgRect.Y + (bgRect.Height / 2 - (nameButton.Height / 2));
+            PositionUsernameButton();
 
             this.lifeImg = lifeImg;
             int lifeX = alienRect.Right + SPACING;
@@ -199,7 +198,12 @@ namespace OneCannonOneArmy
         public void UpdateInfo(User user)
         {
             nameButton.Text = user.Username;
-            nameButton.X = bgRect.Right - delButton.Width - nameButton.Width - SPACING;
+            nameButton.X = bgRect.X;
+            nameButton.Y = bgRect.Y;
+            nameButton.Width = bgRect.Width - delButton.Width - SPACING;
+            nameButton.Height = bgRect.Height;
+            nameButton.TextX = bgRect.Right - delButton.Width - nameButton.Width - SPACING;
+            nameButton.TextY = bgRect.Y + (bgRect.Height / 2 - (nameButton.Height / 2));
 
             alienColor = new Color(user.AvatarR, user.AvatarG, user.AvatarB, 255);
 
@@ -242,6 +246,15 @@ namespace OneCannonOneArmy
             delClick?.Invoke(User);
         }
 
+        private void PositionUsernameButton()
+        {
+            nameButton.X = bgRect.X;
+            nameButton.Y = bgRect.Y;
+            nameButton.Width = bgRect.Width - delButton.Width - SPACING;
+            nameButton.Height = bgRect.Height;
+            nameButton.TextX = (int)(bgRect.Right - delButton.Width - nameButton.Font.MeasureString(nameButton.Text).X - SPACING);
+            nameButton.TextY = (int)(bgRect.Y + (bgRect.Height / 2 - (nameButton.Font.MeasureString(nameButton.Text).Y / 2)));
+        }
         private void PositionLives()
         {
             int lifeX = alienRect.Right + SPACING;

@@ -75,9 +75,8 @@ namespace OneCannonOneArmy
                     numGoal = Utilities.Rand.Next(PROJCRAFT_MIN / GOAL_NUM_FACTOR,
                         PROJCRAFT_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * PROJCRAFT_COINS);
-                    List<ProjectileType> allProjectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().ToList();
-                    ProjectileType type = allProjectiles.Where(x => user.ProjectileInventory.Contains(x) &&
-                        GameInfo.CanSee(user, x)).ToList().Random();
+                    List<ProjectileType> allProjectiles = GameInfo.ProjectilesAllowed;
+                    ProjectileType type = allProjectiles.Where(x => GameInfo.CanSee(user, x)).ToList().Random();
                     typeId = Utilities.Rand.Next(0, allProjectiles.IndexOf(type));
                     break;
                 case QuestGoalType.FireProjectiles:
