@@ -1971,7 +1971,7 @@ namespace OneCannonOneArmy
                 player.Coins += player.CurrentQuest.RewardCoins;
                 player.CoinsCollected += player.CurrentQuest.RewardCoins;
                 player.QuestProgress = 0;
-                player.CurrentQuest = Quest.Random();
+                player.CurrentQuest = Quest.Random(player);
             }
         }
 
@@ -2086,6 +2086,11 @@ namespace OneCannonOneArmy
                 }
 
                 menu.WhenMissionCompleted(id);
+
+                if (player.CurrentQuest.GoalType == QuestGoalType.BeatLevels)
+                {
+                    IncreaseQuestProgress(1);
+                }
             }
             else
             {

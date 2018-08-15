@@ -113,7 +113,7 @@ namespace OneCannonOneArmy
             Id = GetNextId();
 
             QuestProgress = 0;
-            CurrentQuest = Quest.Random();
+            CurrentQuest = Quest.Random(this);
 
             Hotbar.AddRange(Enumerable.Repeat(ProjectileType.None, 5));
 
@@ -323,7 +323,7 @@ namespace OneCannonOneArmy
                 if (users[i].LastPlayedVersion < new Version(1, 1))
                 {
                     users[i].QuestProgress = 0;
-                    users[i].CurrentQuest = Quest.Random();
+                    users[i].CurrentQuest = Quest.Random(users[i]);
                 }
             }
             return users;

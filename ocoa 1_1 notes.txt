@@ -19,10 +19,8 @@
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Add Quests
-  -Update stats for quests
-  -Make sure quests are obtainable
-    > For proj-fire and proj-craft quests, make it be projectiles the player has in their inventory AND that they have unlocked
-    > For aliens, make it aliens that are unlocked, and don't specify "L Defense Aliens", just do all Defense Aliens
+  -Test quests
+  -Remove the "Completed" feature, as player gets a new quest as soon as they completed a previous one
 *Finish Updating Intro w/ Labyrinth Quest images
 *Add the "Format to width" method
 *Allow user to click anywhere on their profile box (except the trash can) to login
@@ -37,7 +35,7 @@ Update To-Do List:
   -"Estimated chance of success"
   -"You will not use a life as you have played for less than 10 seconds."
   -"Quests"
-  -"Beat", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
+  -"Complete", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
   -"Reward"
   -"Aliens"
   -"You have completed your quest!"

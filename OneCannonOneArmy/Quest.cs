@@ -52,7 +52,7 @@ namespace OneCannonOneArmy
             RewardCoins = rewardCoins;
         }
 
-        public static Quest Random()
+        public static Quest Random(User user)
         {
             QuestGoalType goalType = Enum.GetValues(typeof(QuestGoalType)).Cast<QuestGoalType>().ToList().Random();
             int numGoal = 0;
@@ -75,22 +75,26 @@ namespace OneCannonOneArmy
                     numGoal = Utilities.Rand.Next(PROJCRAFT_MIN / GOAL_NUM_FACTOR,
                         PROJCRAFT_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * PROJCRAFT_COINS);
-                    int projectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().Count();
-                    typeId = Utilities.Rand.Next(0, projectiles);
+                    List<ProjectileType> allProjectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().ToList();
+                    ProjectileType type = allProjectiles.Where(x => user.ProjectileInventory.Contains(x) &&
+                        GameInfo.CanSee(user, x)).ToList().Random();
+                    typeId = Utilities.Rand.Next(0, allProjectiles.IndexOf(type));
                     break;
                 case QuestGoalType.FireProjectiles:
                     numGoal = Utilities.Rand.Next(PROJFIRE_MIN / GOAL_NUM_FACTOR,
                         PROJFIRE_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * PROJFIRE_COINS);
-                    projectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().Count();
-                    typeId = Utilities.Rand.Next(0, projectiles);
+                    allProjectiles = Enum.GetValues(typeof(ProjectileType)).Cast<ProjectileType>().ToList();
+                    type = allProjectiles.Where(x => GameInfo.CanSee(user, x)).ToList().Random();
+                    typeId = Utilities.Rand.Next(0, allProjectiles.IndexOf(type));
                     break;
                 case QuestGoalType.KillAliens:
                     numGoal = Utilities.Rand.Next(ALIENKILL_MIN / GOAL_NUM_FACTOR,
                         ALIENKILL_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * ALIENKILL_COINS);
-                    int aliens = Enum.GetValues(typeof(BasicAlienTypes)).Cast<BasicAlienTypes>().Count();
-                    typeId = Utilities.Rand.Next(0, aliens);
+                    List<BasicAlienTypes> allAliens = Enum.GetValues(typeof(BasicAlienTypes)).Cast<BasicAlienTypes>().ToList();
+
+                    typeId = Utilities.Rand.Next(0, allAliens.IndexOf(BasicAlienTypes.Boss));
                     break;
                 case QuestGoalType.ObtainCoins:
                     numGoal = Utilities.Rand.Next(COINGET_MIN / GOAL_NUM_FACTOR,
@@ -111,7 +115,7 @@ namespace OneCannonOneArmy
             switch (GoalType)
             {
                 case QuestGoalType.BeatLevels:
-                    return Language.Translate("Beat") + " " + GoalNumber + " " + Language.Translate("levels") + ".";
+                    return Language.Translate("Complete") + " " + GoalNumber + " " + Language.Translate("levels") + ".";
                 case QuestGoalType.BuyMaterials:
                     return Language.Translate("Buy") + " " + GoalNumber + " " + 
                         Language.Translate(((Material)TypeId).ToString()) + ".";

@@ -846,6 +846,14 @@ namespace OneCannonOneArmy
             }
             return false;
         }
+        public static bool CanSee(User user, BasicAlienTypes alienType)
+        {
+            List<KeyValuePair<BasicAlienTypes, int>> visibilityLvls = AlienVisibilityLvls
+                .Select(x => new KeyValuePair<BasicAlienTypes, int>(x.Value.GetBasicType(), x.Key))
+                .ToList();
+            int level = visibilityLvls.First(x => x.Key == alienType).Value;
+            return (user.CurrentMission > level);
+        }
 
         public static List<ProjectileType> ProjListToTypes(List<Projectile> projectiles)
         {
