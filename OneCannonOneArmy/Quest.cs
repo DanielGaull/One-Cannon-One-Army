@@ -194,7 +194,7 @@ namespace OneCannonOneArmy
             }
         }
         public QuestInterface(GraphicsDevice graphics, Texture2D questImg, int x, int y, SpriteFont font, User user, 
-            int windowWidth, int windowHeight, Texture2D checkImg, Texture2D coinImg)
+            int windowWidth, int windowHeight, Texture2D coinImg)
         {
             this.font = font;
             this.user = user;
@@ -206,7 +206,7 @@ namespace OneCannonOneArmy
                 font.MeasureString(labelText).Y / 2);
 
             popup = new QuestPopup(graphics, font, windowWidth, windowHeight, user,
-                checkImg, coinImg);
+                coinImg);
         }
         public void Update(User user, GameTime gameTime)
         {
@@ -276,11 +276,6 @@ namespace OneCannonOneArmy
         const int SPACING = 10;
         const int BIG_SPACING = 50;
 
-        Texture2D checkImg;
-        Rectangle checkRect;
-        bool completed;
-        const int CHECK_SIZE = 50;
-
         Texture2D coinIcon;
         Rectangle coinRect;
         string rewardString;
@@ -296,7 +291,7 @@ namespace OneCannonOneArmy
         #region Constructors
 
         public QuestPopup(GraphicsDevice graphics, SpriteFont font, int windowWidth, int windowHeight, 
-            User user, Texture2D checkImg, Texture2D coinIcon)
+            User user, Texture2D coinIcon)
         {
             this.font = font;
 
@@ -309,11 +304,6 @@ namespace OneCannonOneArmy
                 (int)(questTextLoc.Y + font.MeasureString(questText).Y + BIG_SPACING), PROGRESSBAR_WIDTH, PROGRESSBAR_HEIGHT,
                 quest.GoalNumber, font);
             progressBar.ShowFraction = true;
-
-            this.checkImg = checkImg;
-            checkRect = new Rectangle(bgRect.X + BORDER_SIZE + SPACING, bgRect.Y + bgRect.Height / 2 - CHECK_SIZE / 2,
-                CHECK_SIZE, CHECK_SIZE);
-            completed = false;
 
             this.coinIcon = coinIcon;
             rewardString = Language.Translate("Reward") + ": " + 0;
@@ -344,10 +334,6 @@ namespace OneCannonOneArmy
             spriteBatch.Draw(bgImg, bgRect, Color.White);
             spriteBatch.DrawString(font, questText, questTextLoc, Color.White);
             progressBar.Draw(spriteBatch, Color.Lime, Color.White);
-            if (completed)
-            {
-                spriteBatch.Draw(checkImg, checkRect, Color.White);
-            }
             closeButton.Draw(spriteBatch);
             spriteBatch.Draw(coinIcon, coinRect, Color.White);
             spriteBatch.DrawString(font, rewardString, rewardLoc, Color.Goldenrod);
@@ -385,7 +371,6 @@ namespace OneCannonOneArmy
         private void Initialize(User user)
         {
             quest = user.CurrentQuest;
-            completed = user.QuestProgress >= quest.GoalNumber;
 
             rewardString = Language.Translate("Reward") + ": " + quest.RewardCoins.ToString();
             coinRect = new Rectangle((int)(bgRect.X + bgRect.Width / 2 - (font.MeasureString(rewardString).X + COIN_SIZE) / 2),

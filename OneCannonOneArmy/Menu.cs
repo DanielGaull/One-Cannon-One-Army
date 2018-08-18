@@ -493,7 +493,7 @@ namespace OneCannonOneArmy
                 avatarBSlider.Y + avatarBSlider.Height + SPACING, PROJECTILE_SIZE, PROJECTILE_SIZE);
 
             questInterface = new QuestInterface(graphics, scrollIcon, 0, logoRect.Bottom + BUTTON_SPACING,
-                mediumFont, user, windowWidth, windowHeight, checkImg, coinIcon);
+                mediumFont, user, windowWidth, windowHeight, coinIcon);
             questInterface.X = windowWidth / 2 - questInterface.Width / 2;
 
             playButton = new MenuButton(play, Language.Translate("Play"), 0, questInterface.Y + questInterface.Height + BUTTON_SPACING,
