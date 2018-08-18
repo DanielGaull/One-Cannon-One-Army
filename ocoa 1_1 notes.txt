@@ -11,7 +11,7 @@
 *Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
-*Decreased worth of certain projectiles (applies to gifts)
+*Decreased worth of certain projectiles (makes these projectiles more likely to appear in gifts)
   -Rock
   -Cannonball
   -Dart
@@ -24,11 +24,12 @@
   -Bone
   -Shuriken
   -Ice Shard
-*Bug fixes
-  -Bug 18001: Crafting Interface isn't added for new projectiles
-  -Bug 18002: Mission completion text for level 3 isn't displayed properly
-  -Bug 18003: Empty pages added to the gift menu
-  -Bug 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
+*Issues
+  -Issue 18001: Crafting Interface isn't added for new projectiles
+  -Issue 18002: Mission completion text for level 3 isn't displayed properly
+  -Issue 18003: Empty pages added to the gift menu
+  -Issue 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
+  -Issue 18005: Open the last gift of a page causes a crash
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
@@ -36,15 +37,12 @@ Update To-Do List:
   -Test quests
   -Remove the "Completed" feature, as player gets a new quest as soon as they completed a previous one
 *Finish Updating Intro w/ Labyrinth Quest images
+*Intro - new Logo and the transparent image don't line up properly
 *Add the "Format to width" method
-*Allow user to click anywhere on their profile box (except the trash can) to login
 *Buy 50 option in shop
 *Craft 10 and craft 50 in crafting interface
-*Bug 18005:
-  -"Muted" feature resets every couple of times the program is run
-*Bug 18006:
-  -Open gifts page, open all gifts on the last page. Throws an exception, when it should flip you to the previous page
-  -MIGHT happen with users as well
+*Don't let user start with a ton of coins if their name is "i"
+*Make the lang select popup show
 *Translations:
   -"Proceed"
   -"Cancel"?

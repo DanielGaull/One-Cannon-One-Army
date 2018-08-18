@@ -303,7 +303,7 @@ namespace OneCannonOneArmy
                     slidingOver = false;
                     page = transitionPage;
                 }
-
+                
                 if (page <= pages.Count - 1)
                 {
                     if (slidingOver)
@@ -453,6 +453,10 @@ namespace OneCannonOneArmy
                 }
             }
             UpdatePagesToInterfaces();
+            if (page >= pages.Count)
+            {
+                page = pages.Count - 1;
+            }
         }
 
         private void AddItem(GiftInterface interfaceToAdd)

@@ -76,7 +76,7 @@ namespace OneCannonOneArmy
         List<List<UserInterface>> userPages = new List<List<UserInterface>>();
         List<UserInterface> userInterfaces = new List<UserInterface>();
         const int USER_INTERFACES_PER_PAGE = 4;
-
+        
         Action<User> usernameClicked;
         Action<User> delClicked;
 
@@ -658,6 +658,10 @@ namespace OneCannonOneArmy
                         if (userPages[i].Count == 0)
                         {
                             userPages.RemoveAt(i);
+                            if (userPage >= userPages.Count)
+                            {
+                                userPage = userPages.Count - 1;
+                            }
                         }
                     }
 
