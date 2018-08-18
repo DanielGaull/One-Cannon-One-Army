@@ -294,7 +294,7 @@ namespace OneCannonOneArmy
             UpdatePagesToDisplays();
         }
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
             bool changed = false;
             for (int i = 0; i < user.AchievementsCompleted.Count; i++)
@@ -384,8 +384,8 @@ namespace OneCannonOneArmy
                 slideOffset += slideSpd;
             }
 
-            nextButton.Update();
-            prevButton.Update();
+            nextButton.Update(gameTime);
+            prevButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

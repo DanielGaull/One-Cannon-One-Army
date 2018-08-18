@@ -710,7 +710,7 @@ namespace OneCannonOneArmy
 
             if (!intro.Playing && !tutorial.Playing && !langSelectPopup.Active && IsActive)
             {
-                Popup.Update();
+                Popup.Update(gameTime);
                 Notification.Update(gameTime);
 
                 try
@@ -775,7 +775,7 @@ namespace OneCannonOneArmy
                     }
                     else if (preLvlPopup != null)
                     {
-                        preLvlPopup.Update();
+                        preLvlPopup.Update(gameTime);
                     }
 
                     if (gameState == GameState.Playing || gameState == GameState.Paused)
@@ -793,12 +793,12 @@ namespace OneCannonOneArmy
                     }
                     if (ctrlW.Active)
                     {
-                        ctrlW.Update();
+                        ctrlW.Update(gameTime);
                     }
 
                     if (lvlComplete.Active)
                     {
-                        lvlComplete.Update();
+                        lvlComplete.Update(gameTime);
                     }
 
                     if (gameState == GameState.Paused || Popup.HasActivePopups || ctrlW.Active)
@@ -816,7 +816,7 @@ namespace OneCannonOneArmy
             }
             else if (langSelectPopup.Active && IsActive)
             {
-                langSelectPopup.Update();
+                langSelectPopup.Update(gameTime);
                 UpdateMouse();
             }
             else if (tutorial.Playing && IsActive)

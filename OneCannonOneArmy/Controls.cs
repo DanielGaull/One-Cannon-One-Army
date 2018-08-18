@@ -341,7 +341,7 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             //keyboard = Keyboard.GetState();
             //if (isWaitingForKey)
@@ -361,7 +361,7 @@ namespace OneCannonOneArmy
 
             for (int i = 0; i < interfaces.Count; i++)
             {
-                interfaces[i].Update();
+                interfaces[i].Update(gameTime);
             }
         }
 
@@ -593,9 +593,9 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            selectButton.Update();
+            selectButton.Update(gameTime);
 
             keyboard = Keyboard.GetState();
             if (Selected)

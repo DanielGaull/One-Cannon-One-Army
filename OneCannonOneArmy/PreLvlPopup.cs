@@ -76,10 +76,10 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            proceedButton.Update();
-            cancelButton.Update();
+            proceedButton.Update(gameTime);
+            cancelButton.Update(gameTime);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -588,13 +588,13 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(CannonSettings settings, User user)
+        public void Update(CannonSettings settings, User user, GameTime gameTime)
         {
             bool atMax = user.CannonSettings.GetValueOfStat(stat) == GameInfo.MaxStats[stat];
             upgradeButton.Active = (user.Coins >= cost) && !atMax;
             upgradeButton.Text = atMax ? Language.Translate("Max Level") : 
                 Language.Translate("Upgrade") + " " + valueString;
-            upgradeButton.Update();
+            upgradeButton.Update(gameTime);
             currentValue = settings.GetValueOfStat(stat);
 
             cost = GameInfo.GetCostOfStat(stat, settings.GetValueOfStat(stat));
@@ -718,7 +718,7 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(CannonSettings settings, User user)
+        public void Update(CannonSettings settings, User user, GameTime gameTime)
         {
             if (slideOffset + X_OFFSET >= windowWidth || slideOffset + (X_OFFSET * -1) <= windowWidth * -1)
             {
@@ -740,10 +740,10 @@ namespace OneCannonOneArmy
                     {
                         offset = ((interfaces[0].Width + SPACING) * 5 + X_OFFSET) * -1;
                     }
-                    UpdatePositions(transitionPage, offset, settings, user);
+                    UpdatePositions(transitionPage, offset, settings, user, gameTime);
                 }
 
-                UpdatePositions(page, 0, settings, user);
+                UpdatePositions(page, 0, settings, user, gameTime);
             }
 
             for (int i = 0; i <= pages.Count - 1; i++)
@@ -847,7 +847,8 @@ namespace OneCannonOneArmy
 
         #region Private Methods
 
-        private void UpdatePositions(int page, int xOffset, CannonSettings settings, User user)
+        private void UpdatePositions(int page, int xOffset, CannonSettings settings, User user, 
+            GameTime gameTime)
         {
             int row = 0;
             int lastX = X_OFFSET;
@@ -870,7 +871,7 @@ namespace OneCannonOneArmy
                 cu.Y = lastY;
                 interfacesInCurrentRow++;
 
-                cu.Update(settings, user);
+                cu.Update(settings, user, gameTime);
             }
 
             lastX = X_OFFSET + slideOffset;

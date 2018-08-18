@@ -142,17 +142,17 @@ namespace OneCannonOneArmy
                 cannonInterfaces[i].LangChanged();
             }
             UpdateCannonPositions();
-            UpdateMaterialPositions(0, null, 0, false);
+            UpdateMaterialPositions(0, null, 0, false, null);
             UpdateGiftPositions();
         }
 
-        public void Update(User user, bool? onlyBuyStone)
+        public void Update(User user, bool? onlyBuyStone, GameTime gameTime)
         {
             // If onlyBuyStone == null, don't update anything
             if (onlyBuyStone == true)
             {
                 ShopMaterialInterface s = materialInterfaces.Find(x => x.Item == Material.Stone);
-                s.Update(user, true);
+                s.Update(user, true, gameTime);
                 List<ShopMaterialInterface> woutStone = materialInterfaces.Except(new List<ShopMaterialInterface> { s }).ToList();
                 for (int i = 0; i < woutStone.Count; i++)
                 {
@@ -161,9 +161,9 @@ namespace OneCannonOneArmy
             }
             else if (onlyBuyStone == false)
             {
-                materialButton.Update();
-                cannonButton.Update();
-                giftsButton.Update();
+                materialButton.Update(gameTime);
+                cannonButton.Update(gameTime);
+                giftsButton.Update(gameTime);
 
                 switch (state)
                 {
@@ -190,10 +190,10 @@ namespace OneCannonOneArmy
                                 {
                                     offset = ((materialInterfaces[0].Width + SPACING) * 5 + X_OFFSET) * -1;
                                 }
-                                UpdateMaterialPositions(transitionPage, user, offset, true);
+                                UpdateMaterialPositions(transitionPage, user, offset, true, gameTime);
                             }
 
-                            UpdateMaterialPositions(page, user, 0, true);
+                            UpdateMaterialPositions(page, user, 0, true, gameTime);
                         }
 
                         bool mActive = false;
@@ -261,7 +261,7 @@ namespace OneCannonOneArmy
                         #region Cannons
                         for (int i = 0; i < cannonInterfaces.Count; i++)
                         {
-                            cannonInterfaces[i].Update(user);
+                            cannonInterfaces[i].Update(user, gameTime);
                         }
 
                         bool cActive = false;
@@ -291,7 +291,7 @@ namespace OneCannonOneArmy
                         #region Gifts
                         for (int i = 0; i < giftInterfaces.Count; i++)
                         {
-                            giftInterfaces[i].Update(user);
+                            giftInterfaces[i].Update(user, gameTime);
                         }
                         break;
                         #endregion
@@ -483,7 +483,7 @@ namespace OneCannonOneArmy
             }
         }
 
-        private void UpdateMaterialPositions(int page, User user, int xOffset, bool update)
+        private void UpdateMaterialPositions(int page, User user, int xOffset, bool update, GameTime gameTime)
         {
             int row = 0;
             int lastX = X_OFFSET;
@@ -509,7 +509,7 @@ namespace OneCannonOneArmy
                 //si.Visible = GameInfo.CanSee(user, si.Item.ProjType);
                 if (update)
                 {
-                    si.Update(user);
+                    si.Update(user, gameTime);
                 }
             }
 
@@ -590,6 +590,7 @@ namespace OneCannonOneArmy
 
         MenuButton buyOnceButton;
         MenuButton buyTenButton;
+        MenuButton buyFiftyButton;
 
         public int Cost;
 
@@ -618,6 +619,7 @@ namespace OneCannonOneArmy
                 itemRect.X = bgRect.X + (bgRect.Width / 2 - (itemRect.Width / 2));
                 buyOnceButton.X = bgRect.X + (bgRect.Width / 2 - (buyOnceButton.Width / 2));
                 buyTenButton.X = bgRect.X + (bgRect.Width / 2 - (buyTenButton.Width / 2));
+                buyFiftyButton.X = bgRect.X + (bgRect.Width / 2 - (buyFiftyButton.Width / 2));
             }
         }
         public int Y
@@ -631,7 +633,8 @@ namespace OneCannonOneArmy
                 bgRect.Y = value;
                 namePos.Y = bgRect.Y + SPACING;
                 itemRect.Y = (int)(namePos.Y + SPACING + font.MeasureString("A").Y);
-                buyTenButton.Y = bgRect.Bottom - buyOnceButton.Height - EDGE_SPACING;
+                buyFiftyButton.Y = bgRect.Bottom - buyFiftyButton.Height - EDGE_SPACING;
+                buyTenButton.Y = buyFiftyButton.Y - buyTenButton.Height - SPACING;
                 buyOnceButton.Y = buyTenButton.Y - buyOnceButton.Height - SPACING;
             }
         }
@@ -686,10 +689,14 @@ namespace OneCannonOneArmy
                 0, true, font, graphics);
             buyOnceButton.X = x + (width / 2 - (buyOnceButton.Width / 2));
 
-            buyTenButton = new MenuButton(BuyTen, Language.Translate("Buy") + "10 (" + (cost * 10).ToString() + "c)", 0,
-                bgRect.Bottom - buyOnceButton.Height - EDGE_SPACING, true, font, graphics);
+            buyTenButton = new MenuButton(() => Buy(10), Language.Translate("Buy") + " 10 (" + (cost * 10).ToString() + "c)", 0,
+                0, true, font, graphics);
             buyTenButton.X = x + (width / 2 - (buyTenButton.Width / 2));
 
+            buyFiftyButton = new MenuButton(() => Buy(50), Language.Translate("Buy") + " 50 (" + (cost * 50).ToString() + "c)", 0,
+                bgRect.Bottom - buyOnceButton.Height - EDGE_SPACING, true, font, graphics);
+
+            buyTenButton.Y = buyFiftyButton.Y - buyTenButton.Height - SPACING;
             buyOnceButton.Y = buyTenButton.Y - buyOnceButton.Height - SPACING;
         }
 
@@ -701,19 +708,22 @@ namespace OneCannonOneArmy
         {
             buyOnceButton.Active = false;
             buyTenButton.Active = false;
+            buyFiftyButton.Active = false;
         }
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
-            Update(user, false);
+            Update(user, false, gameTime);
         }
-        public void Update(User user, bool onlyBuyTen)
+        public void Update(User user, bool onlyBuyTen, GameTime gameTime)
         {
             buyOnceButton.Active = (user.Coins >= Cost) && !onlyBuyTen;
             buyTenButton.Active = (user.Coins >= Cost * 10);
+            buyFiftyButton.Active = (user.Coins >= Cost * 50) && !onlyBuyTen;
 
-            buyOnceButton.Update();
-            buyTenButton.Update();
+            buyOnceButton.Update(gameTime);
+            buyTenButton.Update(gameTime);
+            buyFiftyButton.Update(gameTime);
 
             HoveringOnItem = itemRect.Intersects(new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1));
         }
@@ -727,6 +737,7 @@ namespace OneCannonOneArmy
                 spriteBatch.Draw(itemImg, itemRect, Color.White);
                 buyOnceButton.Draw(spriteBatch);
                 buyTenButton.Draw(spriteBatch);
+                buyFiftyButton.Draw(spriteBatch);
             }
         }
 
@@ -743,6 +754,7 @@ namespace OneCannonOneArmy
                 {
                     buyOnceButton,
                     buyTenButton,
+                    buyFiftyButton,
                 };
             }
             else
@@ -755,7 +767,8 @@ namespace OneCannonOneArmy
         {
             string buyText = Language.Translate("Buy");
             buyOnceButton.Text = buyText + " (" + Cost.ToString() + "c)";
-            buyTenButton.Text = buyText + "10 (" + (Cost * 10).ToString() + "c)";
+            buyTenButton.Text = buyText + " 10 (" + (Cost * 10).ToString() + "c)";
+            buyFiftyButton.Text = buyText + " 50 (" + (Cost * 50).ToString() + "c)";
 
             name = Language.Translate(Item.ToString().AddSpaces());
             namePos = new Vector2(bgRect.X + (bgRect.Width / 2 - (font.MeasureString(name).X / 2)),
@@ -771,10 +784,9 @@ namespace OneCannonOneArmy
             buy(Cost, Item);
             Sound.PlaySound(Sounds.CaChing);
         }
-
-        private void BuyTen()
+        private void Buy(int itemCount)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < itemCount; i++)
             {
                 buy(Cost, Item);
             }
@@ -921,11 +933,11 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
             buyOrSelect.Active = ((user.Coins >= cost || bought) && user.Cannons[user.CannonIndex].CannonType != Cannon.CannonType);
 
-            buyOrSelect.Update();
+            buyOrSelect.Update(gameTime);
 
             Rectangle mouse = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1);
             HoveringOnItem = mouse.Intersects(cannonTubeRect) || mouse.Intersects(cannonExtRect);
@@ -1110,10 +1122,10 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
             buyButton.Active = user.Coins >= cost;
-            buyButton.Update();
+            buyButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

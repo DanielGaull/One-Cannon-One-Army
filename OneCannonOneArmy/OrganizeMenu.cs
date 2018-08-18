@@ -289,16 +289,16 @@ namespace OneCannonOneArmy
             }
         }
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
-            materialsButton.Update();
-            projsButton.Update();
-            hotbarButton.Update();
-            collectionButton.Update();
+            materialsButton.Update(gameTime);
+            projsButton.Update(gameTime);
+            hotbarButton.Update(gameTime);
+            collectionButton.Update(gameTime);
 
             if (dropdown?.Active == true)
             {
-                dropdown.Update();
+                dropdown.Update(gameTime);
             }
 
             bool makeActive = false;
@@ -1269,13 +1269,13 @@ namespace OneCannonOneArmy
             Active = false;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             if (Active)
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    items[i].Update();
+                    items[i].Update(gameTime);
                 }
 
                 MouseState mouse = Mouse.GetState();
@@ -1399,9 +1399,9 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            detect.Update();
+            detect.Update(gameTime);
 
             bgColor = detect.Hovered ? Color.LightBlue : Color.Blue;
         }

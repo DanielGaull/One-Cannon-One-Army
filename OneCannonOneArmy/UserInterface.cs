@@ -170,11 +170,11 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            nameButton.Update();
+            nameButton.Update(gameTime);
             nameShadeColor = nameButton.Hovered ? Color.DarkGray : Color.LightGray;
-            delButton.Update();
+            delButton.Update(gameTime);
             delShadeColor = delButton.Hovered ? Color.DarkGray : Color.LightGray;
         }
 

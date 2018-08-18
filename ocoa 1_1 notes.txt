@@ -11,6 +11,8 @@
 *Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
+*Buy 50 option in the shop
+*You can hold down the "Craft" button to craft projectiles quickly
 *Decreased worth of certain projectiles (makes these projectiles more likely to appear in gifts)
   -Rock
   -Cannonball
@@ -30,6 +32,7 @@
   -Issue 18003: Empty pages added to the gift menu
   -Issue 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
   -Issue 18005: Open the last gift of a page causes a crash
+  -Issue 18006: "Buy 10" button in the shop isn't formatted properly
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
@@ -39,8 +42,6 @@ Update To-Do List:
 *Finish Updating Intro w/ Labyrinth Quest images
 *Intro - new Logo and the transparent image don't line up properly
 *Add the "Format to width" method
-*Buy 50 option in shop
-*Craft 10 and craft 50 in crafting interface
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
 *Translations:

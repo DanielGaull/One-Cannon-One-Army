@@ -253,7 +253,7 @@ namespace OneCannonOneArmy
             return returnVal;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             okButton.Text = Language.Translate("Okay");
             if (hasCancelButton)
@@ -267,10 +267,10 @@ namespace OneCannonOneArmy
 
             if (active)
             {
-                okButton.Update();
+                okButton.Update(gameTime);
                 if (hasCancelButton)
                 {
-                    cancelButton.Update();
+                    cancelButton.Update(gameTime);
                 }
                 if (hasCheckbox)
                 {
@@ -407,7 +407,7 @@ namespace OneCannonOneArmy
             Popup.checkImg = checkImg;
         }
 
-        public static void Update()
+        public static void Update(GameTime gameTime)
         {
             for (int i = 0; i <= popups.Count - 1; i++)
             {
@@ -417,7 +417,7 @@ namespace OneCannonOneArmy
                 }
                 else
                 {
-                    popups[i].Update();
+                    popups[i].Update(gameTime);
                 }
             }
         }

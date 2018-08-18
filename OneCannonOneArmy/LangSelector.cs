@@ -103,12 +103,12 @@ namespace OneCannonOneArmy
             Active = false;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             if (Active)
             {
-                enButton.Update();
-                esButton.Update();
+                enButton.Update(gameTime);
+                esButton.Update(gameTime);
                 //frButton.Update();
                 //itButton.Update();
                 //eoButton.Update();

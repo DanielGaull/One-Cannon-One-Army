@@ -276,7 +276,7 @@ namespace OneCannonOneArmy
                 interfaces[i].AddOpenHandler(OpenGift);
             }
             UpdatePagesToInterfaces();
-            Reposition(0, 0, false);
+            Reposition(0, 0, false, null);
         }
 
         public void AddGift(GiftType gift)
@@ -284,7 +284,7 @@ namespace OneCannonOneArmy
             interfaces.Add(new GiftInterface(gift, graphics, 0, 0, INT_WIDTH, INT_HEIGHT, font));
             interfaces[interfaces.Count - 1].AddOpenHandler(OpenGift);
             UpdatePagesToInterfaces();
-            Reposition(0, 0, false);
+            Reposition(0, 0, false, null);
         }
 
         public void Update(GameTime gameTime, User user)
@@ -317,10 +317,10 @@ namespace OneCannonOneArmy
                         {
                             offset = ((interfaces[0].Width + SPACING) * 5 + X_OFFSET) * -1;
                         }
-                        Reposition(transitionPage, offset, true);
+                        Reposition(transitionPage, offset, true, gameTime);
                     }
 
-                    Reposition(page, 0, true);
+                    Reposition(page, 0, true, gameTime);
                 }
 
                 if (pages.Count <= 1)
@@ -352,8 +352,8 @@ namespace OneCannonOneArmy
                     prevButton.Active = true;
                 }
 
-                nextButton.Update();
-                prevButton.Update();
+                nextButton.Update(gameTime);
+                prevButton.Update(gameTime);
 
                 if (slidingOver)
                 {
@@ -493,7 +493,7 @@ namespace OneCannonOneArmy
             }
         }
 
-        private void Reposition(int page, int xOffset, bool update)
+        private void Reposition(int page, int xOffset, bool update, GameTime gameTime)
         {
             if (pages.Count > 0)
             {
@@ -520,7 +520,7 @@ namespace OneCannonOneArmy
 
                     if (update)
                     {
-                        gi.Update();
+                        gi.Update(gameTime);
                     }
                 }
 
@@ -637,9 +637,9 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            openButton.Update();
+            openButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -800,7 +800,7 @@ namespace OneCannonOneArmy
 
                 UpdateParticles();
                 claimButton.Active = done;
-                claimButton.Update();
+                claimButton.Update(gameTime);
                 if (done)
                 {
                     itemRect.Width = itemRect.Height = ITEM_SIZE;

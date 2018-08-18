@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -713,12 +714,12 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             enButton.Active = GameInfo.Language != Languages.English;
-            enButton.Update();
+            enButton.Update(gameTime);
             esButton.Active = GameInfo.Language != Languages.Spanish;
-            esButton.Update();
+            esButton.Update(gameTime);
             //frButton.Update();
             //itButton.Update();
             //eoButton.Update();

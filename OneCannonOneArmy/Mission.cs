@@ -778,7 +778,7 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
             int mouseX = Mouse.GetState().X;
             if (mouseX > windowWidth / 2)
@@ -794,7 +794,7 @@ namespace OneCannonOneArmy
             hovering = false;
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Update();
+                buttons[i].Update(gameTime);
                 if (buttons[i].Hovered)
                 {
                     string location = "";
@@ -1229,7 +1229,7 @@ namespace OneCannonOneArmy
                     playerInterface.SetProgress(Mission.CalculateTotalWorth() - Mission.CalculateWorth(laserCannon, aliens, cages));
                 }
             }
-            playerInterface.Update(ref drops, ref user, projectiles, needSweep, restrictActions);
+            playerInterface.Update(ref drops, ref user, projectiles, needSweep, restrictActions, gameTime);
             if (needProjFire || !restrictActions)
             {
                 if ((!LevelInfo.HasActiveGoalPopups && !canCallMissionOver) || needProjFire)

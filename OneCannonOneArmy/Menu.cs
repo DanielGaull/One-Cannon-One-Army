@@ -618,16 +618,16 @@ namespace OneCannonOneArmy
                 #region Start Menu
                 case GameState.StartMenu:
 
-                    startButton.Update();
-                    langButton.Update();
-                    controlsButton.Update();
-                    muteButton.Update();
-                    captionButton.Update();
-                    creditsButton.Update();
+                    startButton.Update(gameTime);
+                    langButton.Update(gameTime);
+                    controlsButton.Update(gameTime);
+                    muteButton.Update(gameTime);
+                    captionButton.Update(gameTime);
+                    creditsButton.Update(gameTime);
 
                     quitButton.Active = true;
                     quitButton.Y = startButton.Y + startButton.Height + BUTTON_SPACING;
-                    quitButton.Update();
+                    quitButton.Update(gameTime);
 
                     break;
                 #endregion
@@ -638,11 +638,11 @@ namespace OneCannonOneArmy
 
                     mainMenuButton.Active = quitButton.Active = AllowPauseExiting;
 
-                    resumeButton.Update();
-                    mainMenuButton.Update();
+                    resumeButton.Update(gameTime);
+                    mainMenuButton.Update(gameTime);
 
                     quitButton.Y = mainMenuButton.Y + mainMenuButton.Height + BUTTON_SPACING;
-                    quitButton.Update();
+                    quitButton.Update(gameTime);
 
                     break;
 
@@ -675,7 +675,7 @@ namespace OneCannonOneArmy
                     {
                         for (int i = 0; i < userPages[userPage].Count; i++)
                         {
-                            userPages[userPage][i].Update();
+                            userPages[userPage][i].Update(gameTime);
                         }
                     }
 
@@ -708,10 +708,10 @@ namespace OneCannonOneArmy
                         prevPageButton.Active = true;
                     }
 
-                    nextPageButton.Update();
-                    prevPageButton.Update();
-                    backButton.Update();
-                    createNewUserButton.Update();
+                    nextPageButton.Update(gameTime);
+                    prevPageButton.Update(gameTime);
+                    backButton.Update(gameTime);
+                    createNewUserButton.Update(gameTime);
 
                     break;
 
@@ -721,9 +721,9 @@ namespace OneCannonOneArmy
 
                 case GameState.NewUser:
 
-                    backButton.Update();
+                    backButton.Update(gameTime);
                     usernameBox.Update(gameTime);
-                    submitUserButton.Update();
+                    submitUserButton.Update(gameTime);
                     avatarRSlider.Update();
                     avatarGSlider.Update();
                     avatarBSlider.Update();
@@ -732,8 +732,8 @@ namespace OneCannonOneArmy
                     avatarColor.B = (byte)avatarBSlider.Value;
                     nextPageButton.Active = true;
                     prevPageButton.Active = true;
-                    nextPageButton.Update();
-                    prevPageButton.Update();
+                    nextPageButton.Update(gameTime);
+                    prevPageButton.Update(gameTime);
 
                     break;
 
@@ -745,23 +745,23 @@ namespace OneCannonOneArmy
 
                     quitButton.Active = true;
 
-                    questInterface.Update(user);
+                    questInterface.Update(user, gameTime);
                     if (!questInterface.ShowingPopup)
                     {
-                        playButton.Update();
-                        achButton.Update();
-                        shopButton.Update();
-                        statButton.Update();
-                        craftingButton.Update();
-                        upgradeButton.Update();
-                        organizeButton.Update();
-                        settingsButton.Update();
-                        giftButton.Update();
+                        playButton.Update(gameTime);
+                        achButton.Update(gameTime);
+                        shopButton.Update(gameTime);
+                        statButton.Update(gameTime);
+                        craftingButton.Update(gameTime);
+                        upgradeButton.Update(gameTime);
+                        organizeButton.Update(gameTime);
+                        settingsButton.Update(gameTime);
+                        giftButton.Update(gameTime);
 
-                        backButton.Update();
+                        backButton.Update(gameTime);
 
                         quitButton.Y = craftingButton.Y + BUTTON_SPACING + craftingButton.Height;
-                        quitButton.Update();
+                        quitButton.Update(gameTime);
 
                         if (user != null)
                         {
@@ -789,7 +789,7 @@ namespace OneCannonOneArmy
 
                         if (buyLifeButton.Active)
                         {
-                            buyLifeButton.Update();
+                            buyLifeButton.Update(gameTime);
                         }
                     }
 
@@ -801,8 +801,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Achievements:
 
-                    backButton.Update();
-                    achMenu.Update(user);
+                    backButton.Update(gameTime);
+                    achMenu.Update(user, gameTime);
 
                     break;
 
@@ -812,7 +812,7 @@ namespace OneCannonOneArmy
 
                 case GameState.Stats:
 
-                    backButton.Update();
+                    backButton.Update(gameTime);
 
                     break;
 
@@ -822,8 +822,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Shop:
 
-                    backButton.Update();
-                    shop.Update(user, onlyBuyStone);
+                    backButton.Update(gameTime);
+                    shop.Update(user, onlyBuyStone, gameTime);
 
                     break;
 
@@ -833,8 +833,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Crafting:
 
-                    craftingMenu.Update(user, projectiles);
-                    backButton.Update();
+                    craftingMenu.Update(user, projectiles, gameTime);
+                    backButton.Update(gameTime);
 
                     break;
 
@@ -844,8 +844,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Upgrade:
 
-                    backButton.Update();
-                    upgradeMenu.Update(user.CannonSettings, user);
+                    backButton.Update(gameTime);
+                    upgradeMenu.Update(user.CannonSettings, user, gameTime);
 
                     break;
 
@@ -855,8 +855,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Organize:
 
-                    organizeMenu.Update(user);
-                    backButton.Update();
+                    organizeMenu.Update(user, gameTime);
+                    backButton.Update(gameTime);
 
                     break;
 
@@ -872,7 +872,7 @@ namespace OneCannonOneArmy
                         startedStory = true;
                     }
                     story.Update();
-                    skipStoryButton.Update();
+                    skipStoryButton.Update(gameTime);
                     if (!story.Scrolling)
                     {
                         storyFinish?.Invoke();
@@ -888,8 +888,8 @@ namespace OneCannonOneArmy
 
                     if (!Popup.HasActivePopups)
                     {
-                        missionMenu.Update(user);
-                        backButton.Update();
+                        missionMenu.Update(user, gameTime);
+                        backButton.Update(gameTime);
                     }
 
                     break;
@@ -900,8 +900,8 @@ namespace OneCannonOneArmy
 
                 case GameState.Language:
 
-                    langMenu.Update();
-                    backButton.Update();
+                    langMenu.Update(gameTime);
+                    backButton.Update(gameTime);
 
                     break;
 
@@ -911,8 +911,8 @@ namespace OneCannonOneArmy
 
                 case GameState.ChangeControls:
 
-                    backButton.Update();
-                    controlMenu.Update();
+                    backButton.Update(gameTime);
+                    controlMenu.Update(gameTime);
 
                     break;
 
@@ -923,7 +923,7 @@ namespace OneCannonOneArmy
                 case GameState.UserSettings:
 
                     settingsMenu.Update(gameTime);
-                    backButton.Update();
+                    backButton.Update(gameTime);
 
                     break;
 
@@ -935,7 +935,7 @@ namespace OneCannonOneArmy
 
                     if (!giftMenu.ShowingGiftPopup)
                     {
-                        backButton.Update();
+                        backButton.Update(gameTime);
                     }
                     giftMenu.Update(gameTime, user);
 
@@ -947,7 +947,7 @@ namespace OneCannonOneArmy
 
                 case GameState.Credits:
 
-                    backButton.Update();
+                    backButton.Update(gameTime);
                     credits.Update(gameTime);
 
                     break;

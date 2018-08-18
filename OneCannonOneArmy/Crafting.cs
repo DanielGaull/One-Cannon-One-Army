@@ -661,6 +661,7 @@ namespace OneCannonOneArmy
             }
 
             craftButton = new MenuButton(Craft, Language.Translate("Craft"), 0, 0, true, font, graphics);
+            craftButton.CanHold = true;
             Reposition();
 
             youHave = Language.Translate("You Have") + ": 0";
@@ -685,11 +686,11 @@ namespace OneCannonOneArmy
             return clone;
         }
 
-        public void Update(User user, List<Projectile> projectiles)
+        public void Update(User user, List<Projectile> projectiles, GameTime gameTime)
         {
             craftButton.Active = Crafting.CanCraft(user.MaterialInventory,
                 new CraftingRecipe(materials, materialCounts, Output.Type));
-            craftButton.Update();
+            craftButton.Update(gameTime);
 
             youHave = Language.Translate("You Have") + ": " + GameInfo.ProjListToTypes(projectiles).CountOf(Output.Type);
             youHavePos.X = bgRect.X + (bgRect.Width / 2 - (font.MeasureString(youHave).X / 2));
@@ -838,10 +839,10 @@ namespace OneCannonOneArmy
                 interfaces[i].Visible = GameInfo.CanSee(user, interfaces[i].Output.Type);
             }
             UpdatePagesToInterfaces();
-            UpdatePositions(0, user, 0, null);
+            UpdatePositions(0, user, 0, null, null);
         }
 
-        public void Update(User user, List<Projectile> projectiles)
+        public void Update(User user, List<Projectile> projectiles, GameTime gameTime)
         {
             if (slideOffset + X_OFFSET >= windowWidth || slideOffset + (X_OFFSET * -1) <= windowWidth * -1)
             {
@@ -875,10 +876,10 @@ namespace OneCannonOneArmy
                     {
                         offset = (interfaces[0].Width + X_OFFSET) * -1;
                     }
-                    UpdatePositions(transitionPage, user, offset, projectiles);
+                    UpdatePositions(transitionPage, user, offset, projectiles, gameTime);
                 }
 
-                UpdatePositions(page, user, 0, projectiles);
+                UpdatePositions(page, user, 0, projectiles, gameTime);
             }
 
             for (int i = 0; i <= pages.Count - 1; i++)
@@ -932,8 +933,8 @@ namespace OneCannonOneArmy
                 slideOffset += slideSpeed;
             }
 
-            nextButton.Update();
-            prevButton.Update();
+            nextButton.Update(gameTime);
+            prevButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, User user)
@@ -1013,7 +1014,8 @@ namespace OneCannonOneArmy
             itemCrafted(materials, counts, output);
         }
 
-        private void UpdatePositions(int page, User user, int xOffset, List<Projectile> projectiles)
+        private void UpdatePositions(int page, User user, int xOffset, List<Projectile> projectiles, 
+            GameTime gameTime)
         {
             int lastY = Y_OFFSET;
             foreach (CraftingInterface c in pages[page])
@@ -1024,7 +1026,7 @@ namespace OneCannonOneArmy
                 c.Visible = GameInfo.CanSee(user, c.Output.Type);
                 if (projectiles != null)
                 {
-                    c.Update(user, projectiles);
+                    c.Update(user, projectiles, gameTime);
                 }
             }
         }

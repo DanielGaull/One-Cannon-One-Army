@@ -270,7 +270,7 @@ namespace OneCannonOneArmy
         }
 
         public void Update(ref List<Item> items, ref User user, List<Projectile> projectiles, bool needSweep,
-            bool restrictActions)
+            bool restrictActions, GameTime gameTime)
         {
             keyState = Keyboard.GetState();
 
@@ -337,7 +337,7 @@ namespace OneCannonOneArmy
                 {
                     rapidFireButton.ClickWithSound();
                 }
-                rapidFireButton.Update();
+                rapidFireButton.Update(gameTime);
             }
             
             if (needSweep || !restrictActions)
@@ -346,7 +346,7 @@ namespace OneCannonOneArmy
                 {
                     sweeper.Sweep();
                 }
-                sweeperButton.Update();
+                sweeperButton.Update(gameTime);
                 sweeper.Update(ref items);
             }
 

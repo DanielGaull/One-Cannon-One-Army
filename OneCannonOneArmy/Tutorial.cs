@@ -138,7 +138,7 @@ namespace OneCannonOneArmy
             if (stage == 0)
             {
                 // Allow the user to skip
-                skipTutorialButton.Update();
+                skipTutorialButton.Update(gameTime);
             }
 
             if (alienTravelingTo.X > 0 && alienTravelingTo.Y > 0)

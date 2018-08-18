@@ -129,10 +129,10 @@ namespace OneCannonOneArmy
             // Update Objects
             if (viewButton != null && showing)
             {
-                viewButton.Update();
+                viewButton.Update(gameTime);
             }
 
-            hideButton.Update();
+            hideButton.Update(gameTime);
 
             if (showing)
             {

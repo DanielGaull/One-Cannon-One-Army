@@ -200,7 +200,7 @@ namespace OneCannonOneArmy
             {
                 checkForClickButton.X = this.X;
                 checkForClickButton.Y = this.Y;
-                checkForClickButton.Update();
+                checkForClickButton.Update(gameTime);
             }
 
             if (Active)

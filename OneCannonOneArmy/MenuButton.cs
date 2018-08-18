@@ -29,6 +29,12 @@ namespace OneCannonOneArmy
         const int TEXT_SPACING_WIDTH = 5;
         const int TEXT_SPACING_HEIGHT = 5;
 
+        public bool CanHold { get; set; }
+        Timer holdPauseTimer = new Timer(0.05f, TimerUnits.Seconds);
+        bool holdPausing = false;
+        Timer holdTimer = new Timer(0.5f, TimerUnits.Seconds);
+        bool waitingToStartHold = true;
+
         MouseState mouse;
 
         Color drawColor = Color.DarkGray;
@@ -303,7 +309,7 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             Hovered = (DrawRectangle.Intersects(new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 1, 1)));
             if (active)
@@ -339,6 +345,38 @@ namespace OneCannonOneArmy
                     }
                     clickStarted = false;
                     buttonReleased = true;
+                }
+                if (CanHold && Hovered && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                {
+                    if (waitingToStartHold)
+                    {
+                        holdTimer.Update(gameTime);
+                        if (holdTimer.QueryWaitTime(gameTime))
+                        {
+                            waitingToStartHold = false;
+                        }
+                    }
+                    else
+                    {
+                        if (holdPausing)
+                        {
+                            holdPauseTimer.Update(gameTime);
+                            if (holdPauseTimer.QueryWaitTime(gameTime))
+                            {
+                                holdPausing = false;
+                            }
+                        }
+                        else
+                        {
+                            ClickWithSound();
+                            holdPausing = true;
+                        }
+                    }
+                }
+                else if (CanHold)
+                {
+                    waitingToStartHold = true;
+                    holdTimer.Reset();
                 }
             }
             else
@@ -426,12 +464,26 @@ namespace OneCannonOneArmy
 
         public void Click()
         {
-            onButtonClick?.Invoke();
+            if (provideThisAsArg)
+            {
+                clickWThis?.Invoke(this);
+            }
+            else
+            {
+                onButtonClick?.Invoke();
+            }
         }
         public void ClickWithSound()
         {
             Sound.PlaySound(Sounds.Click);
-            onButtonClick?.Invoke();
+            if (provideThisAsArg)
+            {
+                clickWThis?.Invoke(this);
+            }
+            else
+            {
+                onButtonClick?.Invoke();
+            }
         }
 
         #endregion
@@ -549,9 +601,9 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            toggleButton.Update();
+            toggleButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

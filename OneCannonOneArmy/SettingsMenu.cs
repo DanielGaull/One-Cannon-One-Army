@@ -206,8 +206,8 @@ namespace OneCannonOneArmy
                     gSlider.Update();
                     bSlider.Update();
 
-                    nextProj.Update();
-                    prevProj.Update();
+                    nextProj.Update(gameTime);
+                    prevProj.Update(gameTime);
 
                     break;
 
@@ -222,21 +222,21 @@ namespace OneCannonOneArmy
                     systemSlider.Update();
                     musicSlider.Update();
                     sfxSlider.Update();
-                    muteToggle.Update();
-                    dirXInstallButton.Update();
+                    muteToggle.Update(gameTime);
+                    dirXInstallButton.Update(gameTime);
 
                     break;
             }
 
-            replayTutorial.Update();
-            submit.Update();
+            replayTutorial.Update(gameTime);
+            submit.Update(gameTime);
 
             profileButton.Active = state != SettingsState.Profile;
             graphicsButton.Active = state != SettingsState.Graphics;
             soundButton.Active = state != SettingsState.Sound;
-            profileButton.Update();
-            graphicsButton.Update();
-            soundButton.Update();
+            profileButton.Update(gameTime);
+            graphicsButton.Update(gameTime);
+            soundButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

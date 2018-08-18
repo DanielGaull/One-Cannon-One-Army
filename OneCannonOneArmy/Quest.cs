@@ -208,16 +208,16 @@ namespace OneCannonOneArmy
             popup = new QuestPopup(graphics, font, windowWidth, windowHeight, user,
                 checkImg, coinImg);
         }
-        public void Update(User user)
+        public void Update(User user, GameTime gameTime)
         {
             this.user = user;
             if (popup.Showing)
             {
-                popup.Update();
+                popup.Update(gameTime);
             }
             else
             {
-                questButton.Update();
+                questButton.Update(gameTime);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -335,9 +335,9 @@ namespace OneCannonOneArmy
 
         #region Public Methods
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            closeButton.Update();
+            closeButton.Update(gameTime);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

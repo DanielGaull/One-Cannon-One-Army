@@ -461,14 +461,14 @@ namespace OneCannonOneArmy
             Position();
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            levelSelectButton.Update();
+            levelSelectButton.Update(gameTime);
             if (success)
             {
-                nextLevelButton.Update();
+                nextLevelButton.Update(gameTime);
             }
-            replayButton.Update();
+            replayButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
