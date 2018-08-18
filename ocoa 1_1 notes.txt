@@ -1,6 +1,5 @@
 1.1 Features
-*Projectiles
-**Absorb Hex
+*Absorb Hex
 *New Power stat for cannons
 **Increases projectile speed, max is 25
 *New Defense upgrade for cannons
@@ -39,7 +38,6 @@ Update To-Do List:
 *Quests
   -Test quests
 *Finish Updating Intro w/ Labyrinth Quest images
-*Intro - new Logo and the transparent image don't line up properly
 *Add the "Format to width" method
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show

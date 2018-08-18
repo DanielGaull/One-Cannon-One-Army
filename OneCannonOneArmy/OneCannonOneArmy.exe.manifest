@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6804.24578" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6804.29631" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -80,13 +80,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="790496">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6804.24578" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6804.29631" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LB79TJwYjx/X4uA7IxylXWAMDtgkYX/khIToNcYpPwM=</dsig:DigestValue>
+        <dsig:DigestValue>VmWaacUSjAVPGXeBLCTfhLs++VDTLo5LDiyjiO4DPIs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -366,7 +366,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>4sosfyQaI6gtCJM2ib4aBZiNcmoxhMg4W3MNqgVQ8vY=</dsig:DigestValue>
+      <dsig:DigestValue>pT00teeNlHCJ+CFcE0nl/e75rrz5T3el9LZ9RXc0WDQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\duoplus software.xnb" size="1440085">
