@@ -122,7 +122,7 @@ namespace OneCannonOneArmy
                     return Language.Translate("Craft") + " " + GoalNumber + " " +
                         Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
                 case QuestGoalType.FireProjectiles:
-                    return Language.Translate("Fire") + " " + GoalNumber + " " +
+                    return Language.Translate("Launch") + " " + GoalNumber + " " +
                         Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
                 case QuestGoalType.KillAliens:
                     return Language.Translate("Kill") + " " + GoalNumber + " " +

@@ -38,19 +38,8 @@ Update To-Do List:
 *Remember that any new user properties must be initialized
 *Quests
   -Test quests
-  -Remove the "Completed" feature, as player gets a new quest as soon as they completed a previous one
 *Finish Updating Intro w/ Labyrinth Quest images
 *Intro - new Logo and the transparent image don't line up properly
 *Add the "Format to width" method
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
-*Translations:
-  -"Proceed"
-  -"Cancel"?
-  -"Estimated chance of success"
-  -"You will not use a life as you have played for less than 10 seconds."
-  -"Quests"
-  -"Complete", "levels", "fire"?, "kill"?, "collect"?, "coins"?, "spend"?
-  -"Reward"
-  -"Aliens"
-  -"You have completed your quest!"

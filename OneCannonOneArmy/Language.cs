@@ -32,6 +32,7 @@ namespace OneCannonOneArmy
             { "submit", "Entrega" },
             { "replay tutorial", "Repite el tutorial" },
             { "credits", "Créditos" },
+            { "quests", "Búsquedas" },
 
             { "buy", "Compra" },
             { "sell", "Vende" },
@@ -43,11 +44,23 @@ namespace OneCannonOneArmy
             { "select", "Selecciona" },
             { "reward", "Recompensa" },
             { "coins", "Monedas" },
+            { "spend", "Gasta" },
             { "time until next life: ", "Tiempo hasta la próxima vida: " },
             { "next free gift in", "Siguiente regalo gratis en" },
 
             { "materials", "Materiales" },
             { "cannons", "Cañones" },
+
+            { "aliens", "Extraterrestres" },
+            { "kill", "mata" },
+            { "collect", "junta" },
+            { "complete", "completa" },
+            { "levels", "niveles" },
+
+            { "estimated chance of success", "Probabilidad estimada de éxito"},
+            { "you will not use a life as you have played for less than 10 seconds.",
+                "No usarás una vida como la que has jugado por menos de 10 segundos."},
+            { "you have completed your quest!", "¡Has completado tu búsqueda!" },
 
             { "red", "Rojo" },
             { "orange", "Naranja" },
@@ -126,6 +139,7 @@ namespace OneCannonOneArmy
 
             { "okay", "Continúa" },
             { "cancel", "Cancela" },
+            { "proceed", "Prosigue" },
             { "do not show again.", "No muestra de nuevo." },
 
             { "buy one life for ", "Compra una vida por " },
