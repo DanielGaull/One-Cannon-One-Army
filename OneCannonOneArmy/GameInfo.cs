@@ -1343,6 +1343,18 @@ namespace OneCannonOneArmy
             int index = Utilities.Rand.Next(0, list.Count);
             return list[index];
         }
+        public static List<T> Exclude<T>(this List<T> list, params T[] exceptions)
+        {
+            List<T> ret = new List<T>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (!exceptions.Contains(list[i]))
+                {
+                    ret.Add(list[i]);
+                }
+            }
+            return ret;
+        }
 
         public static List<Projectile> WithoutFlying(this List<Projectile> projectiles)
         {

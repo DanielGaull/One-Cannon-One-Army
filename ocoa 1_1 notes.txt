@@ -37,6 +37,5 @@ Update To-Do List:
 *Remember that any new user properties must be initialized
 *Quests
   -Test quests
-*Finish Updating Intro w/ Labyrinth Quest images
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
