@@ -230,7 +230,7 @@ namespace OneCannonOneArmy
         public void ShowPopup(string text, bool shouldQueryShowPopupAgain, int x, int y)
         {
             Sound.PlaySound(Sounds.Notification);
-            this.text = text;
+            this.text = text.FormatToWidth(font, BACKGROUND_WIDTH - SPACING_X * 2);
             active = true;
             drawRectangle.X = x;
             drawRectangle.Y = y;

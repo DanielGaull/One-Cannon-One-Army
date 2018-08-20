@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using System.Text.RegularExpressions;
 
 namespace OneCannonOneArmy
 {
@@ -1228,6 +1229,55 @@ namespace OneCannonOneArmy
             }
 
             return "";
+        }
+
+        // Adds newlines appropriately so that a string is the correct width
+        public static string FormatToWidth(this string str, SpriteFont font, float width)
+        {
+            // First, remove all newlines from the string
+            str = Regex.Replace(str, @"\t|\n|\r|", "");
+
+            float currentWidth = font.MeasureString(str).X;
+            if (currentWidth < width)
+            {
+                // The string is already less than the desired max. Return it because we're already done
+                return str;
+            }
+
+            string returnStr = "";
+            string currentLine = "";
+            string word = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == ' ')
+                {
+                    if (font.MeasureString(currentLine + word + " ").X >= width)
+                    {
+                        returnStr += currentLine + "\n";
+                        currentLine = word + " ";
+                    }
+                    else
+                    {
+                        currentLine += word + " ";
+                    }
+                    word = "";
+                }
+                else
+                {
+                    word += str[i];
+                }
+            }
+
+            if (font.MeasureString(currentLine + word + " ").X >= width)
+            {
+                returnStr += currentLine + "\n" + word;
+            }
+            else
+            {
+                returnStr += currentLine + word;
+            }
+
+            return returnStr;
         }
 
         // Returns a string with a space before every capital letter in the specified string
