@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="OneCannonOneArmy.exe.manifest" size="48661">
+    <dependentAssembly dependencyType="install" codebase="OneCannonOneArmy.exe.manifest" size="51517">
       <assemblyIdentity name="OneCannonOneArmy.exe" version="1.1.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nhlKzYHzRyx2ytQ06STv5SnZKSxXnSmj/7lXzNoJKu0=</dsig:DigestValue>
+        <dsig:DigestValue>1HDjWap++8BZPRZ9B4fUX/P68wLEtzyuIm3HRuTb45g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

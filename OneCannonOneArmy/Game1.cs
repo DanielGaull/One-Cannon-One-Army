@@ -591,24 +591,28 @@ namespace OneCannonOneArmy
             {
                 LoadImg("mazesnake 1"),
                 LoadImg("ocoa 1"),
-                LoadImg("ocoa 3"),
+                LoadImg("website 1"),
                 LoadImg("mazesnake 2"),
+                LoadImg("labyrinthquest1"),
                 LoadImg("ocoa 2"),
-                LoadImg("mazesnake 8"),
+                LoadImg("labyrinthquest2"),
+                LoadImg("mazesnake 3"),
+                LoadImg("labyrinthquest3"),
+                LoadImg("ocoa 3"),
+                LoadImg("mazesnake 4"),
                 LoadImg("website 2"),
-                LoadImg("ocoa 8"),
-                LoadImg("mazesnake 7"),
-                LoadImg("ocoa 6"),
-                LoadImg("ocoa 10"),
+                LoadImg("ocoa 4"),
+                LoadImg("mazesnake 5"),
                 LoadImg("mazesnake 6"),
                 LoadImg("ocoa 5"),
-                LoadImg("website 1"),
-                LoadImg("ocoa 11"),
-                LoadImg("ocoa 4"),
-                LoadImg("mazesnake 4"),
-                LoadImg("ocoa 9"),
-                LoadImg("ocoa 5"),
+                LoadImg("mazesnake 7"),
+                LoadImg("labyrinthquest4"),
+                LoadImg("ocoa 6"),
+                LoadImg("labyrinthquest5"),
+                LoadImg("labyrinthquest6"),
                 LoadImg("website 3"),
+                LoadImg("ocoa 7"),
+                LoadImg("labyrinthquest7"),
             };
 
                 doorImg = LoadImg("closegate");
@@ -633,8 +637,11 @@ namespace OneCannonOneArmy
                 tutorial.AddOnCompleteHandler(TutorialComplete);
                 tutorial.AddOnSkipHandler(TutorialComplete);
 
+                //intro = new StudioIntro(gameImgs, LoadImg("duoplus software transparent"),
+                //    LoadImg("duoplus software"), WINDOW_WIDTH, WINDOW_HEIGHT, mediumFont);
                 intro = new StudioIntro(gameImgs, LoadImg("duoplus software transparent"),
-                    LoadImg("duoplus software"), WINDOW_WIDTH, WINDOW_HEIGHT, mediumFont);
+                    LoadImg("duoplus software"), !(new UniversalSettings().ViewedFullIntro),
+                    GraphicsDevice, mediumFont, WINDOW_WIDTH, WINDOW_HEIGHT);
                 intro.AddOnFinishHandler(AttemptStory);
                 intro.AddOnFinishHandler(IntroFinished);
 

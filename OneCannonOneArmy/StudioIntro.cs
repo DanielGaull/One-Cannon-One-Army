@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Audio;
 namespace OneCannonOneArmy
 {
     /// <summary>
-    /// Used to play the opening animation of Purasu
+    /// Used to play the opening animation of Duoplus Software
     /// </summary>
     public class StudioIntro
     {
@@ -18,37 +18,6 @@ namespace OneCannonOneArmy
 
         List<Texture2D> imgs = new List<Texture2D>();
         List<Rectangle> rects = new List<Rectangle>();
-
-        Texture2D outlineImg;
-        Texture2D orangeImg;
-        Rectangle purasuRect;
-
-        Texture2D bgImg;
-
-        float rectSize = 750.0f;
-        const float C = -0.57f;
-        const float M = 11.4f;
-        const int INIT_PURASURECT_SIZE = 7175;
-
-        public bool Playing = false;
-
-        int windowWidth;
-        int windowHeight;
-
-        float alpha = 0.0f;
-        bool showOrangeImg = false;
-
-        const int END_TIME = 5;
-        Timer timer;
-        bool started = false;
-        bool waitEnd = false;
-
-        string introCue;
-
-        event System.Action onFinish;
-
-        bool playFull = true;
-        bool fadingIn = false;
 
         #region Possibilities
         readonly List<string> possibleCodeLines = new List<string>()
@@ -71,6 +40,12 @@ namespace OneCannonOneArmy
             "001010101010101010101010010110010",
             "101001010000101010101100101010101",
             "using Microsoft.Xna.Framwork;",
+            "readonly List<string> codes = new List<string>();",
+            "Popup.Initialize(mediumFont, GraphicsDevice);",
+            "intro.Play();",
+            "spriteBatch.Begin();",
+            "bgColor = ColorTheme.Rainbow;",
+            "level.Draw(spriteBatch);",
         };
         readonly List<Color> possibleCodeColors = new List<Color>()
         {
@@ -88,31 +63,62 @@ namespace OneCannonOneArmy
         List<Color> codeColors = new List<Color>();
         Timer codeTimer = new Timer(0.05f, TimerUnits.Seconds);
         SpriteFont font;
-        const int CODE_SPD = 60;
+
+        const int ITEM_SPD = 2000;
+
+        Texture2D outlineImg;
+        Texture2D orangeImg;
+        Rectangle duoplusRect;
+
+        Texture2D bgImg;
+
+        float rectSize = 750.0f;
+        const float C = -0.57f;
+        const float M = 11.4f;
+        const int INIT_DUOPLUS_RECT_SIZE = 7175;
+
+        public bool Playing = false;
+
+        float alpha = 0.0f;
+        bool showOrangeImg = false;
+
+        const int END_TIME = 5;
+        Timer timer;
+        bool started = false;
+        bool waitEnd = false;
+
+        event Action onFinish;
+
+        bool playFull = true;
+        bool fadingIn = false;
+
+        int windowWidth;
+        int windowHeight;
 
         #endregion
 
         #region Constructors
 
-        public StudioIntro(List<Texture2D> gameImgs, Texture2D outlineImg, Texture2D orangeImg, int windowWidth, int windowHeight, SpriteFont font)
+        public StudioIntro(List<Texture2D> gameImgs, Texture2D outlineImg, Texture2D orangeImg,
+            bool playFull, GraphicsDevice graphics, SpriteFont font,
+            int windowWidth, int windowHeight)
         {
-            this.font = font;
-
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
+
             imgs = gameImgs;
+
+            this.font = font;
 
             this.outlineImg = outlineImg;
             this.orangeImg = orangeImg;
 
-            this.introCue = introCue;
-
-            playFull = !(new UniversalSettings().ViewedFullIntro);
+            this.playFull = playFull;
 
             if (playFull)
             {
-                purasuRect = new Rectangle(windowWidth / 2 - (INIT_PURASURECT_SIZE / 2), windowHeight / 2 - (INIT_PURASURECT_SIZE / 2),
-                    INIT_PURASURECT_SIZE, INIT_PURASURECT_SIZE);
+                duoplusRect = new Rectangle(windowWidth / 2 - (INIT_DUOPLUS_RECT_SIZE / 2), windowHeight / 2 -
+                    (INIT_DUOPLUS_RECT_SIZE / 2), INIT_DUOPLUS_RECT_SIZE, INIT_DUOPLUS_RECT_SIZE);
 
                 rects = new List<Rectangle>()
                     {
@@ -149,8 +155,8 @@ namespace OneCannonOneArmy
             }
             else
             {
-                purasuRect = new Rectangle(0, 0, windowWidth, windowHeight);
-                bgImg = Utilities.RectImage;
+                duoplusRect = new Rectangle(0, 0, windowWidth, windowHeight);
+                bgImg = DrawHelper.Fill(new Texture2D(graphics, windowWidth, windowHeight), Color.White);
             }
 
             timer = new Timer(0.5f, TimerUnits.Seconds);
@@ -162,6 +168,8 @@ namespace OneCannonOneArmy
 
         public void Update(GameTime gameTime)
         {
+            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             if (Playing)
             {
                 if (!started || waitEnd)
@@ -180,7 +188,7 @@ namespace OneCannonOneArmy
                     }
                     for (int i = 0; i < codeLocs.Count; i++)
                     {
-                        codeLocs[i] = new Vector2(codeLocs[i].X + CODE_SPD, codeLocs[i].Y);
+                        codeLocs[i] = new Vector2(codeLocs[i].X + delta * ITEM_SPD, codeLocs[i].Y);
                         if (codeLocs[i].X >= windowWidth)
                         {
                             codeLocs.RemoveAt(i);
@@ -189,47 +197,47 @@ namespace OneCannonOneArmy
                         }
                     }
 
-                    if (purasuRect.Width >= windowWidth && started)
+                    if (duoplusRect.Width > windowWidth && started)
                     {
                         rectSize += C;
-                        purasuRect.Width += (int)(C * M);
-                        purasuRect.Height += (int)(C * M);
+                        duoplusRect.Width += (int)(C * M);
+                        duoplusRect.Height += (int)(C * M);
 
-                        purasuRect.X = windowWidth / 2 - (purasuRect.Width / 2);
-                        purasuRect.Y = windowHeight / 2 - (purasuRect.Height / 2);
+                        duoplusRect.X = windowWidth / 2 - (duoplusRect.Width / 2);
+                        duoplusRect.Y = windowHeight / 2 - (duoplusRect.Height / 2);
 
                         rects = new List<Rectangle>()
-                    {
-                        new Rectangle((int)(rectSize * 0), 0, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), 0, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), 0, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), 0, (int)rectSize, (int)rectSize),
+                        {
+                            new Rectangle((int)(rectSize * 0), 0, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), 0, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), 0, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), 0, (int)rectSize, (int)rectSize),
 
-                        new Rectangle((int)(rectSize * 0), (int)rectSize, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), (int)rectSize, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), (int)rectSize, (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), (int)rectSize, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 0), (int)rectSize, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), (int)rectSize, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), (int)rectSize, (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), (int)rectSize, (int)rectSize, (int)rectSize),
 
-                        new Rectangle((int)(rectSize * 0), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 0), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), (int)(rectSize * 2), (int)rectSize, (int)rectSize),
 
-                        new Rectangle((int)(rectSize * 0), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 0), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), (int)(rectSize * 3), (int)rectSize, (int)rectSize),
 
-                        new Rectangle((int)(rectSize * 0), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 0), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), (int)(rectSize * 4), (int)rectSize, (int)rectSize),
 
-                        new Rectangle((int)(rectSize * 0), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 1), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 2), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
-                        new Rectangle((int)(rectSize * 3), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
-                    };
+                            new Rectangle((int)(rectSize * 0), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 1), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 2), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
+                            new Rectangle((int)(rectSize * 3), (int)(rectSize * 5), (int)rectSize, (int)rectSize),
+                        };
                     }
 
                     if (alpha >= 1.0f)
@@ -241,11 +249,12 @@ namespace OneCannonOneArmy
                     {
                         alpha += 0.005f;
                     }
-                    if (purasuRect.Width <= windowWidth)
+                    if (duoplusRect.Width <= windowWidth)
                     {
                         showOrangeImg = true;
+                        duoplusRect.Width = windowWidth;
                     }
-
+                    
                     if (!started)
                     {
                         if (timer.QueryWaitTime(gameTime))
@@ -307,17 +316,17 @@ namespace OneCannonOneArmy
                     spriteBatch.DrawString(font, codeLines[i], codeLocs[i], codeColors[i]);
                 }
 
-                spriteBatch.Draw(outlineImg, purasuRect, Color.White);
+                spriteBatch.Draw(outlineImg, duoplusRect, Color.White);
             }
 
             if (!playFull)
             {
-                spriteBatch.Draw(bgImg, purasuRect, Color.Black);
+                spriteBatch.Draw(bgImg, duoplusRect, Color.Black);
             }
 
             if (showOrangeImg || !playFull)
             {
-                spriteBatch.Draw(orangeImg, purasuRect, Color.White * alpha);
+                spriteBatch.Draw(orangeImg, duoplusRect, Color.White * alpha);
             }
         }
 
@@ -339,7 +348,7 @@ namespace OneCannonOneArmy
             onFinish?.Invoke();
         }
 
-        public void AddOnFinishHandler(System.Action handler)
+        public void AddOnFinishHandler(Action handler)
         {
             onFinish += handler;
         }

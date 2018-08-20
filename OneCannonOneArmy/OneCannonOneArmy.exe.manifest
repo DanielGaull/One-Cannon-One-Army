@@ -4,7 +4,7 @@
   <description asmv2:iconFile="rock.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6805.34200" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="OneCannonOneArmy" version="1.0.6805.34493" language="neutral" processorArchitecture="x86" />
     <commandLine file="OneCannonOneArmy.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="791008">
-      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6805.34200" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneCannonOneArmy.exe" size="792032">
+      <assemblyIdentity name="OneCannonOneArmy" version="1.0.6805.34493" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8RT3nxCJM1fKtatsi2Zw7qb4VlWfeNJUmQ+ylfScXqU=</dsig:DigestValue>
+        <dsig:DigestValue>yPAYiM/PQLWXfhXgMsbDwjSI2NNydWhwesRI+nbrH7w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -466,6 +466,69 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>8xB8XIYtCMRFx3/Zc5H7l6pOom40Kg7/4iivL4IMBqI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest1.xnb" size="2576109">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MXQLgpVMudTmqZygTyhyQ8H6pTkO61zFSYkhoLofdxo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest2.xnb" size="2550469">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hRoASK4oTWWXD6kMlhZZrc6/OgtyJXM9ZJoHAzjVvhM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest3.xnb" size="2579317">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>BXwRYEZ4c3ICN+S1ju7XNE+so81Er3ehb6j/dLfRCIg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest4.xnb" size="2579317">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>NomW1KNb83jDXZTWIikFQpvc9epwpNw6EctPs/1RLIU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest5.xnb" size="2579317">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ekeWWCDaVzR0yWJdf8xGMqsmV9GLBvIY0j3sR9SOdOE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest6.xnb" size="2582533">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ni9AmrTLD/i8rdWFosocE6x8AVjMYa7+EIIRqK9c+GM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\labyrinthquest7.xnb" size="2569693">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2WL2H7aD1R3AzryKvoff/0ThjsWMjkJTyRXogvKglAA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\laser bolt.xnb" size="125457">

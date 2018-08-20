@@ -139,6 +139,18 @@ namespace OneCannonOneArmy
             return texture;
         }
 
+        public static Texture2D Fill(Texture2D img, Color fillColor)
+        {
+            Color[] data = new Color[img.Width * img.Height];
+            img.GetData(data);
+            for (int i = 0; i < data.Count(); i++)
+            {
+                data[i] = fillColor;
+            }
+            img.SetData(data);
+            return img;
+        }
+
         public static Texture2D ApplyShade(Texture2D texture, Color shadeColor, GraphicsDevice graphics)
         {
             // Shade the image using additive blending

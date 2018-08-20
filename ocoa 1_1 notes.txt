@@ -23,7 +23,7 @@
   -Plasma Rocket
   -Omega Rocket
   -Bone
-  -Shuriken
+  -Shuriken 
   -Ice Shard
 *Issues
   -Issue 18001: Crafting Interface isn't added for new projectiles
@@ -38,6 +38,5 @@ Update To-Do List:
 *Quests
   -Test quests
 *Finish Updating Intro w/ Labyrinth Quest images
-*Add the "Format to width" method
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
