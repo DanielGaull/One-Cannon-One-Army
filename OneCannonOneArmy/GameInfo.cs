@@ -109,8 +109,8 @@ namespace OneCannonOneArmy
         // Defense values
         public const float LIGHT_DEFENSE = 0.15f;
         public const float NORMAL_DEFENSE = 0.45f;
-        public const float HEAVY_DEFENSE = 0.75f;
-        public const float OMEGA_DEFENSE = 0.5f;
+        public const float HEAVY_DEFENSE = 0.7f;
+        public const float OMEGA_DEFENSE = 0.8f;
         public const float BOSS_DEFENSE = 0.9f;
 
         // Projectile damages

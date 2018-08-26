@@ -653,7 +653,7 @@ namespace OneCannonOneArmy
                 langSelectPopup.AddLanguageSetHandler(InitLangSet);
                 if (!(new UniversalSettings().ViewedFullIntro))
                 {
-                    //langSelectPopup.Show();
+                    langSelectPopup.Show();
                 }
                 else
                 {

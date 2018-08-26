@@ -888,8 +888,7 @@ namespace OneCannonOneArmy
                   GameInfo.OMEGA_ALIEN_HEALTH, Color.Gold, itemCollected, ProjectileType.Meteor, 6)
         {
             Defense = GameInfo.OMEGA_DEFENSE;
-            canBeFrozen = false;
-
+            
             AddPotentialDrop(Material.Plasma, 20);
             AddPotentialDrop(Material.PlantMatter, 20);
             AddPotentialDrop(Material.EssenceOfFire, 20);

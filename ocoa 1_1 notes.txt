@@ -7,12 +7,14 @@
 *New screen that pops up before a level starts - shows hotbar & cannon, level objective, attempts to predict chance of success, and asks for confirmation
 *Gifts now give items in groups, instead of one of each item
 *Changed "Poison" to "Plant Matter"
-*Increased Malos' Health and Defense
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
 *Buy 50 option in the shop
 *You can now press and hold the "Craft" button to craft projectiles faster, and hold down the "Upgrade" to upgrade cannon stats faster
 *Upgrading health now gives you 10 HP per level instead of 1
+*Increased Malos' Health and Defense
+*Decreased the Heavy Defense value - this applies to aliens with special effect defense as well
+*Increased Omega alien defense
 *Decreased worth of certain projectiles (makes these projectiles more likely to appear in gifts)
   -Rock
   -Cannonball
@@ -38,11 +40,3 @@
   -Issue #9: Cannon Offsets Incorrectly
   -Issue #10: Sweeper doesn't reset at end of level
   -Issue #11: Restarting to replay the tutorial causes the game to crash
-
-Update To-Do List:
-*Don't let user start with a ton of coins if their name is "i"
-*Make the lang select popup show
-*Clear up bookmarks
-*Increase Omega alien's health
-*Make special defense aliens have same defense as the regular defense counterparts, plus special effect defense
-*Mouse hovers over draggable projectiles even when the hotbar isn't open

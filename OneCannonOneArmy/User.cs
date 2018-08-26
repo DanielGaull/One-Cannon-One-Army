@@ -229,14 +229,14 @@ namespace OneCannonOneArmy
                     }
                 }
 
-                if (Username == "i")
-                {
-                    if (Coins < 100000)
-                    {
-                        Coins = 100000;
-                    }
-                    CurrentMission = 25;
-                }
+                //if (Username == "i")
+                //{
+                //    if (Coins < 100000)
+                //    {
+                //        Coins = 100000;
+                //    }
+                //    CurrentMission = 25;
+                //}
 
                 LastPlayedVersion = GameInfo.Version;
 
