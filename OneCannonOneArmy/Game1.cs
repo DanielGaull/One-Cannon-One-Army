@@ -2108,7 +2108,7 @@ namespace OneCannonOneArmy
                     msg = defaultMsg + "!";
                 }
 
-                menu.WhenMissionCompleted(id);
+                menu.WhenMissionCompleted(id, player);
 
                 if (player.CurrentQuest.GoalType == QuestGoalType.BeatLevels)
                 {

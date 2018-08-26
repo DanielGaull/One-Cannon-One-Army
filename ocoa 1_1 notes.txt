@@ -40,10 +40,7 @@
   -Issue #11: Restarting to replay the tutorial causes the game to crash
 
 Update To-Do List:
-*Remember that any new user properties must be initialized
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
 *Clear up bookmarks
-*Bug: Poison rocket interface added at the end of the crafting menu; perhaps played level that unlocked it, so it was added by accident?
 *Bug: Create projectiles, play a level and shoot some, then try to play another level and look at the count in the popup (doesn't change from initial projectile count)
-*Press and hold button for upgrades

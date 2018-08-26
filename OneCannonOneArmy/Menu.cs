@@ -1453,10 +1453,10 @@ namespace OneCannonOneArmy
             UpdateUserPagesToInterfaces();
         }
 
-        public void WhenMissionCompleted(int id)
+        public void WhenMissionCompleted(int id, User user)
         {
             missionMenu.MissionComplete(id);
-            if (GameInfo.ProjVisibilityLvls.ContainsValue(id))
+            if (GameInfo.ProjVisibilityLvls.ContainsValue(id) && user.CurrentMission <= id)
             {
                 for (int i = 0; i < GameInfo.ProjVisibilityLvls.Count; i++)
                 {
