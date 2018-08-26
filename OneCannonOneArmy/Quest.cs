@@ -76,7 +76,11 @@ namespace OneCannonOneArmy
                         PROJCRAFT_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * PROJCRAFT_COINS);
                     List<ProjectileType> allProjectiles = GameInfo.ProjectilesAllowed;
-                    ProjectileType type = allProjectiles.Where(x => GameInfo.CanSee(user, x)).ToList().Random();
+                    ProjectileType type = allProjectiles
+                        .Where(x => GameInfo.CanSee(user, x))
+                        .ToList()
+                        .Exclude(ProjectileType.None)
+                        .Random();
                     typeId = Utilities.Rand.Next(0, allProjectiles.IndexOf(type));
                     break;
                 case QuestGoalType.FireProjectiles:
@@ -84,7 +88,11 @@ namespace OneCannonOneArmy
                         PROJFIRE_MAX / GOAL_NUM_FACTOR + 1) * GOAL_NUM_FACTOR;
                     coinReward = (int)(numGoal * PROJFIRE_COINS);
                     allProjectiles = GameInfo.ProjectilesAllowed;
-                    type = allProjectiles.Where(x => GameInfo.CanSee(user, x)).ToList().Random();
+                    type = allProjectiles
+                        .Where(x => GameInfo.CanSee(user, x))
+                        .ToList()
+                        .Exclude(ProjectileType.None)
+                        .Random();
                     typeId = Utilities.Rand.Next(0, allProjectiles.IndexOf(type));
                     break;
                 case QuestGoalType.KillAliens:
