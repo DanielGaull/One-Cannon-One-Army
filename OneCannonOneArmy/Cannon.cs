@@ -137,17 +137,19 @@ namespace OneCannonOneArmy
 
         public void Reset()
         {
-            cannonBottomRect.X = windowWidth / 2 - (cannonBottomRect.Width / 2);
-            cannonTubeRect.X = cannonBottomRect.X + (cannonBottomRect.Width / 2 - (cannonTubeRect.Width / 2));
-            cannonBgRect.X = cannonBottomRect.X;
-            loadedDrawProj.SetPosition(windowWidth / 2, loadedDrawProj.Y);
-            accuracyBeamRect.X = cannonTubeRect.X + (cannonTubeRect.Width / 2 - (accuracyBeamRect.Width / 2));
 
             // Reset the firing animation
             animatingDown = animatingUp = false;
             cannonTubeRect.Width = (int)(fullWidth * TUBE_EXT_RATIO_WIDTH);
             cannonTubeRect.Height = (int)(fullHeight - (EXT_TUBE_RATIO_HEIGHT * fullHeight));
             slidingIn = waitSlide = false;
+
+            // Then reposition the components of the cannon
+            cannonBottomRect.X = windowWidth / 2 - (cannonBottomRect.Width / 2);
+            cannonTubeRect.X = cannonBottomRect.X + (cannonBottomRect.Width / 2 - (cannonTubeRect.Width / 2));
+            cannonBgRect.X = cannonBottomRect.X;
+            loadedDrawProj.SetPosition(windowWidth / 2, loadedDrawProj.Y);
+            accuracyBeamRect.X = cannonTubeRect.X + (cannonTubeRect.Width / 2 - (accuracyBeamRect.Width / 2));
         }
 
         public void ChangeSettings(CannonSettings settings)

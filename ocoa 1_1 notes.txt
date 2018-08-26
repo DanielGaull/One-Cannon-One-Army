@@ -33,13 +33,14 @@
   -Issue #5: Opening the last gift of a page causes a crash
   -Issue #6: "Buy 10" button in the shop isn't formatted properly
   -Issue #7: Ninja alien not present in certain calculations
+  -Issue #8: Projectiles & explosions don't clear at end of level
+  -Issue #9: Cannon Offsets Incorrectly
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
-*Bug: clear projectiles/explosions after level is completed or failed (after doors close) - also clear sweeper arm
-*Bug: poison rocket interface added at the end of the crafting menu; perhaps played level that unlocked it, so it was added by accident?
+*Bug: Poison rocket interface added at the end of the crafting menu; perhaps played level that unlocked it, so it was added by accident?
 *Bug: Create projectiles, play a level and shoot some, then try to play another level and look at the count in the popup (doesn't change from initial projectile count)
 *Speed up coin animation
 *Press and hold button for upgrades

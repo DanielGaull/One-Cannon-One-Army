@@ -1339,6 +1339,13 @@ namespace OneCannonOneArmy
                 {
                     projectiles.RemoveAt(i);
                 }
+                if (projectiles[i] is ExplosiveProjectile)
+                {
+                    if ((projectiles[i] as ExplosiveProjectile).Exploding)
+                    {
+                        projectiles.RemoveAt(i);
+                    }
+                }
             }
 
             RemoveLifeOnQuit = false;
