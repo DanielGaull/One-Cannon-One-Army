@@ -470,6 +470,11 @@ namespace OneCannonOneArmy
             sweeper.AddOnSweepFinishHandler(handler);
         }
 
+        public void Reset()
+        {
+            sweeper.Reset();
+        }
+
         #endregion
 
         #region Private Methods
@@ -639,6 +644,12 @@ namespace OneCannonOneArmy
         public void AddOnSweepFinishHandler(Action handler)
         {
             sweepFinished += handler;
+        }
+
+        public void Reset()
+        {
+            Sweeping = false;
+            drawRect.X = windowWidth - WIDTH;
         }
 
         #endregion

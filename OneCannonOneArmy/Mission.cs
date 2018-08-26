@@ -1300,6 +1300,7 @@ namespace OneCannonOneArmy
             }
 
             playerInterface.Initialize(user);
+            playerInterface.Reset();
             cannon.Reset();
 
             aliens.Clear();
@@ -1374,6 +1375,8 @@ namespace OneCannonOneArmy
 
             canCallMissionOver = false;
             calledMissionOver = false;
+
+            
         }
 
         public List<MenuButton> GetButtons()

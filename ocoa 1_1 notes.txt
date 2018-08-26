@@ -35,6 +35,7 @@
   -Issue #7: Ninja alien not present in certain calculations
   -Issue #8: Projectiles & explosions don't clear at end of level
   -Issue #9: Cannon Offsets Incorrectly
+  -Issue #10: Sweeper doesn't reset at end of level
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
