@@ -646,6 +646,9 @@ namespace OneCannonOneArmy
                 intro.AddOnFinishHandler(AttemptStory);
                 intro.AddOnFinishHandler(IntroFinished);
 
+                //Sound.PlaySounds = false;
+                //Sound.SoundEffectsVolume = Sound.MusicVolume = Sound.SystemVolume = 0.0f;
+
                 langSelectPopup = new LangSelectorPopup(WINDOW_WIDTH, WINDOW_HEIGHT, mediumFont, GraphicsDevice);
                 langSelectPopup.AddLanguageSetHandler(InitLangSet);
                 if (!(new UniversalSettings().ViewedFullIntro))
@@ -1162,15 +1165,22 @@ namespace OneCannonOneArmy
                 CloseAnimation(GameState.SelectMission);
             }
             else
-            { //
+            {
                 Popup.Show(Language.Translate("You cannot play until you have at least one life."), false, false);
             }
         }
         private void Play(int id)
         {
-            preLvlPopup = new PreLvlPopup(smallFont, mediumFont, player.Hotbar, GetHotbarCounts(),
-                WINDOW_WIDTH, WINDOW_HEIGHT, () => ContinueToLevel(id), CancelPlayingLevel, GraphicsDevice, 
-                player.CannonSettings, Mission.Missions.Where(x => x.Id == id).FirstOrDefault(), player);
+            if (tutorial.Playing)
+            {
+                ContinueToLevel(id);
+            }
+            else
+            {
+                preLvlPopup = new PreLvlPopup(smallFont, mediumFont, player.Hotbar, GetHotbarCounts(),
+                    WINDOW_WIDTH, WINDOW_HEIGHT, () => ContinueToLevel(id), CancelPlayingLevel, GraphicsDevice,
+                    player.CannonSettings, Mission.Missions.Where(x => x.Id == id).FirstOrDefault(), player);
+            }
             
             //int req = Mission.DamageForLevel(id); // Required damage
             //int have = CalculateDamageAvailable(player); // ~ Available damage

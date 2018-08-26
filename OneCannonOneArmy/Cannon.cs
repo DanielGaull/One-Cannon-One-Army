@@ -553,6 +553,9 @@ namespace OneCannonOneArmy
 
         GraphicsDevice graphics;
 
+        const int NORMAL_UPGRADE_VALUE = 1;
+        const int HEALTH_UPGRADE_VALUE = 10;
+
         #endregion
 
         #region Constructors
@@ -581,6 +584,7 @@ namespace OneCannonOneArmy
 
             upgradeButton = new MenuButton(Upgrade, Language.Translate("Upgrade") + " " + valueString, 0,
                 0, true, font, graphics);
+            upgradeButton.CanHold = true;
             Position();
 
             costPos = new Vector2(0, upgradeButton.Y + upgradeButton.Height + SPACING);
@@ -643,7 +647,7 @@ namespace OneCannonOneArmy
 
         private void Upgrade()
         {
-            upgrade(stat, 1, cost);
+            upgrade(stat, stat == CannonStats.Health ? HEALTH_UPGRADE_VALUE : NORMAL_UPGRADE_VALUE, cost);
         }
 
         private void Position()

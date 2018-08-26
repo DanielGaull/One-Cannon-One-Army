@@ -183,6 +183,11 @@ namespace OneCannonOneArmy
             Sound.graphics = graphics;
             timer = new Timer(WAIT_TIME, TimerUnits.Seconds);
 
+            SoundEffects.Clear();
+            Songs.Clear();
+            currentSoundEffects.Clear();
+            currentSong = null;
+
             foreach (KeyValuePair<Sounds, string> kv in fxAssets)
             {
                 SoundEffects.Add(kv.Key, content.Load<SoundEffect>(kv.Value));
@@ -242,9 +247,17 @@ namespace OneCannonOneArmy
         }
         public static void PauseCurrentSong()
         {
-            if (currentSong?.State != SoundState.Paused)
+            try
             {
-                currentSong?.Pause();
+                if (currentSong?.State != SoundState.Paused)
+                {
+                    currentSong?.Pause();
+                }
+            }
+            catch (Exception)
+            {
+                // This error is thrown when the user restarts the program to replay the tutorial
+                currentSong = null;
             }
         }
         public static void StopAllMusic()

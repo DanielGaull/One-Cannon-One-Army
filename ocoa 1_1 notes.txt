@@ -11,7 +11,8 @@
 *Omega Aliens and Regular Aliens with shields now have a chance to spawn in the final level
 *You will no longer use a life if you play a level for less than 10 seconds
 *Buy 50 option in the shop
-*You can hold down the "Craft" button to craft projectiles quickly
+*You can now press and hold the "Craft" button to craft projectiles faster, and hold down the "Upgrade" to upgrade cannon stats faster
+*Upgrading health now gives you 10 HP per level instead of 1
 *Decreased worth of certain projectiles (makes these projectiles more likely to appear in gifts)
   -Rock
   -Cannonball
@@ -36,12 +37,13 @@
   -Issue #8: Projectiles & explosions don't clear at end of level
   -Issue #9: Cannon Offsets Incorrectly
   -Issue #10: Sweeper doesn't reset at end of level
+  -Issue #11: Restarting to replay the tutorial causes the game to crash
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
+*Clear up bookmarks
 *Bug: Poison rocket interface added at the end of the crafting menu; perhaps played level that unlocked it, so it was added by accident?
 *Bug: Create projectiles, play a level and shoot some, then try to play another level and look at the count in the popup (doesn't change from initial projectile count)
-*Don't make pre-level popup show during the tutorial
 *Press and hold button for upgrades
