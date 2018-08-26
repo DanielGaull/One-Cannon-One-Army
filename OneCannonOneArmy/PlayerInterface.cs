@@ -649,7 +649,7 @@ namespace OneCannonOneArmy
         public void Reset()
         {
             Sweeping = false;
-            drawRect.X = windowWidth - WIDTH;
+            drawRect.X = -WIDTH;
         }
 
         #endregion

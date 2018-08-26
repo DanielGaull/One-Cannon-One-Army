@@ -161,7 +161,7 @@ namespace OneCannonOneArmy
 
             Worth = worth;
 
-            timer = new Timer(300, TimerUnits.Milliseconds);
+            timer = new Timer(150, TimerUnits.Milliseconds);
         }
 
         #endregion
