@@ -26,12 +26,12 @@
   -Shuriken 
   -Ice Shard
 *Issues
-  -Issue 18001: Crafting Interface isn't added for new projectiles
-  -Issue 18002: Mission completion text for level 3 isn't displayed properly
-  -Issue 18003: Empty pages added to the gift menu
-  -Issue 18004: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
-  -Issue 18005: Open the last gift of a page causes a crash
-  -Issue 18006: "Buy 10" button in the shop isn't formatted properly
+  -Issue #1: Crafting Interface isn't added for new projectiles
+  -Issue #2: Mission completion text for level 3 isn't displayed properly
+  -Issue #3: Empty pages added to the gift menu
+  -Issue #4: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
+  -Issue #5: Opening the last gift of a page causes a crash
+  -Issue #6: "Buy 10" button in the shop isn't formatted properly
 
 Update To-Do List:
 *Remember that any new user properties must be initialized

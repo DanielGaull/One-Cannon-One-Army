@@ -662,7 +662,7 @@ namespace OneCannonOneArmy
                 if (e.FileName == Mission.FILE_PATH)
                 {
                     Error.Handle(new FileNotFoundException("The missions file is missing. Please make sure you haven't deleted it. "
-                        + "If you have, the download is available at purasu.itch.io/onecannononearmy.", e));
+                        + "If you have, the download is available at duoplus-software.itch.io/onecannononearmy.", e));
                 }
                 else
                 {
