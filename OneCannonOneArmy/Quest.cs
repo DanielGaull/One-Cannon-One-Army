@@ -121,16 +121,17 @@ namespace OneCannonOneArmy
                     return Language.Translate("Complete") + " " + GoalNumber + " " + Language.Translate("levels") + ".";
                 case QuestGoalType.BuyMaterials:
                     return Language.Translate("Buy") + " " + GoalNumber + " " + 
-                        Language.Translate(((Material)TypeId).ToString()) + ".";
+                        Language.Translate(((Material)TypeId).ToString().AddSpaces()) + ".";
                 case QuestGoalType.CraftProjectiles:
                     return Language.Translate("Craft") + " " + GoalNumber + " " +
-                        Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
+                        Language.Translate(((ProjectileType)TypeId).ToString().AddSpaces()) + ".";
                 case QuestGoalType.FireProjectiles:
                     return Language.Translate("Launch") + " " + GoalNumber + " " +
-                        Language.Translate(((ProjectileType)TypeId).ToString()) + ".";
+                        Language.Translate(((ProjectileType)TypeId).ToString().AddSpaces()) + ".";
                 case QuestGoalType.KillAliens:
                     return Language.Translate("Kill") + " " + GoalNumber + " " +
-                        Language.Translate(((BasicAlienTypes)TypeId).ToString().AddSpaces()) + " " + Language.Translate("Aliens") + ".";
+                        Language.Translate(((BasicAlienTypes)TypeId).ToString().AddSpaces().AddSpaces()) + " "
+                        + Language.Translate("Aliens") + ".";
                 case QuestGoalType.ObtainCoins:
                     return Language.Translate("Collect") + " " + GoalNumber + " " + Language.Translate("coins") + ".";
                 case QuestGoalType.SpendCoins:
@@ -198,7 +199,7 @@ namespace OneCannonOneArmy
             }
         }
         public QuestInterface(GraphicsDevice graphics, Texture2D questImg, int x, int y, SpriteFont font, User user, 
-            int windowWidth, int windowHeight, Texture2D coinImg)
+            int windowWidth, int windowHeight, Texture2D coinImg, Action skip)
         {
             this.font = font;
             this.user = user;
@@ -210,7 +211,7 @@ namespace OneCannonOneArmy
                 font.MeasureString(labelText).Y / 2);
 
             popup = new QuestPopup(graphics, font, windowWidth, windowHeight, user,
-                coinImg);
+                coinImg, skip);
         }
         public void Update(User user, GameTime gameTime)
         {
@@ -287,15 +288,18 @@ namespace OneCannonOneArmy
         const int COIN_SIZE = 25;
 
         MenuButton closeButton;
+        MenuButton skipButton;
 
         public bool Showing { get; private set; }
+
+        Action skip;
 
         #endregion
 
         #region Constructors
 
         public QuestPopup(GraphicsDevice graphics, SpriteFont font, int windowWidth, int windowHeight, 
-            User user, Texture2D coinIcon)
+            User user, Texture2D coinIcon, Action skip)
         {
             this.font = font;
 
@@ -319,6 +323,11 @@ namespace OneCannonOneArmy
             closeButton.X = bgRect.X + bgRect.Width / 2 - closeButton.Width / 2;
             closeButton.Y = bgRect.Bottom - closeButton.Height - BORDER_SIZE - SPACING;
 
+            this.skip = skip;
+            skipButton = new MenuButton(Skip, Language.Translate("Skip Quest"), 0, 0, true, font, graphics);
+            skipButton.X = bgRect.X + bgRect.Width / 2 - skipButton.Width / 2;
+            skipButton.Y = closeButton.Y - skipButton.Height - BORDER_SIZE - SPACING;
+
             if (user != null)
             {
                 Initialize(user);
@@ -332,6 +341,7 @@ namespace OneCannonOneArmy
         public void Update(GameTime gameTime)
         {
             closeButton.Update(gameTime);
+            skipButton.Update(gameTime);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -339,6 +349,7 @@ namespace OneCannonOneArmy
             spriteBatch.DrawString(font, questText, questTextLoc, Color.White);
             progressBar.Draw(spriteBatch, Color.Lime, Color.White);
             closeButton.Draw(spriteBatch);
+            skipButton.Draw(spriteBatch);
             spriteBatch.Draw(coinIcon, coinRect, Color.White);
             spriteBatch.DrawString(font, rewardString, rewardLoc, Color.Goldenrod);
         }
@@ -352,10 +363,13 @@ namespace OneCannonOneArmy
             coinRect = new Rectangle((int)(bgRect.X + bgRect.Width / 2 - (font.MeasureString(rewardString).X + COIN_SIZE) / 2),
                 progressBar.Y + progressBar.Height + BIG_SPACING, COIN_SIZE, COIN_SIZE);
             rewardLoc = new Vector2(coinRect.Right, coinRect.Y);
+
+            closeButton.Text = Language.Translate("Close");
+            skipButton.Text = Language.Translate("Skip Quest");
         }
         public List<MenuButton> GetButtons()
         {
-            return new List<MenuButton>() { closeButton };
+            return new List<MenuButton>() { closeButton, skipButton };
         }
 
         public void Show(User user)
@@ -387,6 +401,12 @@ namespace OneCannonOneArmy
             questText = quest.ToString();
             questTextLoc = new Vector2(bgRect.X + bgRect.Width / 2 - font.MeasureString(questText).X / 2,
                 bgRect.Y + BORDER_SIZE + SPACING * 2);
+        }
+
+        private void Skip()
+        {
+            Hide();
+            skip?.Invoke();
         }
 
         #endregion

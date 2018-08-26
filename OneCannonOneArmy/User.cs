@@ -39,7 +39,7 @@ namespace OneCannonOneArmy
             {
                 if (ProjectilesFired <= 0)
                 {
-                    return 0.0f;
+                    return 100.0f;
                 }
                 else
                 {

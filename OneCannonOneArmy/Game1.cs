@@ -547,7 +547,7 @@ namespace OneCannonOneArmy
                     new System.Action(OpenOrganize), new System.Action(OpenCrafting), new System.Action(OpenUpgrade), new Action<int>(Play),
                     new System.Action(BuyLife), new System.Action(OpenLang), new Action<Languages>(ChangeLang),
                     new System.Action(OpenControls), new System.Action(OpenUserSettings), new System.Action(OpenGifts),
-                    new System.Action(OpenCredits));
+                    new System.Action(OpenCredits), new Action(SkipQuest));
                 menu.AddOnCraftHandler(OnCraft);
                 menu.AddReplayTutorialHandler(ReplayTutorial);
                 menu.AddSettingsSubmitHandler(UpdateUser);
@@ -557,6 +557,7 @@ namespace OneCannonOneArmy
                     LoadImg("sweep"), LoadImg("lasercannon"), alienImg, alienEyeImg,
                     LoadImg("life"), rapidFireIcon, crossImg);
                 game.AddOnAlienHitHandler(OnAlienHit);
+                game.AddOnAlienDeathHandler(OnAlienDeath);
                 game.AddOnLaunchHandler(menu.RemoveProj);
                 game.AddMissionOverHandler(MissionDone);
                 game.AddOnBadgeCollectHandler(menu.AddBadge);
@@ -1080,6 +1081,11 @@ namespace OneCannonOneArmy
             settings.Save();
             CloseAnimation(g);
             AttemptTutorialPlay();
+        }
+        private void SkipQuest()
+        {
+            player.QuestProgress = 0;
+            player.CurrentQuest = Quest.Random(player);
         }
         private void GoBack()
         {

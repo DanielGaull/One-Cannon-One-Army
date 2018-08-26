@@ -32,6 +32,7 @@
   -Issue #4: Projectiles from the last signed-in user don't clear out of Organize Hotbar Menu
   -Issue #5: Opening the last gift of a page causes a crash
   -Issue #6: "Buy 10" button in the shop isn't formatted properly
+  -Issue #7: Ninja alien not present in certain calculations
 
 Update To-Do List:
 *Remember that any new user properties must be initialized
@@ -39,3 +40,9 @@ Update To-Do List:
   -Test quests
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
+*Bug: clear projectiles/explosions after level is completed or failed (after doors close) - also clear sweeper arm
+*Bug: poison rocket interface added at the end of the crafting menu; perhaps played level that unlocked it, so it was added by accident?
+*Bug: None is still an option in quests (at least for crafting)
+*Bug: Create projectiles, play a level and shoot some, then try to play another level and look at the count in the popup (doesn't change from initial projectile count)
+*Speed up coin animation
+*Press and hold button for upgrades

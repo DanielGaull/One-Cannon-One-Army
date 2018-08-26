@@ -312,6 +312,7 @@ namespace OneCannonOneArmy
             { 13, Aliens.PoisonResistant },
             { 14, Aliens.HFireDefense },
             { 15, Aliens.HPoisonResistant },
+            { 16, Aliens.Ninja },
             { 18, Aliens.Chaos },
             { 19, Aliens.LPlasmaResistant },
             { 20, Aliens.PlasmaResistant },

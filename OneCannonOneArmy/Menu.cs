@@ -348,7 +348,7 @@ namespace OneCannonOneArmy
             System.Action achievements, System.Action stats, System.Action openShop, System.Action settings, System.Action openOrganize,
             System.Action openCrafting, System.Action openUpgrade, Action<int> selectMission, System.Action buyLife, System.Action openLang,
             Action<Languages> changeLang, System.Action openControls, System.Action openUserSettings, System.Action openGifts,
-            System.Action openCredits)
+            System.Action openCredits, System.Action skipQuest)
         // Put button click delegates at the bottom
         {
             this.windowWidth = windowWidth;
@@ -493,7 +493,7 @@ namespace OneCannonOneArmy
                 avatarBSlider.Y + avatarBSlider.Height + SPACING, PROJECTILE_SIZE, PROJECTILE_SIZE);
 
             questInterface = new QuestInterface(graphics, scrollIcon, 0, logoRect.Bottom + BUTTON_SPACING,
-                mediumFont, user, windowWidth, windowHeight, coinIcon);
+                mediumFont, user, windowWidth, windowHeight, coinIcon, skipQuest);
             questInterface.X = windowWidth / 2 - questInterface.Width / 2;
 
             playButton = new MenuButton(play, Language.Translate("Play"), 0, questInterface.Y + questInterface.Height + BUTTON_SPACING,
