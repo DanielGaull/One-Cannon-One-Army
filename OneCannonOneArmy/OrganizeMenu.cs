@@ -687,7 +687,14 @@ namespace OneCannonOneArmy
 
         public List<DraggableProjectile> GetDraggables()
         {
-            return projDraggables;
+            if (state == OrganizeState.Hotbar)
+            {
+                return projDraggables;
+            }
+            else
+            {
+                return new List<DraggableProjectile>();
+            }
         }
 
         #endregion
@@ -1098,7 +1105,7 @@ namespace OneCannonOneArmy
                 if (DraggingThis)
                 {
                     if (whenDraggingEnded?.Invoke(this) == false)
-                    { 
+                    {
                         // Only execute the below code if the dragging method failed
 
                         // We were previously dragging, but now we aren't. Therefore, we
