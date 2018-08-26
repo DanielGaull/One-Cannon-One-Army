@@ -1038,6 +1038,7 @@ namespace OneCannonOneArmy
                 // The player is trying to leave the game
                 Popup.Show(GetTextForQuitLevel(),
                     true, new System.Action(() => RemoveLifeAnd(new System.Action(() => CloseAnimation(GameState.MainMenu)),
+                    SaveUser,
                     new System.Action(() => EnableOrDisableCloseButton(true)))),
                     false);
             }
@@ -2142,6 +2143,8 @@ namespace OneCannonOneArmy
             {
                 WhenMalosDefeated();
             }
+
+            SaveUser();
         }
 
         private void NextLevel()

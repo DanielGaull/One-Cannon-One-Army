@@ -43,4 +43,7 @@ Update To-Do List:
 *Don't let user start with a ton of coins if their name is "i"
 *Make the lang select popup show
 *Clear up bookmarks
+*Increase Omega alien's health
+*Make special defense aliens have same defense as the regular defense counterparts, plus special effect defense
 *Bug: Create projectiles, play a level and shoot some, then try to play another level and look at the count in the popup (doesn't change from initial projectile count)
+*Mouse hovers over draggable projectiles even when the hotbar isn't open
